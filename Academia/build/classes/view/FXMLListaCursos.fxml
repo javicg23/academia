@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLListaCursosController">
+   <top>
+      <VBox maxHeight="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar fx:id="menuBar" focusTraversable="false">
+               <menus>
+                  <Menu fx:id="menuAlumnos" mnemonicParsing="false" text="_Alumnos">
+                     <items>
+                        <MenuItem fx:id="menuAlumnosAnyadir" mnemonicParsing="false" onAction="#pulsarMenuAlumnosAnyadir" text="Añadir">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="menuAlumnosEliminar" mnemonicParsing="false" onAction="#pulsarMenuAlumnosEliminar" text="Eliminar">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="menuAlumnosListado" mnemonicParsing="false" onAction="#pulsarMenuAlumnosListado" text="Listado">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                     </items>
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="A" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </Menu>
+                  <Menu fx:id="menuCursos" mnemonicParsing="false" text="_Cursos">
+                     <items>
+                        <MenuItem fx:id="menuCursosAnyadir" mnemonicParsing="false" onAction="#pulsarMenuCursosAnyadir" text="Añadir">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="menuCursosEliminar" mnemonicParsing="false" onAction="#pulsarMenuCursosEliminar" text="Eliminar">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="menuCursosListado" mnemonicParsing="false" onAction="#pulsarMenuCursosListado" text="Listado">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="K" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                     </items>
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="C" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </Menu>
+                  <Menu fx:id="menuMatriculaciones" mnemonicParsing="false" text="_Matriculaciones">
+                     <items>
+                        <MenuItem fx:id="menuMatriculacionesMatricular" mnemonicParsing="false" onAction="#pulsarMenuMatriculacionesMatricular" text="Matricular">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="menuMatriculacionesDesmatricular" mnemonicParsing="false" onAction="#pulsarMenuMatriculacionesDesmatricular" text="Desmatricular">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                     </items>
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="M" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lblTitulo" text="Listado de cursos" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox>
+               <children>
+                  <ImageView fx:id="imgLupa" fitHeight="25.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/lupa.jpg" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="textFiltrar" maxWidth="200.0" promptText="Interfaces" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <TableView fx:id="tablaListaCursos" prefHeight="400.0" prefWidth="630.0">
+              <columns>
+                <TableColumn fx:id="tablaListaCursosColumnaCurso" prefWidth="315.0" resizable="false" text="Curso" />
+                <TableColumn fx:id="tablaListaCursosColumnaProfesor" prefWidth="315.0" resizable="false" text="Profesor" />
+              </columns>
+            </TableView>
+         </children>
+         <BorderPane.margin>
+            <Insets right="20.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <right>
+      <GridPane fx:id="gridBotonera" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAnyadir" minWidth="85.0" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnAnyadir" onMouseClicked="#pulsarRatonBtnAnyadir" text="Añadir" />
+            <Button fx:id="btnEliminar" minWidth="85.0" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnEliminar" onMouseClicked="#pulsarRatonBtnEliminar" text="Eliminar" GridPane.rowIndex="1" />
+            <Button fx:id="btnAlumnosMatriculados" maxWidth="85.0" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnAlumnosMatriculados" onMouseClicked="#pulsarRatonBtnAlumnosMatriculados" text="Alumnos matriculados" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2" />
+         </children>
+         <BorderPane.margin>
+            <Insets top="25.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </right>
+   <bottom>
+      <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnAtras" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnAtras" onMouseClicked="#pulsarRatonBtnAtras" prefHeight="30.0" prefWidth="40.0">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/atras.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets bottom="14.0" left="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </HBox>
+            <Label fx:id="lblModificacionLista" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

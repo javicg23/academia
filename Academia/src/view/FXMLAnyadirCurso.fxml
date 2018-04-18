@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLAnyadirCursoController">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="70.0" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblTitulo" focusTraversable="false" text="Añadir curso" />
+         </children>
+      </HBox>
+   </top>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="70.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="20.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+   <bottom>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnCancelar" onMouseClicked="#pulsarRatonBtnCancelar" text="Cancelar">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnGuardar" onMouseClicked="#pulsarRatonBtnGuardar" text="Guardar">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="15.0" right="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <GridPane fx:id="gridAnyadirCurso" prefHeight="230.0" prefWidth="994.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.20001220703125" minWidth="10.0" prefWidth="107.20001220703125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.20001220703125" minWidth="10.0" prefWidth="108.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.20001220703125" minWidth="10.0" prefWidth="29.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.39998779296874" minWidth="10.0" prefWidth="81.39998779296874" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.79998779296875" minWidth="10.0" prefWidth="106.20001220703125" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="gridAnyadirCursoLblTitulo" focusTraversable="false" text="Título:" />
+            <TextField fx:id="gridAnyadirCursoTextTitulo" GridPane.columnIndex="1" />
+            <Label fx:id="gridAnyadirCursoLblProfesor" focusTraversable="false" text="Profesor:" GridPane.columnIndex="3" />
+            <TextField fx:id="gridAnyadirCursoTextProfesor" GridPane.columnIndex="4" />
+            <Label fx:id="gridAnyadirCursoLblNMax" focusTraversable="false" text="Nº máx alumnos:" GridPane.rowIndex="1" />
+            <Spinner fx:id="gridAnyadirCursoSpnNMax" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="gridAnyadirCursoLblHora" focusTraversable="false" text="Hora:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="gridAnyadirCursoTextHora" promptText="12:30" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label fx:id="gridAnyadirCursoLblInicio" focusTraversable="false" text="Fecha Inicio:" GridPane.rowIndex="2" />
+            <DatePicker fx:id="gridAnyadirCursoDateInicio" promptText="dd/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="gridAnyadirCursoLblFin" focusTraversable="false" text="Fecha Inicio:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <DatePicker fx:id="gridAnyadirCursoDateFin" promptText="dd/mm/aaaa" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label fx:id="gridAnyadirCursoLblAula" focusTraversable="false" text="Aula:" GridPane.rowIndex="3" />
+            <ComboBox fx:id="gridAnyadirCursoCmbAula" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="gridAnyadirCursoLblDias" focusTraversable="false" text="Dias:" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <VBox alignment="CENTER_LEFT" GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <children>
+                  <CheckBox fx:id="gridAnyadirCursoCheckLunes" mnemonicParsing="false" text="Lunes" />
+                  <CheckBox fx:id="gridAnyadirCursoCheckMartes" mnemonicParsing="false" text="Martes" />
+                  <CheckBox fx:id="gridAnyadirCursoCheckMiercoles" mnemonicParsing="false" text="Miércoles" />
+                  <CheckBox fx:id="gridAnyadirCursoCheckJueves" mnemonicParsing="false" text="Jueves" />
+                  <CheckBox fx:id="gridAnyadirCursoCheckViernes" mnemonicParsing="false" text="Viernes" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
