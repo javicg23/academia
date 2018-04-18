@@ -113,10 +113,7 @@ public class FXMLListaCursosController implements Initializable {
     }
     
     public void initStage(Stage stage, boolean anyadidoExito) { 
-        primaryStage = stage;
-        escenaAnterior = stage.getScene();
-        tituloAnterior = stage.getTitle();
-        primaryStage.setTitle("Lista cursosx");
+        initStage(stage);
         anyadido = anyadidoExito;
     }
     

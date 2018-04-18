@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Academia.jar" size="106192" download="eager" />
+    <jar href="Academia.jar" size="106128" download="eager" />
     <jar href="lib\accesoaBD.jar" size="39697" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Academia" >
