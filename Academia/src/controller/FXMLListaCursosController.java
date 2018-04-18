@@ -38,7 +38,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import modelo.Alumno;
 import modelo.Curso;
 
 /**
@@ -104,6 +103,7 @@ public class FXMLListaCursosController implements Initializable {
     private Stage primaryStage;
     private Scene escenaAnterior; 
     private String tituloAnterior;
+    private boolean anyadido;
     
     public void initStage(Stage stage) { 
         primaryStage = stage;
@@ -111,6 +111,16 @@ public class FXMLListaCursosController implements Initializable {
         tituloAnterior = stage.getTitle();
         primaryStage.setTitle("Lista cursos");
     }
+    
+    public void initStage(Stage stage, boolean anyadidoExito) { 
+        primaryStage = stage;
+        escenaAnterior = stage.getScene();
+        tituloAnterior = stage.getTitle();
+        primaryStage.setTitle("Lista cursosx");
+        anyadido = anyadidoExito;
+    }
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -149,7 +159,6 @@ public class FXMLListaCursosController implements Initializable {
             });
             return row;
         });
-        
     }    
 
     @FXML
@@ -163,7 +172,7 @@ public class FXMLListaCursosController implements Initializable {
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
         
-        stage.setTitle("Añadir alumno");
+        loader.<FXMLAnyadirCursoController> getController().initStage(stage, primaryStage); 
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -180,7 +189,7 @@ public class FXMLListaCursosController implements Initializable {
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
         
-        stage.setTitle("Eliminar alumno");
+        loader.<FXMLAnyadirCursoController> getController().initStage(stage, primaryStage); 
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -202,7 +211,7 @@ public class FXMLListaCursosController implements Initializable {
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
         
-        stage.setTitle("Añadir curso");
+        loader.<FXMLAnyadirCursoController> getController().initStage(stage, primaryStage); 
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -219,7 +228,7 @@ public class FXMLListaCursosController implements Initializable {
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
         
-        stage.setTitle("Eliminar curso");
+        loader.<FXMLAnyadirCursoController> getController().initStage(stage, primaryStage); 
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();

@@ -55,6 +55,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
     @FXML
     private Button gridAnyadirAlumnoBtnExaminar;
 
+    private Stage primaryStage, emergenteStage;
     
     /**
      * Initializes the controller class.
@@ -64,6 +65,11 @@ public class FXMLAnyadirAlumnoController implements Initializable {
         // TODO
     }    
 
+    public void initStage(Stage stageEmergente, Stage stage) {
+        emergenteStage = stageEmergente;
+        emergenteStage.setTitle("Añadir curso");
+        primaryStage = stage;
+    }
     
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) {

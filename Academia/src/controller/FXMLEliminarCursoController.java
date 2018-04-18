@@ -43,6 +43,8 @@ public class FXMLEliminarCursoController implements Initializable {
     @FXML
     private TableColumn<?, ?> tablaCursosColumnaProfesor;
     
+    private Stage primaryStage, emergenteStage;
+    
     /**
      * Initializes the controller class.
      */
@@ -51,6 +53,12 @@ public class FXMLEliminarCursoController implements Initializable {
         // TODO
     }    
     
+    public void initStage(Stage stageEmergente, Stage stage) {
+        emergenteStage = stageEmergente;
+        emergenteStage.setTitle("Añadir curso");
+        primaryStage = stage;
+    }
+        
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) {
     }
