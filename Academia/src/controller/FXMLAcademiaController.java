@@ -87,12 +87,12 @@ public class FXMLAcademiaController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAnyadirAlumno.fxml"));
         Parent root = (Parent) loader.load();
-        loader.<FXMLAnyadirAlumnoController> getController().initStage(stage); 
         Scene scene = new Scene(root);
         
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
         
+        stage.setTitle("Añadir alumno");
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -103,12 +103,13 @@ public class FXMLAcademiaController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLEliminarAlumno.fxml"));
         Parent root = (Parent) loader.load();
-        loader.<FXMLEliminarAlumnoController> getController().initStage(stage); 
         
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
         
         Scene scene = new Scene(root);
+        
+        stage.setTitle("Eliminar alumno");
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -124,12 +125,13 @@ public class FXMLAcademiaController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAnyadirCurso.fxml"));
         Parent root = (Parent) loader.load();
-        loader.<FXMLAnyadirCursoController> getController().initStage(stage); 
+
         Scene scene = new Scene(root);
         
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
         
+        stage.setTitle("Añadir curso");
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -140,12 +142,13 @@ public class FXMLAcademiaController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLEliminarCurso.fxml"));
         Parent root = (Parent) loader.load();
-        loader.<FXMLEliminarCursoController> getController().initStage(stage); 
+        
         Scene scene = new Scene(root);
         
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
         
+        stage.setTitle("Eliminar curso");
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -202,7 +205,7 @@ public class FXMLAcademiaController implements Initializable {
         }
     }
     
-    public void abrirListadoAlumnos() throws IOException {
+    private void abrirListadoAlumnos() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
         Parent root = (Parent) loader.load();
         
@@ -213,7 +216,7 @@ public class FXMLAcademiaController implements Initializable {
         primaryStage.show();
     }
     
-    public void abrirListadoCursos() throws IOException {
+    private void abrirListadoCursos() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
         Parent root = (Parent) loader.load();
         
@@ -224,7 +227,7 @@ public class FXMLAcademiaController implements Initializable {
         primaryStage.show();
     }
     
-    public void abrirMatricular() throws IOException {
+    private void abrirMatricular() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLMatriculaciones.fxml"));
         Parent root = (Parent) loader.load();
         

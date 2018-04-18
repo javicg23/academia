@@ -5,8 +5,10 @@
  */
 package controller;
 
+import accesoaBD.AccesoaBD;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -77,7 +79,7 @@ public class FXMLAnyadirCursoController implements Initializable {
     @FXML
     private CheckBox gridAnyadirCursoCheckViernes;
 
-    private Stage primaryStage;
+    private AccesoaBD acceso = new AccesoaBD();
     
     /**
      * Initializes the controller class.
@@ -86,27 +88,39 @@ public class FXMLAnyadirCursoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        btnGuardar.setDisable(true);
+        
+        gridAnyadirCursoTextProfesor.addEventFilter(KeyEvent.KEY_TYPED, (KeyEvent keyEvent) -> {
+            if (!"-0123456789/n".contains(keyEvent.getCharacter())) {
+                keyEvent.consume();
+            }
+        });
+        
+        //gridAnyadirCursoSpnNMax.getValueFactory().setValue(0);
     }    
     
-    public void initStage(Stage stage) {
-        primaryStage = stage;
-        primaryStage.setTitle("Añadir curso");
-    }
 
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) {
+        
     }
 
     @FXML
     private void pulsarTecladoBtnCancelar(KeyEvent event) {
+        
     }
 
     @FXML
     private void pulsarRatonBtnGuardar(MouseEvent event) {
+        
     }
 
     @FXML
     private void pulsarTecladoBtnGuardar(KeyEvent event) {
+        
     }
     
+    private void comprobarCampos() {
+        
+    }
 }

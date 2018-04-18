@@ -42,8 +42,6 @@ public class FXMLEliminarCursoController implements Initializable {
     private TableColumn<?, ?> tablaCursosColumnaCurso;
     @FXML
     private TableColumn<?, ?> tablaCursosColumnaProfesor;
-
-    private Stage primaryStage;
     
     /**
      * Initializes the controller class.
@@ -52,11 +50,6 @@ public class FXMLEliminarCursoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    public void initStage(Stage stage) {
-        primaryStage = stage;
-        primaryStage.setTitle("Eliminar Curso");
-    }
     
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) {
