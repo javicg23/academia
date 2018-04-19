@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLAlumnosMatriculadosController">
+   <top>
+      <VBox maxHeight="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lblTitulo" focusTraversable="false" text="Lista de alumnos matriculados en " />
+                  <Label fx:id="lblCurso" focusTraversable="false" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="75.0" BorderPane.alignment="CENTER" />
+   </left>
+   <bottom>
+      <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <VBox maxWidth="450.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <ImageView fx:id="imgLupa" fitHeight="25.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/lupa.jpg" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <TextField fx:id="textFiltrar" maxWidth="200.0" promptText="Juan García Pérez" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TableView fx:id="tablaAlumnos" minHeight="263.0" prefHeight="200.0" prefWidth="500.0">
+                    <columns>
+                        <TableColumn fx:id="tablaAlumnosColumnaFotografia" maxWidth="75.0" prefWidth="75.0" resizable="false" text="Foto" />
+                      <TableColumn fx:id="tablaAlumnosColumnaNombre" prefWidth="200.0" resizable="false" text="Nombre" />
+                      <TableColumn fx:id="tablaAlumnosColumnaDni" prefWidth="100.0" resizable="false" text="DNI" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="120.0" />
+            <GridPane fx:id="gridDatosCurso">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="gridDatosCursoLblProfesorCabecera" text="Profesor:" />
+                  <Label fx:id="gridDatosCursoLblHoraCabecera" text="Hora:" GridPane.rowIndex="1" />
+                  <Label fx:id="gridDatosCursoLblDiasCabecera" text="Dias:" GridPane.rowIndex="2" />
+                  <Label fx:id="gridDatosCursoLblAulaCabecera" text="Aula" GridPane.rowIndex="3" />
+                  <Label fx:id="gridDatosCursoLblProfesor" GridPane.columnIndex="1" />
+                  <Label fx:id="gridDatosCursoLblHora" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="gridDatosCursoLblDias" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="gridDatosCursoLblAula" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+   </center>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="75.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
