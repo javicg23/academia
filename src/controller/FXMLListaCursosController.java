@@ -50,7 +50,6 @@ import modelo.Curso;
  */
 public class FXMLListaCursosController implements Initializable {
 
-    
     @FXML
     private MenuBar menuBar;
     @FXML
@@ -102,26 +101,24 @@ public class FXMLListaCursosController implements Initializable {
     @FXML
     private Button btnAlumnosMatriculados;
 
-    
     private Boolean anyadido = false;
     private Stage primaryStage;
-    private Scene escenaAnterior; 
+    private Scene escenaAnterior;
     private String tituloAnterior;
     private ObservableList<Curso> listaCursos = null; // Coleccion vinculada a la vista.
     private AccesoaBD baseDatos;
-    
-    public void initStage(Stage stage) { 
+
+    public void initStage(Stage stage) {
         primaryStage = stage;
-        escenaAnterior = stage.getScene();
-        tituloAnterior = stage.getTitle();
         primaryStage.setTitle("Lista cursos");
     }
-    
-    public void initStage(Stage stage, Boolean anyadidoExito) { 
+
+    public void initStage(Stage stage, Boolean anyadidoExito) {
         initStage(stage);
         anyadido = anyadidoExito;
         comprobarAnyadido();
     }
+
     /**
      * Initializes the controller class.
      */
@@ -131,17 +128,16 @@ public class FXMLListaCursosController implements Initializable {
         ArrayList<Curso> cursos = (ArrayList<Curso>) baseDatos.getCursos();
         listaCursos = FXCollections.observableArrayList(cursos);
         tablaListaCursos.setItems(listaCursos); //vincular la vista y el modelo
-        
+
         //asignar el estilo a las celdas
         tablaListaCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
         tablaListaCursosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
-        tablaListaCursosColumnaHora.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getHora().toString()));
-        
-        
+        tablaListaCursosColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
+
         //listener para que cuando se pulse una celdase activen los botones de eliminar y ver alumonsMatriculados
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaListaCursos.getSelectionModel().selectedIndexProperty()));
         btnAlumnosMatriculados.disableProperty().bind(Bindings.equal(-1, tablaListaCursos.getSelectionModel().selectedIndexProperty()));
-        
+
         //metodo para abrir los alumnos matriculados en un curso al pulsar dos veces en un curso de la tabla
         tablaListaCursos.setRowFactory(tableRow -> {
             TableRow<Curso> row = new TableRow<>();
@@ -155,7 +151,7 @@ public class FXMLListaCursosController implements Initializable {
             });
             return row;
         });
-        
+
         //sentencia para aplicar el filtro a la lista de cursos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println(newValue);
@@ -171,9 +167,8 @@ public class FXMLListaCursosController implements Initializable {
             listaCursos = FXCollections.observableArrayList(cursosFiltro);
             tablaListaCursos.setItems(listaCursos); //vincular la vista y el modelo
         });
-        
-        
-    }    
+
+    }
 
     @FXML
     private void pulsarMenuAlumnosAnyadir(ActionEvent event) throws IOException {
@@ -181,12 +176,12 @@ public class FXMLListaCursosController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAnyadirAlumno.fxml"));
         Parent root = (Parent) loader.load();
         Scene scene = new Scene(root);
-        
+
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
-        
-        loader.<FXMLAnyadirAlumnoController> getController().initStage(stage, primaryStage, true); 
-        
+
+        loader.<FXMLAnyadirAlumnoController>getController().initStage(stage, primaryStage, true);
+
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -197,14 +192,14 @@ public class FXMLListaCursosController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLEliminarAlumno.fxml"));
         Parent root = (Parent) loader.load();
-        
+
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
-        
+
         Scene scene = new Scene(root);
-        
-        loader.<FXMLEliminarAlumnoController> getController().initStage(stage, primaryStage);
-        
+
+        loader.<FXMLEliminarAlumnoController>getController().initStage(stage, primaryStage, true);
+
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -222,11 +217,11 @@ public class FXMLListaCursosController implements Initializable {
         Parent root = (Parent) loader.load();
 
         Scene scene = new Scene(root);
-        
+
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
-        
-        loader.<FXMLAnyadirCursoController> getController().initStage(stage, primaryStage); 
+
+        loader.<FXMLAnyadirCursoController>getController().initStage(stage, primaryStage, true);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -237,13 +232,13 @@ public class FXMLListaCursosController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLEliminarCurso.fxml"));
         Parent root = (Parent) loader.load();
-        
+
         Scene scene = new Scene(root);
-        
+
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
-        
-        loader.<FXMLEliminarCursoController> getController().initStage(stage, primaryStage); 
+
+        loader.<FXMLEliminarCursoController>getController().initStage(stage, primaryStage, true);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -265,14 +260,29 @@ public class FXMLListaCursosController implements Initializable {
     }
 
     @FXML
-    private void pulsarRatonBtnAtras(MouseEvent event) {
-        ventanaAnterior();
+    private void pulsarRatonBtnAtras(MouseEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAcademia.fxml"));
+            Parent root = (Parent) loader.load();
+
+            FXMLAcademiaController controllerAcademia = loader.<FXMLAcademiaController> getController();
+            controllerAcademia.initStage(primaryStage);
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("Academia");
+            primaryStage.setScene(scene);
+            primaryStage.show();
     }
 
     @FXML
-    private void pulsarTecladoBtnAtras(KeyEvent event) throws IOException{
+    private void pulsarTecladoBtnAtras(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            ventanaAnterior();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAcademia.fxml"));
+            Parent root = (Parent) loader.load();
+
+            FXMLAcademiaController controllerAcademia = loader.<FXMLAcademiaController> getController();
+            controllerAcademia.initStage(primaryStage);
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
         }
     }
 
@@ -307,76 +317,75 @@ public class FXMLListaCursosController implements Initializable {
             abrirAlumnosMatriculados();
         }
     }
-    
+
     private void abrirListadoAlumnos() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
         Parent root = (Parent) loader.load();
-        
-        FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController> getController();
+
+        FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
         controllerListaAlumnos.initStage(primaryStage);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
+
     private void abrirListadoCursos() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
         Parent root = (Parent) loader.load();
-        
-        FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController> getController();
+
+        FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
         controllerListaCursos.initStage(primaryStage);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
+
     private void abrirMatricular() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLMatriculaciones.fxml"));
         Parent root = (Parent) loader.load();
-        
-        FXMLMatriculacionesController controllerMatriculaciones = loader.<FXMLMatriculacionesController> getController();
+
+        FXMLMatriculacionesController controllerMatriculaciones = loader.<FXMLMatriculacionesController>getController();
         controllerMatriculaciones.initStage(primaryStage);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
-    
+
     private void abrirAnyadirCurso() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAnyadirCurso.fxml"));
         Parent root = (Parent) loader.load();
 
         Scene scene = new Scene(root);
-        
+
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
-        
-        loader.<FXMLAnyadirCursoController> getController().initStage(stage, primaryStage); 
+
+        loader.<FXMLAnyadirCursoController>getController().initStage(stage, primaryStage);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
-    
+
     private void abrirAlumnosMatriculados() throws IOException {
         Curso curso = tablaListaCursos.getSelectionModel().getSelectedItem();
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAlumnosMatriculados.fxml"));
         Parent root = (Parent) loader.load();
-        loader.<FXMLAlumnosMatriculadosController> getController().initStage(stage, primaryStage, curso); 
+        loader.<FXMLAlumnosMatriculadosController>getController().initStage(stage, primaryStage, curso);
         Scene scene = new Scene(root);
-        
+
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
-        
+
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-    
+
     }
-    
+
     private void eliminarCurso() {
-        
+
     }
 
     private String quitarAcentos(String s) {
@@ -384,30 +393,42 @@ public class FXMLListaCursosController implements Initializable {
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             switch (c) {
-                case 'á': c = 'a';break;
-                case 'à': c = 'a';break;
-                case 'é': c = 'e';break;
-                case 'è': c = 'e';break;
-                case 'í': c = 'i';break;
-                case 'ó': c = 'o';break;
-                case 'ò': c = 'o';break;
-                case 'ú': c = 'u';break;
-                default: 
+                case 'á':
+                    c = 'a';
+                    break;
+                case 'à':
+                    c = 'a';
+                    break;
+                case 'é':
+                    c = 'e';
+                    break;
+                case 'è':
+                    c = 'e';
+                    break;
+                case 'í':
+                    c = 'i';
+                    break;
+                case 'ó':
+                    c = 'o';
+                    break;
+                case 'ò':
+                    c = 'o';
+                    break;
+                case 'ú':
+                    c = 'u';
+                    break;
+                default:
             }
-            res = res.concat(c+"");
+            res = res.concat(c + "");
         }
         return res;
     }
-    
+
     private void comprobarAnyadido() {
         if (anyadido) {
             lblModificacionLista.setText("Alumno añadido correctamente");
         } else {
             lblModificacionLista.setText("");
         }
-    }
-    private void ventanaAnterior() {
-        primaryStage.setTitle(tituloAnterior);
-        primaryStage.setScene(escenaAnterior);
     }
 }

@@ -92,7 +92,7 @@ public class FXMLAnyadirCursoController implements Initializable {
 
     private AccesoaBD acceso = new AccesoaBD();
     private ArrayList<Curso> listaCursos = (ArrayList<Curso>) acceso.getCursos();
-    boolean[] arrayBooleans = new boolean[8];
+    private boolean[] arrayBooleans = new boolean[8];
     private Stage primaryStage, emergenteStage;
     private Boolean vengoDeStageConMenu = false;
 
@@ -228,9 +228,10 @@ public class FXMLAnyadirCursoController implements Initializable {
         }
         if (gridAnyadirCursoTextHora.getText().length() == 5
                 && gridAnyadirCursoTextHora.getText().charAt(2) == ':'
-                && Integer.parseInt(gridAnyadirCursoTextHora.getText().substring(0, 1)) <= 24
-                && Integer.parseInt(gridAnyadirCursoTextHora.getText().substring(3, 4)) <= 59) {
+                && Integer.parseInt(gridAnyadirCursoTextHora.getText().substring(0, 2)) <= 24
+                && Integer.parseInt(gridAnyadirCursoTextHora.getText().substring(3, 5)) <= 59) {
             arrayBooleans[3] = true;
+            System.out.println(gridAnyadirCursoTextHora.getText().substring(0, 1));
         }
         if (gridAnyadirCursoDateInicio.getValue() != null
                 && gridAnyadirCursoDateInicio.getValue().compareTo(gridAnyadirCursoDateFin.getValue()) <= 0) {

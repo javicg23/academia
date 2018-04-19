@@ -72,7 +72,7 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
     private Curso curso;
     private AccesoaBD baseDatos;
     private ObservableList<Alumno> listaAlumnos = null; // Coleccion vinculada a la vista.
-    
+
     public void initStage(Stage stageEmergente, Stage stage, Curso c) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Alumnos matriculados");
@@ -80,7 +80,7 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
         this.curso = c;
         initializeAll();
     }
-    
+
     private void initializeAll() {
         //poner los datos del curso
         gridDatosCursoLblAula.setText(curso.getAula());
@@ -115,35 +115,52 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
         tablaAlumnosColumnaNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         tablaAlumnosColumnaFotografia.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFoto().getClass().toString()));
        
-        */
-    
+         */
+
     }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
-    
+
+    }
+
     private String quitarAcentos(String s) {
         String res = "";
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             switch (c) {
-                case 'á': c = 'a';break;
-                case 'à': c = 'a';break;
-                case 'é': c = 'e';break;
-                case 'è': c = 'e';break;
-                case 'í': c = 'i';break;
-                case 'ó': c = 'o';break;
-                case 'ò': c = 'o';break;
-                case 'ú': c = 'u';break;
-                default: 
+                case 'á':
+                    c = 'a';
+                    break;
+                case 'à':
+                    c = 'a';
+                    break;
+                case 'é':
+                    c = 'e';
+                    break;
+                case 'è':
+                    c = 'e';
+                    break;
+                case 'í':
+                    c = 'i';
+                    break;
+                case 'ó':
+                    c = 'o';
+                    break;
+                case 'ò':
+                    c = 'o';
+                    break;
+                case 'ú':
+                    c = 'u';
+                    break;
+                default:
             }
-            res = res.concat(c+"");
+            res = res.concat(c + "");
         }
         return res;
     }
-    
+
 }

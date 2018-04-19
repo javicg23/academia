@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMatriculacionesController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMatriculacionesController">
    <children>
       <MenuBar fx:id="menuBar" focusTraversable="false">
          <menus>
@@ -88,7 +88,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <TabPane maxHeight="850.0" prefHeight="572.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" maxHeight="850.0" prefHeight="572.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="tabMatricular" text="Matricular">
                <content>
@@ -143,7 +143,7 @@
                                        <columns>
                                           <TableColumn fx:id="tablaMatricularCursosColumnaCurso" prefWidth="140.0" resizable="false" text="Curso" />
                                           <TableColumn fx:id="tablaMatricularCursosColumnaProfesor" prefWidth="140.0" resizable="false" text="Profesor" />
-                                          <TableColumn fx:id="tablaMatricularColumnaHora" prefWidth="50.0" resizable="false" text="hora" />
+                                          <TableColumn fx:id="tablaMatricularColumnaHora" prefWidth="52.0" resizable="false" text="Hora" />
                                        </columns>
                                     </TableView>
                                     <HBox prefHeight="100.0" prefWidth="50.0" />
@@ -151,7 +151,7 @@
                                        <columns>
                                           <TableColumn fx:id="tablaMatricularAlumnosColumnaFotografia" maxWidth="70.0" prefWidth="70.0" resizable="false" text="Foto" />
                                           <TableColumn fx:id="tablaMatricularAlumnosColumnaAlumno" prefWidth="160.0" resizable="false" text="Alumno" />
-                                          <TableColumn fx:id="tablaMatricularAlumnosColumnaDni" prefWidth="100.0" resizable="false" text="DNI" />
+                                          <TableColumn fx:id="tablaMatricularAlumnosColumnaDni" prefWidth="103.0" resizable="false" text="DNI" />
                                        </columns>
                                     </TableView>
                                  </children>
@@ -197,7 +197,7 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                                  <children>
-                                    <Button fx:id="btnMatricular" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnMatricular" onMouseClicked="#pulsarRatonBtnAtras" prefHeight="30.0" prefWidth="125.0" text="Matricular" />
+                                    <Button fx:id="btnMatricular" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnMatricular" onMouseClicked="#pulsarRatonBtnMatricular" prefHeight="30.0" prefWidth="125.0" text="Matricular" />
                                  </children>
                               </HBox>
                            </children>
@@ -262,7 +262,7 @@
                                        <columns>
                                           <TableColumn fx:id="tablaDesmatricularCursosColumnaCurso" prefWidth="140.0" resizable="false" text="Curso" />
                                           <TableColumn fx:id="tablaDesmatricularCursosColumnaProfesor" prefWidth="140.0" resizable="false" text="Profesor" />
-                                          <TableColumn fx:id="tablaDesmatricularColumnaHora" prefWidth="50.0" resizable="false" text="Hora" />
+                                          <TableColumn fx:id="tablaDesmatricularColumnaHora" prefWidth="52.0" resizable="false" text="Hora" />
                                        </columns>
                                     </TableView>
                                     <HBox prefHeight="100.0" prefWidth="50.0" />
@@ -270,7 +270,7 @@
                                        <columns>
                                           <TableColumn fx:id="tablaDesmatricularAlumnosColumnaFotografía" maxWidth="70.0" prefWidth="70.0" resizable="false" text="Foto" />
                                           <TableColumn fx:id="tablaDesmatricularAlumnosColumnaAlumno" prefWidth="160.0" resizable="false" text="Alumno" />
-                                          <TableColumn fx:id="tablaDesmatricularAlumnosColumnaDni" prefWidth="100.0" resizable="false" text="DNI" />
+                                          <TableColumn fx:id="tablaDesmatricularAlumnosColumnaDni" prefWidth="103.0" resizable="false" text="DNI" />
                                        </columns>
                                     </TableView>
                                  </children>
@@ -296,7 +296,7 @@
                                     <Insets />
                                  </HBox.margin>
                                  <children>
-                                    <Button fx:id="btnDesmatricularAtras" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnAtras" onMouseClicked="#pulsarRatonBtnAtras">
+                                    <Button fx:id="btnDesmatricularAtras" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnAtras" onMouseClicked="#pulsarRatonBtnAtras" prefHeight="30.0" prefWidth="40.0">
                                        <graphic>
                                           <ImageView fitHeight="22.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                              <image>

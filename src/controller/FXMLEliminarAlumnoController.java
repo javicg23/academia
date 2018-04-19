@@ -5,7 +5,9 @@
  */
 package controller;
 
+import accesoaBD.AccesoaBD;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import modelo.Alumno;
 
 /**
  * FXML Controller class
@@ -44,8 +47,25 @@ public class FXMLEliminarAlumnoController implements Initializable {
     private TableColumn<?, ?> tablaAlumnosColumnaNombre;
     @FXML
     private TableColumn<?, ?> tablaAlumnosColumnaDni;
-    
+
+    private AccesoaBD acceso = new AccesoaBD();
+    private ArrayList<Alumno> listaAlumnos = (ArrayList<Alumno>) acceso.getAlumnos();
+    private boolean[] arrayBooleans = new boolean[8];
     private Stage primaryStage, emergenteStage;
+    private Boolean vengoDeStageConMenu = false;
+
+    public void initStage(Stage stageEmergente, Stage stage) {
+        emergenteStage = stageEmergente;
+        emergenteStage.setTitle("Eliminar alumno");
+        primaryStage = stage;
+    }
+
+    public void initStage(Stage stageEmergente, Stage stage, Boolean conMenu) {
+        emergenteStage = stageEmergente;
+        emergenteStage.setTitle("Eliminar alumno");
+        primaryStage = stage;
+        vengoDeStageConMenu = conMenu;
+    }
     
     /**
      * Initializes the controller class.
@@ -53,14 +73,9 @@ public class FXMLEliminarAlumnoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-    public void initStage(Stage stageEmergente, Stage stage) {
-        emergenteStage = stageEmergente;
-        emergenteStage.setTitle("Añadir curso");
-        primaryStage = stage;
     }
-        
+
+
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) {
     }
@@ -76,5 +91,5 @@ public class FXMLEliminarAlumnoController implements Initializable {
     @FXML
     private void pulsarTecladoBtnEliminar(KeyEvent event) {
     }
-    
+
 }

@@ -5,7 +5,9 @@
  */
 package controller;
 
+import accesoaBD.AccesoaBD;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import modelo.Curso;
 
 /**
  * FXML Controller class
@@ -42,25 +45,35 @@ public class FXMLEliminarCursoController implements Initializable {
     private TableColumn<?, ?> tablaCursosColumnaCurso;
     @FXML
     private TableColumn<?, ?> tablaCursosColumnaProfesor;
-    
-    private Stage primaryStage, emergenteStage;
     @FXML
     private TableColumn<?, ?> tablaCursosColumnaHora;
-    
+
+    private AccesoaBD acceso = new AccesoaBD();
+    private ArrayList<Curso> listaCursos = (ArrayList<Curso>) acceso.getCursos();
+    private boolean[] arrayBooleans = new boolean[8];
+    private Stage primaryStage, emergenteStage;
+    private Boolean vengoDeStageConMenu = false;
+
+    public void initStage(Stage stageEmergente, Stage stage) {
+        emergenteStage = stageEmergente;
+        emergenteStage.setTitle("Eliminar curso");
+        primaryStage = stage;
+    }
+
+    public void initStage(Stage stageEmergente, Stage stage, Boolean conMenu) {
+        emergenteStage = stageEmergente;
+        emergenteStage.setTitle("Eliminar curso");
+        primaryStage = stage;
+        vengoDeStageConMenu = conMenu;
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-    public void initStage(Stage stageEmergente, Stage stage) {
-        emergenteStage = stageEmergente;
-        emergenteStage.setTitle("Añadir curso");
-        primaryStage = stage;
     }
-        
+
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) {
     }
@@ -76,5 +89,5 @@ public class FXMLEliminarCursoController implements Initializable {
     @FXML
     private void pulsarTecladoBtnEliminar(KeyEvent event) {
     }
-    
+
 }
