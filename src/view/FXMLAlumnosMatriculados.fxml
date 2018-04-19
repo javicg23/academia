@@ -28,7 +28,7 @@
       </VBox>
    </top>
    <left>
-      <VBox prefHeight="200.0" prefWidth="75.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
    </left>
    <bottom>
       <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
@@ -54,7 +54,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <TableView fx:id="tablaAlumnos" minHeight="263.0" prefHeight="200.0" prefWidth="500.0">
+                  <TableView fx:id="tablaAlumnos" minHeight="263.0" prefHeight="200.0" prefWidth="375.0">
                     <columns>
                         <TableColumn fx:id="tablaAlumnosColumnaFotografia" maxWidth="75.0" prefWidth="75.0" resizable="false" text="Foto" />
                       <TableColumn fx:id="tablaAlumnosColumnaNombre" prefWidth="200.0" resizable="false" text="Nombre" />
@@ -63,17 +63,17 @@
                   </TableView>
                </children>
             </VBox>
-            <HBox prefHeight="100.0" prefWidth="120.0" />
+            <HBox prefHeight="100.0" prefWidth="40.0" />
             <GridPane fx:id="gridDatosCurso">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="69.6" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.20000000000002" minWidth="10.0" prefWidth="131.20000000000002" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label fx:id="gridDatosCursoLblProfesorCabecera" text="Profesor:" />
@@ -85,11 +85,14 @@
                   <Label fx:id="gridDatosCursoLblDias" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label fx:id="gridDatosCursoLblAula" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
             </GridPane>
          </children>
       </HBox>
    </center>
    <right>
-      <VBox prefHeight="200.0" prefWidth="75.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

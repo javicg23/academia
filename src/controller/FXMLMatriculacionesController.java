@@ -9,8 +9,6 @@ import accesoaBD.AccesoaBD;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -138,6 +136,10 @@ public class FXMLMatriculacionesController implements Initializable {
     private Stage primaryStage;
     private ObservableList<Curso> listaAlumnos = null; // Coleccion vinculada a la vista.
     private AccesoaBD baseDatos;
+    @FXML
+    private Label lblMatricularModificado;
+    @FXML
+    private Label lblDesmatricularModificado;
 
     public void initStage(Stage stage) {
         primaryStage = stage;
