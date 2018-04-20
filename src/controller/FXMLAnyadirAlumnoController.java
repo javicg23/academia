@@ -78,7 +78,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
     private boolean[] arrayBooleans = new boolean[4];
     private Stage primaryStage, emergenteStage;
     private Boolean vengoDeStageConMenu = false;
-
+            
     public void initStage(Stage stageEmergente, Stage stage) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Añadir alumno");
@@ -103,17 +103,44 @@ public class FXMLAnyadirAlumnoController implements Initializable {
         gridAnyadirAlumnoSpnEdad.setValueFactory(valueFactory);
 
         gridAnyadirAlumnoSpnEdad.addEventFilter(KeyEvent.KEY_TYPED, (KeyEvent keyEvent) -> {
-            if (!"-0123456789/n".contains(keyEvent.getCharacter())) {
+            if (!"0123456789".contains(keyEvent.getCharacter())) {
                 keyEvent.consume();
             }
         });
 
         gridAnyadirAlumnoTextNombre.addEventFilter(KeyEvent.KEY_TYPED, (KeyEvent keyEvent) -> {
-            if ("-0123456789/n".contains(keyEvent.getCharacter())) {
+            if ("0123456789/n".contains(keyEvent.getCharacter())) {
                 keyEvent.consume();
             }
         });
-
+        
+        gridAnyadirAlumnoTextNombre.textProperty().addListener((Observable, oldValue, newValue) -> {
+            if (newValue.length() > 50) {
+                gridAnyadirAlumnoTextNombre.setText(oldValue);
+            }
+        }
+        );
+        
+        gridAnyadirAlumnoTextDni.textProperty().addListener((Observable, oldValue, newValue) -> {
+            if (newValue.length() > 9) {
+                gridAnyadirAlumnoTextDni.setText(oldValue);
+            }
+        }
+        );
+        
+        gridAnyadirAlumnoTextDireccion.textProperty().addListener((Observable, oldValue, newValue) -> {
+            if (newValue.length() > 75) {
+                gridAnyadirAlumnoTextDireccion.setText(oldValue);
+            }
+        }
+        );
+        
+        gridAnyadirAlumnoSpnEdad.getEditor().textProperty().addListener((Observable, oldValue, newValue) -> {
+            if (newValue.length() > 2) {
+                gridAnyadirAlumnoSpnEdad.getEditor().setText(oldValue);
+            }
+        }
+        );
     }
 
     @FXML
@@ -199,8 +226,9 @@ public class FXMLAnyadirAlumnoController implements Initializable {
             arrayBooleans[0] = true;
         }
         if (!gridAnyadirAlumnoTextDni.getText().equals("")
-                && gridAnyadirAlumnoTextDni.getText().substring(8).matches("[aA-zZ]+$")
-                && gridAnyadirAlumnoTextDni.getLength() == 9) {
+                && gridAnyadirAlumnoTextDni.getLength() == 9
+                && gridAnyadirAlumnoTextDni.getText().substring(0, 8).matches("\\d*")
+                && gridAnyadirAlumnoTextDni.getText().substring(8).matches("[aA-zZ]+$")) {
             arrayBooleans[1] = true;
         }
         if (!gridAnyadirAlumnoTextDireccion.getText().equals("")) {
@@ -261,8 +289,6 @@ public class FXMLAnyadirAlumnoController implements Initializable {
     }
 
     private void introducirEnBD() {
-        System.out.println(arrayBooleans[0] + " " + arrayBooleans[1] + " "
-                + arrayBooleans[2] + " " + arrayBooleans[3]);
         if (arrayBooleans[0] == true && arrayBooleans[1] == true
                 && arrayBooleans[2] == true && arrayBooleans[3] == true) {
 
@@ -284,10 +310,13 @@ public class FXMLAnyadirAlumnoController implements Initializable {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate = LocalDate.parse(fecha, formatter);
 
+            String nombreArreglado = gridAnyadirAlumnoTextNombre.getText().trim().replaceAll(" +", " ");
+            String direccionArreglado = gridAnyadirAlumnoTextDireccion.getText().trim().replaceAll(" +", " ");
+            
             Alumno alumno = new Alumno(gridAnyadirAlumnoTextDni.getText(),
-                    gridAnyadirAlumnoTextNombre.getText(),
+                    nombreArreglado,
                     gridAnyadirAlumnoSpnEdad.getValueFactory().getValue(),
-                    gridAnyadirAlumnoTextDireccion.getText(),
+                    direccionArreglado,
                     localDate,
                     gridAnyadirAlumnoImgFotografia.getImage());
 

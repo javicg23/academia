@@ -95,7 +95,7 @@ public class FXMLAnyadirCursoController implements Initializable {
     private boolean[] arrayBooleans = new boolean[8];
     private Stage primaryStage, emergenteStage;
     private Boolean vengoDeStageConMenu = false;
-
+    
     public void initStage(Stage stageEmergente, Stage stage) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Añadir curso");
@@ -119,23 +119,23 @@ public class FXMLAnyadirCursoController implements Initializable {
         gridAnyadirCursoDateFin.setEditable(false);
 
         gridAnyadirCursoTextProfesor.addEventFilter(KeyEvent.KEY_TYPED, (KeyEvent keyEvent) -> {
-            if ("-0123456789".contains(keyEvent.getCharacter())) {
+            if ("0123456789".contains(keyEvent.getCharacter())) {
                 keyEvent.consume();
             }
         });
 
         SpinnerValueFactory<Integer> valueFactory
-                = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 1);
+                = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 999, 1);
         gridAnyadirCursoSpnNMax.setValueFactory(valueFactory);
 
         gridAnyadirCursoSpnNMax.addEventFilter(KeyEvent.KEY_TYPED, (KeyEvent keyEvent) -> {
-            if (!"-0123456789".contains(keyEvent.getCharacter())) {
+            if (!"0123456789".contains(keyEvent.getCharacter())) {
                 keyEvent.consume();
             }
         });
 
         gridAnyadirCursoTextHora.addEventFilter(KeyEvent.KEY_TYPED, (KeyEvent keyEvent) -> {
-            if (!"-0123456789:".contains(keyEvent.getCharacter())) {
+            if (!"0123456789:".contains(keyEvent.getCharacter())) {
                 keyEvent.consume();
             }
         });
@@ -145,7 +145,34 @@ public class FXMLAnyadirCursoController implements Initializable {
                 "1G 1.4", "1G 2.0", "1G 2.1", "1G 2.2", "1G 2.3", "1G 2.4");
         gridAnyadirCursoCmbAula.setItems(options);
         gridAnyadirCursoCmbAula.setVisibleRowCount(4);
-
+        
+        gridAnyadirCursoTextTitulo.textProperty().addListener((Observable, oldValue, newValue) -> {
+            if (newValue.length() > 50) {
+                gridAnyadirCursoTextTitulo.setText(oldValue);
+            }
+        }
+        );
+        
+        gridAnyadirCursoTextProfesor.textProperty().addListener((Observable, oldValue, newValue) -> {
+            if (newValue.length() > 50) {
+                gridAnyadirCursoTextProfesor.setText(oldValue);
+            }
+        }
+        );
+        
+        gridAnyadirCursoSpnNMax.getEditor().textProperty().addListener((Observable, oldValue, newValue) -> {
+            if (newValue.length() > 3) {
+                gridAnyadirCursoSpnNMax.getEditor().setText(oldValue);
+            }
+        }
+        );
+        
+        gridAnyadirCursoTextHora.textProperty().addListener((Observable, oldValue, newValue) -> {
+            if (newValue.length() > 4) {
+                gridAnyadirCursoTextProfesor.setText(oldValue);
+            }
+        }
+        );
     }
 
     @FXML
@@ -231,7 +258,6 @@ public class FXMLAnyadirCursoController implements Initializable {
                 && Integer.parseInt(gridAnyadirCursoTextHora.getText().substring(0, 2)) <= 24
                 && Integer.parseInt(gridAnyadirCursoTextHora.getText().substring(3, 5)) <= 59) {
             arrayBooleans[3] = true;
-            System.out.println(gridAnyadirCursoTextHora.getText().substring(0, 1));
         }
         if (gridAnyadirCursoDateInicio.getValue() != null
                 && gridAnyadirCursoDateInicio.getValue().compareTo(gridAnyadirCursoDateFin.getValue()) <= 0) {
@@ -339,9 +365,12 @@ public class FXMLAnyadirCursoController implements Initializable {
             if (gridAnyadirCursoCheckViernes.isSelected()) {
                 dias.add(Dias.Viernes);
             }
-
-            Curso curso = new Curso(gridAnyadirCursoTextTitulo.getText(),
-                    gridAnyadirCursoTextProfesor.getText(),
+               
+            String tituloArreglado = gridAnyadirCursoTextTitulo.getText().trim().replaceAll(" +", " ");
+            String profesorArreglado = gridAnyadirCursoTextProfesor.getText().trim().replaceAll(" +", " ");
+            
+            Curso curso = new Curso(tituloArreglado,
+                    profesorArreglado,
                     gridAnyadirCursoSpnNMax.getValueFactory().getValue(),
                     gridAnyadirCursoDateInicio.getValue(),
                     gridAnyadirCursoDateFin.getValue(),

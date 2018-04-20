@@ -110,7 +110,7 @@ public class FXMLAcademiaController implements Initializable {
 
         Scene scene = new Scene(root);
 
-        loader.<FXMLEliminarAlumnoController>getController().initStage(stage, primaryStage);
+        loader.<FXMLEliminarAlumnoController>getController().initStage(stage, primaryStage, true);
 
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -133,7 +133,7 @@ public class FXMLAcademiaController implements Initializable {
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
 
-        loader.<FXMLAnyadirCursoController>getController().initStage(stage, primaryStage);
+        loader.<FXMLAnyadirCursoController>getController().initStage(stage, primaryStage, true);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -150,7 +150,7 @@ public class FXMLAcademiaController implements Initializable {
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
 
-        loader.<FXMLEliminarCursoController>getController().initStage(stage, primaryStage);
+        loader.<FXMLEliminarCursoController>getController().initStage(stage, primaryStage, true);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
