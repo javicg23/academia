@@ -5,8 +5,10 @@
  */
 package controller;
 
+import accesoaBD.AccesoaBD;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,6 +16,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import modelo.Alumno;
+import modelo.Curso;
 
 /**
  * FXML Controller class
@@ -53,6 +58,23 @@ public class FXMLDatosAlumnoController implements Initializable {
     @FXML
     private TableColumn<?, ?> tablaCursosMatriculadosColumnaProfesor;
 
+    private Stage primaryStage, emergenteStage;
+    private Alumno alumno;
+    private AccesoaBD baseDatos = new AccesoaBD();
+    private ObservableList<Curso> listaCursos = null;
+    
+    
+    public void initStage(Stage stageEmergente, Stage stage, Alumno alumno) {
+        emergenteStage = stageEmergente;
+        emergenteStage.setTitle("Datos Alumno");
+        primaryStage = stage;
+        this.alumno = alumno;
+        initializeAll();
+    }
+    
+    private void initializeAll() {
+    
+    }
     /**
      * Initializes the controller class.
      */

@@ -77,7 +77,8 @@ public class FXMLAnyadirAlumnoController implements Initializable {
     private ArrayList<Alumno> listaAlumnos = (ArrayList<Alumno>) acceso.getAlumnos();
     private boolean[] arrayBooleans = new boolean[4];
     private Stage primaryStage, emergenteStage;
-    private Boolean vengoDeStageConMenu = false;
+    private Boolean vengoDeStageConMenu = false, vengoDesdeListaAlumnos = false;
+    private Stage stage;
             
     public void initStage(Stage stageEmergente, Stage stage) {
         emergenteStage = stageEmergente;
@@ -90,6 +91,14 @@ public class FXMLAnyadirAlumnoController implements Initializable {
         emergenteStage.setTitle("Añadir alumno");
         primaryStage = stage;
         vengoDeStageConMenu = conMenu;
+    }
+    
+    public void initStage(Stage stageEmergente, Stage stage, Boolean conMenu, Boolean vengoDesdeLAlumnos) {
+        emergenteStage = stageEmergente;
+        emergenteStage.setTitle("Añadir alumno");
+        primaryStage = stage;
+        vengoDeStageConMenu = conMenu;
+        vengoDesdeListaAlumnos = vengoDesdeLAlumnos;
     }
 
     /**
@@ -109,7 +118,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
         });
 
         gridAnyadirAlumnoTextNombre.addEventFilter(KeyEvent.KEY_TYPED, (KeyEvent keyEvent) -> {
-            if ("0123456789/n".contains(keyEvent.getCharacter())) {
+            if ("0123456789".contains(keyEvent.getCharacter())) {
                 keyEvent.consume();
             }
         });
@@ -144,51 +153,29 @@ public class FXMLAnyadirAlumnoController implements Initializable {
     }
 
     @FXML
-    private void pulsarRatonBtnCancelar(MouseEvent event) {
+    private void pulsarRatonBtnCancelar(MouseEvent event) throws IOException {
+        if (vengoDesdeListaAlumnos) {
+            voyListaAlumnosFalseBoolean();
+        }
         if (vengoDeStageConMenu) {
-            Stage stage = (Stage) btnCancelar.getScene().getWindow();
+            stage = (Stage) btnCancelar.getScene().getWindow();
             stage.close();
         } else {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
-                Parent root = (Parent) loader.load();
-
-                FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
-                controllerListaAlumnos.initStage(primaryStage, false);
-                Scene scene = new Scene(root);
-                primaryStage.setScene(scene);
-                primaryStage.show();
-
-                Stage stage = (Stage) btnCancelar.getScene().getWindow();
-                stage.close();
-
-            } catch (IOException e) {
-            }
+            voyListaAlumnosFalseBoolean();
         }
     }
 
     @FXML
-    private void pulsarTecladoBtnCancelar(KeyEvent event) {
+    private void pulsarTecladoBtnCancelar(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
+            if (vengoDesdeListaAlumnos) {
+                voyListaAlumnosFalseBoolean();
+            }
             if (vengoDeStageConMenu) {
-                Stage stage = (Stage) btnCancelar.getScene().getWindow();
+                stage = (Stage) btnCancelar.getScene().getWindow();
                 stage.close();
             } else {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
-                    Parent root = (Parent) loader.load();
-
-                    FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
-                    controllerListaAlumnos.initStage(primaryStage, false);
-                    Scene scene = new Scene(root);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-
-                    Stage stage = (Stage) btnCancelar.getScene().getWindow();
-                    stage.close();
-
-                } catch (IOException e) {
-                }
+                voyListaAlumnosFalseBoolean();
             }
         }
     }
@@ -333,11 +320,25 @@ public class FXMLAnyadirAlumnoController implements Initializable {
                 primaryStage.setScene(scene);
                 primaryStage.show();
 
-                Stage stage = (Stage) btnCancelar.getScene().getWindow();
+                stage = (Stage) btnCancelar.getScene().getWindow();
                 stage.close();
 
             } catch (IOException e) {
             }
         }
+    }
+    
+    private void voyListaAlumnosFalseBoolean() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
+        Parent root = (Parent) loader.load();
+
+        FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
+        controllerListaAlumnos.initStage(primaryStage, false);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 }

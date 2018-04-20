@@ -6,11 +6,13 @@
 package controller;
 
 import accesoaBD.AccesoaBD;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,9 +22,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javax.swing.text.TableView.TableCell;
 import modelo.Alumno;
 import modelo.Curso;
 import modelo.Dias;
@@ -45,7 +50,7 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
     @FXML
     private TableView<Alumno> tablaAlumnos;
     @FXML
-    private TableColumn<Alumno, String> tablaAlumnosColumnaFotografia;
+    private TableColumn<Alumno, Image> tablaAlumnosColumnaFotografia;
     @FXML
     private TableColumn<Alumno, String> tablaAlumnosColumnaNombre;
     @FXML
@@ -119,19 +124,45 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
         
         //tablaView
         baseDatos = new AccesoaBD();
-        System.out.println(curso);
         ArrayList<Alumno> alumnos = (ArrayList<Alumno>) baseDatos.getAlumnosDeCurso(curso);
-        listaAlumnos = FXCollections.observableArrayList(alumnos);
-        tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
-        
-        tablaAlumnosColumnaDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
-        tablaAlumnosColumnaNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-        tablaAlumnosColumnaFotografia.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFoto().getClass().toString()));
-        
-        
+        if (alumnos != null) {
+            listaAlumnos = FXCollections.observableArrayList(alumnos);
+            tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
+
+            tablaAlumnosColumnaDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
+            tablaAlumnosColumnaNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+           
+            
+            tablaAlumnosColumnaFotografia.setCellValueFactory(new PropertyValueFactory<>("image"));
+//            tablaAlumnosColumnaFotografia.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getFoto()));
+            
+            
+            
+            //transparencias
+//            tablaAlumnosColumnaFotografia.setCellFactory(columna -> {
+//                return new TableCell<Alumno, Image>(){
+//                    private ImageView view = new ImageView();
+//                    @Override
+//                    protected void updateItem(String item, boolean empty) {
+//                        super.updateItem(item,empty);
+//                        if (item == null) {
+//                            setGraphic(null);
+//                        } else {
+//                            File imageFile = new File(item);
+//                            String fileLocation = imageFile.toURI().toString();
+//                            Image image = new Image(fileLocation,40,40,true,true);
+//                            view.setImage(image);
+//                            setGraphic(view);
+//                        }
+//                    }
+//                }
+//            });
+//            
+            
+            
+        }
         //sentencia para aplicar el filtro a la lista de cursos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(newValue);
             baseDatos = new AccesoaBD();
             ArrayList<Alumno> alumnoTotal = (ArrayList<Alumno>) baseDatos.getAlumnosDeCurso(curso);
             ArrayList<Alumno> alumnosFiltro = new ArrayList();
@@ -148,6 +179,7 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
        
         
     }
+    
     /**
      * Initializes the controller class.
      */

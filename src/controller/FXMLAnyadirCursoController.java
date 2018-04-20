@@ -94,7 +94,8 @@ public class FXMLAnyadirCursoController implements Initializable {
     private ArrayList<Curso> listaCursos = (ArrayList<Curso>) acceso.getCursos();
     private boolean[] arrayBooleans = new boolean[8];
     private Stage primaryStage, emergenteStage;
-    private Boolean vengoDeStageConMenu = false;
+    private Boolean vengoDeStageConMenu = false, vengoDesdeListaCursos = false;
+    private Stage stage;
     
     public void initStage(Stage stageEmergente, Stage stage) {
         emergenteStage = stageEmergente;
@@ -107,6 +108,14 @@ public class FXMLAnyadirCursoController implements Initializable {
         emergenteStage.setTitle("Añadir curso");
         primaryStage = stage;
         vengoDeStageConMenu = conMenu;
+    }
+    
+    public void initStage(Stage stageEmergente, Stage stage, Boolean conMenu, Boolean vengoDesdeLCursos) {
+        emergenteStage = stageEmergente;
+        emergenteStage.setTitle("Añadir curso");
+        primaryStage = stage;
+        vengoDeStageConMenu = conMenu;
+        vengoDesdeListaCursos = vengoDesdeLCursos;
     }
 
     /**
@@ -168,61 +177,39 @@ public class FXMLAnyadirCursoController implements Initializable {
         );
         
         gridAnyadirCursoTextHora.textProperty().addListener((Observable, oldValue, newValue) -> {
-            if (newValue.length() > 4) {
-                gridAnyadirCursoTextProfesor.setText(oldValue);
+            if (newValue.length() > 5) {
+                gridAnyadirCursoTextHora.setText(oldValue);
             }
         }
         );
+        
     }
 
     @FXML
-    private void pulsarRatonBtnCancelar(MouseEvent event) {
+    private void pulsarRatonBtnCancelar(MouseEvent event) throws IOException {
+        if (vengoDesdeListaCursos) {
+            voyListaCursosFalseBoolean();
+        }
         if (vengoDeStageConMenu) {
-            Stage stage = (Stage) btnCancelar.getScene().getWindow();
+            stage = (Stage) btnCancelar.getScene().getWindow();
             stage.close();
         } else {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
-                Parent root = (Parent) loader.load();
-
-                FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
-                controllerListaCursos.initStage(primaryStage, false);
-                Scene scene = new Scene(root);
-                primaryStage.setScene(scene);
-                primaryStage.show();
-
-                Stage stage = (Stage) btnCancelar.getScene().getWindow();
-                stage.close();
-
-            } catch (IOException e) {
-            }
+            voyListaCursosFalseBoolean();
         }
     }
 
     @FXML
-    private void pulsarTecladoBtnCancelar(KeyEvent event) {
+    private void pulsarTecladoBtnCancelar(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
+            if (vengoDesdeListaCursos) {
+                voyListaCursosFalseBoolean();
+            }
             if (vengoDeStageConMenu) {
-                Stage stage = (Stage) btnCancelar.getScene().getWindow();
+                stage = (Stage) btnCancelar.getScene().getWindow();
                 stage.close();
             } else {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
-                    Parent root = (Parent) loader.load();
-
-                    FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
-                    controllerListaCursos.initStage(primaryStage, false);
-                    Scene scene = new Scene(root);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-
-                    Stage stage = (Stage) btnCancelar.getScene().getWindow();
-                    stage.close();
-
-                } catch (IOException e) {
-                }
+                voyListaCursosFalseBoolean();
             }
-
         }
     }
 
@@ -389,12 +376,26 @@ public class FXMLAnyadirCursoController implements Initializable {
                 Scene scene = new Scene(root);
                 primaryStage.setScene(scene);
                 primaryStage.show();
-
-                Stage stage = (Stage) btnCancelar.getScene().getWindow();
+                
+                stage = (Stage) btnCancelar.getScene().getWindow();
                 stage.close();
 
             } catch (IOException e) {
             }
         }
+    }
+    
+    private void voyListaCursosFalseBoolean() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
+        Parent root = (Parent) loader.load();
+
+        FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
+        controllerListaCursos.initStage(primaryStage, false);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 }

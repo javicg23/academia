@@ -146,7 +146,6 @@ public class FXMLListaCursosController implements Initializable {
         
         //sentencia para aplicar el filtro a la lista de cursos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(newValue);
             baseDatos = new AccesoaBD();
             ArrayList<Curso> cursosTotal = (ArrayList<Curso>) baseDatos.getCursos();
             ArrayList<Curso> cursosFiltro = new ArrayList();
@@ -216,7 +215,7 @@ public class FXMLListaCursosController implements Initializable {
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
 
-        loader.<FXMLAnyadirCursoController>getController().initStage(stage, primaryStage, true);
+        loader.<FXMLAnyadirCursoController>getController().initStage(stage, primaryStage, true, true);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -233,7 +232,7 @@ public class FXMLListaCursosController implements Initializable {
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
 
-        loader.<FXMLEliminarCursoController>getController().initStage(stage, primaryStage, true);
+        loader.<FXMLEliminarCursoController>getController().initStage(stage, primaryStage, true, true);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -366,7 +365,6 @@ public class FXMLListaCursosController implements Initializable {
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-    
     }
     
     private void eliminarCurso() {
@@ -381,7 +379,6 @@ public class FXMLListaCursosController implements Initializable {
         baseDatos.salvar();
         lblModificacionLista.setText("Curso/s eliminado/s correctamente");
         inicializarTabla();
-        
     }
 
     private String quitarAcentos(String s) {
@@ -407,13 +404,14 @@ public class FXMLListaCursosController implements Initializable {
     private void inicializarTabla() {
         baseDatos = new AccesoaBD();
         ArrayList<Curso> cursos = (ArrayList<Curso>) baseDatos.getCursos();
-        listaCursos = FXCollections.observableArrayList(cursos);
-        tablaListaCursos.setItems(listaCursos); //vincular la vista y el modelo
-        //asignar el estilo a las celdas
-        tablaListaCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
-        tablaListaCursosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
-        tablaListaCursosColumnaHora.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getHora().toString()));
-        
+        if (cursos != null) {
+            listaCursos = FXCollections.observableArrayList(cursos);
+            tablaListaCursos.setItems(listaCursos); //vincular la vista y el modelo
+            //asignar el estilo a las celdas
+            tablaListaCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
+            tablaListaCursosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
+            tablaListaCursosColumnaHora.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getHora().toString()));
+        }
     
     }
     
@@ -435,6 +433,5 @@ public class FXMLListaCursosController implements Initializable {
             primaryStage.setTitle("Academia");
             primaryStage.setScene(scene);
             primaryStage.show();
-    
     }
 }
