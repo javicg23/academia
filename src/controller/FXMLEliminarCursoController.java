@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +21,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -80,7 +84,6 @@ public class FXMLEliminarCursoController implements Initializable {
         primaryStage = stage;
         vengoDeStageConMenu = conMenu;
     }
-    
     public void initStage(Stage stageEmergente, Stage stage, Boolean conMenu, Boolean vengoDesdeLCursos) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Eliminar curso");
@@ -88,7 +91,6 @@ public class FXMLEliminarCursoController implements Initializable {
         vengoDeStageConMenu = conMenu;
         vengoDesdeListaCursos = vengoDesdeLCursos;
     }
-        
     /**
      * Initializes the controller class.
      */
@@ -109,9 +111,12 @@ public class FXMLEliminarCursoController implements Initializable {
             }
             listaCursos = FXCollections.observableArrayList(cursosFiltro);
             tablaCursos.setItems(listaCursos); //vincular la vista y el modelo
-            //aplicar el poder seleccionar diferentes filas
-            tablaCursos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         });
+        
+        //listener para que cuando se pulse una celdase activen los botones de eliminar y ver alumonsMatriculados
+        btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaCursos.getSelectionModel().selectedIndexProperty()));
+        //aplicar el poder seleccionar diferentes filas
+        tablaCursos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     @FXML
@@ -145,16 +150,30 @@ public class FXMLEliminarCursoController implements Initializable {
 
     @FXML
     private void pulsarRatonBtnEliminar(MouseEvent event) {
-        eliminarCurso();
+        confirmacionEliminarCurso();
     }
 
     @FXML
     private void pulsarTecladoBtnEliminar(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            eliminarCurso();
+            confirmacionEliminarCurso();
         }
     }
 
+    private void voyListaCursosFalseBoolean() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
+        Parent root = (Parent) loader.load();
+
+        FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
+        controllerListaCursos.initStage(primaryStage, false);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
+    }
+    
     private String quitarAcentos(String s) {
         String res = "";
         for (int i = 0; i < s.length(); i++) {
@@ -174,6 +193,16 @@ public class FXMLEliminarCursoController implements Initializable {
         }
         return res;
     }
+    private void confirmacionEliminarCurso() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText("Eliminar curso/s");
+        alert.setContentText("¿Esta seguro que desea eliminar/los de forma permanente?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            eliminarCurso();
+        }
+    }
     private void eliminarCurso() {
         baseDatos = new AccesoaBD();
         List<Curso> cursosSeleccionados = tablaCursos.getSelectionModel().getSelectedItems();
@@ -184,6 +213,7 @@ public class FXMLEliminarCursoController implements Initializable {
             baseDatos.getCursos().remove(curso);
         }
         baseDatos.salvar();
+        lblEliminarModificado.setStyle("-fx-text-fill: red;");
         lblEliminarModificado.setText("Curso/s eliminado/s correctamente");
         inicializarTabla();
         
@@ -200,20 +230,6 @@ public class FXMLEliminarCursoController implements Initializable {
             tablaCursosColumnaHora.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getHora().toString()));
         }
     
-    }
-    
-    private void voyListaCursosFalseBoolean() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
-        Parent root = (Parent) loader.load();
-
-        FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
-        controllerListaCursos.initStage(primaryStage, false);
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-        stage = (Stage) btnCancelar.getScene().getWindow();
-        stage.close();
     }
 
 }

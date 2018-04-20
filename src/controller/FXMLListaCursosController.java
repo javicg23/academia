@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,7 +22,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -279,13 +282,13 @@ public class FXMLListaCursosController implements Initializable {
 
     @FXML
     private void pulsarRatonBtnEliminar(MouseEvent event) {
-        eliminarCurso();
+        confirmacionEliminarCurso();
     }
 
     @FXML
     private void pulsarTecladoBtnEliminar(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            eliminarCurso();
+            confirmacionEliminarCurso();
         }
     }
 
@@ -367,6 +370,16 @@ public class FXMLListaCursosController implements Initializable {
         stage.showAndWait();
     }
     
+    private void confirmacionEliminarCurso() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText("Eliminar curso/s");
+        alert.setContentText("¿Esta seguro que desea eliminar/los de forma permanente?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            eliminarCurso();
+        }
+    }
     private void eliminarCurso() {
         baseDatos = new AccesoaBD();
         List<Curso> cursosSeleccionados = tablaListaCursos.getSelectionModel().getSelectedItems();
@@ -377,6 +390,7 @@ public class FXMLListaCursosController implements Initializable {
             baseDatos.getCursos().remove(curso);
         }
         baseDatos.salvar();
+        lblModificacionLista.setStyle("-fx-text-fill: red;");
         lblModificacionLista.setText("Curso/s eliminado/s correctamente");
         inicializarTabla();
     }
@@ -417,6 +431,7 @@ public class FXMLListaCursosController implements Initializable {
     
     private void comprobarAnyadido() {
         if (anyadido) {
+            lblModificacionLista.setStyle("-fx-text-fill: green;");
             lblModificacionLista.setText("Curso añadido correctamente");
         } else {
             lblModificacionLista.setText("");

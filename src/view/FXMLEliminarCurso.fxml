@@ -67,12 +67,12 @@
                   <Label fx:id="lblEliminarModificado" />
                </children>
             </HBox>
-            <Button fx:id="btnCancelar" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnCancelar" onMouseClicked="#pulsarRatonBtnCancelar" text="Cancelar">
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnEliminar" onMouseClicked="#pulsarRatonBtnEliminar" text="Eliminar">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnEliminar" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnEliminar" onMouseClicked="#pulsarRatonBtnEliminar" text="Eliminar">
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnCancelar" onMouseClicked="#pulsarRatonBtnCancelar" text="Cancelar">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>

@@ -7,11 +7,16 @@ package controller;
 
 import accesoaBD.AccesoaBD;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
@@ -19,6 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import modelo.Alumno;
 import modelo.Curso;
+import modelo.Matricula;
 
 /**
  * FXML Controller class
@@ -32,7 +38,7 @@ public class FXMLDatosAlumnoController implements Initializable {
     @FXML
     private GridPane gridDatosAlumno;
     @FXML
-    private ImageView gridDatosAlumnoImgFotografia;
+    private ImageView imgFotografia;
     @FXML
     private Label gridDatosAlumnoLblNombreCabecera;
     @FXML
@@ -42,8 +48,6 @@ public class FXMLDatosAlumnoController implements Initializable {
     @FXML
     private Label gridDatosAlumnoLblEdadCabecera;
     @FXML
-    private Label gridDatosAlumnoLblCursosMatriculadosCabecera;
-    @FXML
     private Label gridDatosAlumnoLblNombre;
     @FXML
     private Label gridDatosAlumnoLblDireccion;
@@ -52,11 +56,15 @@ public class FXMLDatosAlumnoController implements Initializable {
     @FXML
     private Label gridDatosAlumnoLblEdad;
     @FXML
-    private TableView<?> tablaCursosMatriculados;
+    private TableView<Curso> tablaCursosMatriculados;
     @FXML
-    private TableColumn<?, ?> tablaCursosMatriculadosColumnaCurso;
+    private TableColumn<Curso, String> tablaCursosMatriculadosColumnaCurso;
     @FXML
-    private TableColumn<?, ?> tablaCursosMatriculadosColumnaProfesor;
+    private TableColumn<Curso, String> tablaCursosMatriculadosColumnaProfesor;
+    @FXML
+    private TableColumn<Curso, String> tablaCursosMatriculadosColumnaHora;
+    @FXML
+    private Label lblCursosMatriculadosCabecera;
 
     private Stage primaryStage, emergenteStage;
     private Alumno alumno;
@@ -73,7 +81,29 @@ public class FXMLDatosAlumnoController implements Initializable {
     }
     
     private void initializeAll() {
-    
+        imgFotografia.setImage(alumno.getFoto());
+        gridDatosAlumnoLblDireccion.setText(alumno.getDireccion());
+        gridDatosAlumnoLblDni.setText(alumno.getDni());
+        gridDatosAlumnoLblEdad.setText(alumno.getEdad() + "");
+        gridDatosAlumnoLblNombre.setText(alumno.getNombre());
+        
+        //inicializar la lista de cursos en los que esta matriculado
+        baseDatos = new AccesoaBD();
+        ArrayList<Curso> cursos = new ArrayList<>();
+        List<Matricula> matriculas = baseDatos.getMatriculas();
+        for (int i = 0; i < matriculas.size(); i++) {
+            Matricula matricula = matriculas.get(i);
+            if (alumno.getDni().equals(matricula.getAlumno().getDni())) {
+                cursos.add(matricula.getCurso());
+            }
+        }
+            listaCursos = FXCollections.observableArrayList(cursos);
+            tablaCursosMatriculados.setItems(listaCursos); //vincular la vista y el modelo
+            //asignar el estilo a las celdas
+            tablaCursosMatriculadosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
+            tablaCursosMatriculadosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
+            tablaCursosMatriculadosColumnaHora.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getHora().toString()));
+        
     }
     /**
      * Initializes the controller class.
