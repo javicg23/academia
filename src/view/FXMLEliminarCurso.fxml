@@ -34,7 +34,7 @@
                <children>
                   <ImageView fx:id="imgLupa" fitHeight="25.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/lupa.jpg" />
+                        <Image url="@../img/lupa.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="5.0" />

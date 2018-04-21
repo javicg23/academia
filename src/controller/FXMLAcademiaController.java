@@ -101,13 +101,6 @@ public class FXMLAcademiaController implements Initializable {
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
         stage.setResizable(false);
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-        @Override
-        public void handle(WindowEvent event) {
-            event.consume();
-            
-            }
-        });  
         stage.showAndWait();
     }
 
