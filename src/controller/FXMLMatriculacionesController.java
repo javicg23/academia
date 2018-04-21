@@ -17,15 +17,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.stream.Collectors;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,7 +50,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.converter.LocalDateStringConverter;
 import modelo.Alumno;
 import modelo.Curso;
 import modelo.LocalDateAdapter;
@@ -323,8 +319,11 @@ public class FXMLMatriculacionesController implements Initializable {
                     tablaDesmatricularCursos.setItems(listaCursosDesmatricular); //vincular la vista y el modelo
                     //asignar el estilo a las celdas
                     tablaDesmatricularCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
+                    tablaDesmatricularCursosColumnaCurso.setStyle( "-fx-alignment: CENTER;");
                     tablaDesmatricularCursosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
+                    tablaDesmatricularCursosColumnaProfesor.setStyle( "-fx-alignment: CENTER;");
                     tablaDesmatricularColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
+                    tablaDesmatricularColumnaHora.setStyle( "-fx-alignment: CENTER;");
                 }
                 if (!textDesmatricularFiltrarCursos.getText().isEmpty()) {
                     filtrarCursos(tablaDesmatricularCursos, listaCursosDesmatricular, textDesmatricularFiltrarCursos.getText());
@@ -368,6 +367,7 @@ public class FXMLMatriculacionesController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -388,6 +388,7 @@ public class FXMLMatriculacionesController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -412,6 +413,7 @@ public class FXMLMatriculacionesController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -432,6 +434,7 @@ public class FXMLMatriculacionesController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
 
     }
@@ -618,7 +621,7 @@ public class FXMLMatriculacionesController implements Initializable {
         tablaMatricularCursosColumnaProfesor.setStyle("-fx-alignment: CENTER;");
         tablaMatricularColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
         tablaMatricularColumnaHora.setStyle("-fx-alignment: CENTER;");
-
+        
         lblMatricularModificado.setStyle("-fx-text-fill: green;");
         lblMatricularModificado.setText("Alumno matriculados correctamente");
 

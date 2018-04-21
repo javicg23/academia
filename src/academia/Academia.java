@@ -6,12 +6,18 @@
 package academia;
 
 import controller.FXMLAcademiaController;
+import java.util.Optional;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -33,8 +39,22 @@ public class Academia extends Application {
         stage.setTitle("Academia");
         FXMLAcademiaController controllerAcademia = loader.<FXMLAcademiaController>getController();
         controllerAcademia.initStage(stage);
-        stage.show();
+        
+        stage.setOnCloseRequest((WindowEvent event) -> {
+            event.consume();
 
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Cerrar aplicación");
+            alert.setHeaderText(null);
+            ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/img/icon.png"));
+            alert.setContentText("¿Está seguro de que desea cerrar la aplicación?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                Platform.exit();
+            }
+        });  
+        stage.show();
     }
 
     /**

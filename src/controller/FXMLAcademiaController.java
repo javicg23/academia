@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -98,6 +100,14 @@ public class FXMLAcademiaController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        @Override
+        public void handle(WindowEvent event) {
+            event.consume();
+            
+            }
+        });  
         stage.showAndWait();
     }
 
@@ -118,6 +128,7 @@ public class FXMLAcademiaController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -142,6 +153,7 @@ public class FXMLAcademiaController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -161,6 +173,7 @@ public class FXMLAcademiaController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 

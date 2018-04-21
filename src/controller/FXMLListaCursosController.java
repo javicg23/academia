@@ -180,6 +180,7 @@ public class FXMLListaCursosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -200,6 +201,7 @@ public class FXMLListaCursosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -224,6 +226,7 @@ public class FXMLListaCursosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -243,6 +246,7 @@ public class FXMLListaCursosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -357,6 +361,7 @@ public class FXMLListaCursosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -375,6 +380,7 @@ public class FXMLListaCursosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 

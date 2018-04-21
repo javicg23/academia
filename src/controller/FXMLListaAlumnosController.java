@@ -182,6 +182,7 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -202,6 +203,7 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -226,6 +228,7 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -245,6 +248,7 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -372,6 +376,7 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -390,13 +395,14 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
         stage.setY(primaryStage.getY() - 20);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
     private void comprobarAnyadido() {
         if (anyadido) {
             lblModificacionLista.setStyle("-fx-text-fill: green;");
-            lblModificacionLista.setText("Alumnno añadido correctamente");
+            lblModificacionLista.setText("Alumno añadido correctamente");
         } else {
             lblModificacionLista.setText("");
         }
