@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMatriculacionesController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMatriculacionesController">
    <children>
       <MenuBar fx:id="menuBar" focusTraversable="false">
          <menus>
@@ -113,45 +113,50 @@
                                           <Insets left="25.0" />
                                        </HBox.margin>
                                        <children>
+                                          <ImageView fx:id="imgMatricularLupaAlumnos" fitHeight="25.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/lupa.png" />
+                                             </image>
+                                          </ImageView>
+                                          <TextField fx:id="textMatricularFiltrarAlumnos" focusTraversable="false" maxWidth="200.0" promptText="Juan García Pérez" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="26.0" prefWidth="192.0" />
+                                    <HBox alignment="CENTER_RIGHT">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <children>
                                           <ImageView fx:id="imgMatricularLupaCursos" fitHeight="25.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../img/lupa.jpg" />
+                                                <Image url="@../img/lupa.png" />
                                              </image>
                                           </ImageView>
                                           <TextField fx:id="textMatricularFiltrarCursos" focusTraversable="false" maxWidth="200.0" promptText="Interfaces" />
                                        </children>
                                     </HBox>
-                                    <HBox prefHeight="25.0" prefWidth="192.0" />
-                                    <HBox>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="159.0">
                                        <children>
-                                          <ImageView fx:id="imgMatricularLupaAlumnos" fitHeight="25.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/lupa.jpg" />
-                                             </image>
-                                          </ImageView>
-                                          <TextField fx:id="textMatricularFiltrarAlumnos" focusTraversable="false" maxWidth="200.0" promptText="Juan García Pérez" />
+                                          <Label fx:id="lblCursosAMatricular" text="Cursos a matricular" />
                                        </children>
                                     </HBox>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" maxWidth="700.0" prefHeight="330.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tablaMatricularCursos" maxWidth="400.0" prefWidth="350.0">
-                                       <columns>
-                                          <TableColumn fx:id="tablaMatricularCursosColumnaCurso" prefWidth="140.0" resizable="false" text="Curso" />
-                                          <TableColumn fx:id="tablaMatricularCursosColumnaProfesor" prefWidth="140.0" resizable="false" text="Profesor" />
-                                          <TableColumn fx:id="tablaMatricularColumnaHora" prefWidth="52.0" resizable="false" text="Hora" />
-                                       </columns>
-                                    </TableView>
-                                    <HBox prefHeight="100.0" prefWidth="50.0" />
                                     <TableView fx:id="tablaMatricularAlumnos" maxWidth="400.0" prefWidth="350.0">
                                        <columns>
                                           <TableColumn fx:id="tablaMatricularAlumnosColumnaFotografia" maxWidth="70.0" prefWidth="70.0" resizable="false" text="Foto" />
                                           <TableColumn fx:id="tablaMatricularAlumnosColumnaAlumno" prefWidth="160.0" resizable="false" text="Alumno" />
                                           <TableColumn fx:id="tablaMatricularAlumnosColumnaDni" prefWidth="103.0" resizable="false" text="DNI" />
+                                       </columns>
+                                    </TableView>
+                                    <HBox prefHeight="100.0" prefWidth="50.0" />
+                                    <TableView fx:id="tablaMatricularCursos" maxWidth="400.0" prefWidth="350.0">
+                                       <columns>
+                                          <TableColumn fx:id="tablaMatricularCursosColumnaCurso" prefWidth="140.0" resizable="false" text="Curso" />
+                                          <TableColumn fx:id="tablaMatricularCursosColumnaProfesor" prefWidth="140.0" resizable="false" text="Profesor" />
+                                          <TableColumn fx:id="tablaMatricularColumnaHora" prefWidth="52.0" resizable="false" text="Hora" />
                                        </columns>
                                     </TableView>
                                  </children>
@@ -192,7 +197,7 @@
                                  </children>
                               </HBox>
                               <HBox prefHeight="50.0" prefWidth="20.0" />
-                              <HBox prefHeight="50.0" prefWidth="585.0">
+                              <HBox prefHeight="50.0" prefWidth="565.0">
                                  <children>
                                     <Label fx:id="lblMatricularModificado" />
                                  </children></HBox>
@@ -238,10 +243,10 @@
                                        <children>
                                           <ImageView fx:id="imgDesmatricularLupa" fitHeight="25.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../img/lupa.jpg" />
+                                                <Image url="@../img/lupa.png" />
                                              </image>
                                           </ImageView>
-                                          <TextField fx:id="textDesmatricularFiltrarCursos" focusTraversable="false" maxWidth="200.0" promptText="Interfaces" />
+                                          <TextField fx:id="textDesmatricularFiltrarAlumnos" focusTraversable="false" maxWidth="200.0" promptText="Juan García Pérez" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="25.0" prefWidth="192.0" />
@@ -252,29 +257,34 @@
                                        <children>
                                           <ImageView fx:id="imgDesmatricularLupa" fitHeight="25.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../img/lupa.jpg" />
+                                                <Image url="@../img/lupa.png" />
                                              </image>
                                           </ImageView>
-                                          <TextField fx:id="textDesmatricularFiltrarAlumnos" focusTraversable="false" maxWidth="200.0" promptText="Juan García Pérez" />
+                                          <TextField fx:id="textDesmatricularFiltrarCursos" focusTraversable="false" maxWidth="200.0" promptText="Interfaces" />
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="159.0">
+                                             <children>
+                                                <Label fx:id="lblCursosADesmatricular" text="Cursos a desmatricular" />
+                                             </children>
+                                          </HBox>
                                        </children>
                                     </HBox>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" maxWidth="700.0" prefHeight="330.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="tablaDesmatricularCursos" maxWidth="400.0" prefWidth="350.0">
-                                       <columns>
-                                          <TableColumn fx:id="tablaDesmatricularCursosColumnaCurso" prefWidth="140.0" resizable="false" text="Curso" />
-                                          <TableColumn fx:id="tablaDesmatricularCursosColumnaProfesor" prefWidth="140.0" resizable="false" text="Profesor" />
-                                          <TableColumn fx:id="tablaDesmatricularColumnaHora" prefWidth="52.0" resizable="false" text="Hora" />
-                                       </columns>
-                                    </TableView>
-                                    <HBox prefHeight="100.0" prefWidth="50.0" />
                                     <TableView fx:id="tablaDesmatricularAlumnos" maxWidth="400.0" prefWidth="350.0">
                                        <columns>
                                           <TableColumn fx:id="tablaDesmatricularAlumnosColumnaFotografía" maxWidth="70.0" prefWidth="70.0" resizable="false" text="Foto" />
                                           <TableColumn fx:id="tablaDesmatricularAlumnosColumnaAlumno" prefWidth="160.0" resizable="false" text="Alumno" />
                                           <TableColumn fx:id="tablaDesmatricularAlumnosColumnaDni" prefWidth="103.0" resizable="false" text="DNI" />
+                                       </columns>
+                                    </TableView>
+                                    <HBox prefHeight="100.0" prefWidth="50.0" />
+                                    <TableView fx:id="tablaDesmatricularCursos" maxWidth="400.0" prefWidth="350.0">
+                                       <columns>
+                                          <TableColumn fx:id="tablaDesmatricularCursosColumnaCurso" prefWidth="140.0" resizable="false" text="Curso" />
+                                          <TableColumn fx:id="tablaDesmatricularCursosColumnaProfesor" prefWidth="140.0" resizable="false" text="Profesor" />
+                                          <TableColumn fx:id="tablaDesmatricularColumnaHora" prefWidth="52.0" resizable="false" text="Hora" />
                                        </columns>
                                     </TableView>
                                  </children>
@@ -315,7 +325,7 @@
                                     <HBox prefHeight="100.0" prefWidth="20.0" />
                                  </children>
                               </HBox>
-                              <HBox prefHeight="50.0" prefWidth="585.0">
+                              <HBox prefHeight="50.0" prefWidth="565.0">
                                  <children>
                                     <Label fx:id="lblDesmatricularModificado" />
                                  </children></HBox>

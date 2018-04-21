@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLListaCursosController">
+<BorderPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLListaCursosController">
    <top>
       <VBox maxHeight="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -109,7 +109,7 @@
                <children>
                   <ImageView fx:id="imgLupa" fitHeight="25.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/lupa.jpg" />
+                        <Image url="@../img/lupa.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="5.0" />

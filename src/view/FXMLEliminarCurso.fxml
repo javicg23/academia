@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLEliminarCursoController">
+<BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLEliminarCursoController">
    <top>
       <VBox maxHeight="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -67,12 +67,12 @@
                   <Label fx:id="lblEliminarModificado" />
                </children>
             </HBox>
-            <Button fx:id="btnEliminar" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnEliminar" onMouseClicked="#pulsarRatonBtnEliminar" text="Eliminar">
+            <Button fx:id="btnEliminar" defaultButton="true" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnEliminar" onMouseClicked="#pulsarRatonBtnEliminar" text="Eliminar">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnCancelar" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnCancelar" onMouseClicked="#pulsarRatonBtnCancelar" text="Cancelar">
+            <Button fx:id="btnCancelar" cancelButton="true" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnCancelar" onMouseClicked="#pulsarRatonBtnCancelar" text="Cancelar">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>

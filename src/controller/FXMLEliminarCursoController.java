@@ -29,6 +29,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -64,7 +65,7 @@ public class FXMLEliminarCursoController implements Initializable {
     private TableColumn<Curso, String> tablaCursosColumnaHora;
     @FXML
     private Label lblEliminarModificado;
-    
+
     private AccesoaBD baseDatos = new AccesoaBD();
     private ObservableList<Curso> listaCursos = null;
     private boolean[] arrayBooleans = new boolean[8];
@@ -84,6 +85,7 @@ public class FXMLEliminarCursoController implements Initializable {
         primaryStage = stage;
         vengoDeStageConMenu = conMenu;
     }
+
     public void initStage(Stage stageEmergente, Stage stage, Boolean conMenu, Boolean vengoDesdeLCursos) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Eliminar curso");
@@ -91,13 +93,14 @@ public class FXMLEliminarCursoController implements Initializable {
         vengoDeStageConMenu = conMenu;
         vengoDesdeListaCursos = vengoDesdeLCursos;
     }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inicializarTabla();
-        
+
         //sentencia para aplicar el filtro a la lista de cursos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             baseDatos = new AccesoaBD();
@@ -112,7 +115,7 @@ public class FXMLEliminarCursoController implements Initializable {
             listaCursos = FXCollections.observableArrayList(cursosFiltro);
             tablaCursos.setItems(listaCursos); //vincular la vista y el modelo
         });
-        
+
         //listener para que cuando se pulse una celdase activen los botones de eliminar y ver alumonsMatriculados
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaCursos.getSelectionModel().selectedIndexProperty()));
         //aplicar el poder seleccionar diferentes filas
@@ -131,7 +134,6 @@ public class FXMLEliminarCursoController implements Initializable {
             voyListaCursosFalseBoolean();
         }
     }
-    
 
     @FXML
     private void pulsarTecladoBtnCancelar(KeyEvent event) throws IOException {
@@ -173,51 +175,82 @@ public class FXMLEliminarCursoController implements Initializable {
         stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }
-    
+
     private String quitarAcentos(String s) {
         String res = "";
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             switch (c) {
-                case 'á': c = 'a';break;
-                case 'à': c = 'a';break;
-                case 'é': c = 'e';break;
-                case 'è': c = 'e';break;
-                case 'í': c = 'i';break;
-                case 'ó': c = 'o';break;
-                case 'ò': c = 'o';break;
-                case 'ú': c = 'u';break;
-                default: 
+                case 'á':
+                    c = 'a';
+                    break;
+                case 'à':
+                    c = 'a';
+                    break;
+                case 'é':
+                    c = 'e';
+                    break;
+                case 'è':
+                    c = 'e';
+                    break;
+                case 'í':
+                    c = 'i';
+                    break;
+                case 'ó':
+                    c = 'o';
+                    break;
+                case 'ò':
+                    c = 'o';
+                    break;
+                case 'ú':
+                    c = 'u';
+                    break;
+                default:
             }
-            res = res.concat(c+"");
+            res = res.concat(c + "");
         }
         return res;
     }
+
     private void confirmacionEliminarCurso() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmación");
-        alert.setHeaderText("Eliminar curso/s");
-        alert.setContentText("¿Esta seguro que desea eliminar/los de forma permanente?");
+        alert.setTitle("Eliminar curso/s");
+        alert.setHeaderText(null);
+        ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/img/icon.png"));
+        alert.setContentText("¿Está seguro de que desea eliminar el/los curso/s de forma permanente?");
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK){
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             eliminarCurso();
         }
     }
+
     private void eliminarCurso() {
         baseDatos = new AccesoaBD();
         List<Curso> cursosSeleccionados = tablaCursos.getSelectionModel().getSelectedItems();
+        ArrayList<Curso> cursos = (ArrayList<Curso>) baseDatos.getCursos();
+        ArrayList<Matricula> matriculasLista = (ArrayList<Matricula>) baseDatos.getMatriculas();
+        ArrayList<Matricula> matriculasListaFinal = new ArrayList<>();
         for (int i = 0; i < cursosSeleccionados.size(); i++) {
             Curso curso = cursosSeleccionados.get(i);
-            ArrayList<Matricula> matriculasCurso = (ArrayList<Matricula>) baseDatos.getMatriculasDeCurso(curso);
-            matriculasCurso.clear();
-            baseDatos.getCursos().remove(curso);
+            for (int j = 0; j < matriculasLista.size(); j++) {
+                if (!matriculasLista.get(j).getCurso().equals(curso)) {
+                    matriculasListaFinal.add(matriculasLista.get(j));
+                }
+            }
+            cursos.remove(curso);
+        }
+        matriculasLista.clear();
+        for (int i = 0; i < matriculasListaFinal.size(); i++) {
+            matriculasLista.add(matriculasListaFinal.get(i));
         }
         baseDatos.salvar();
+
         lblEliminarModificado.setStyle("-fx-text-fill: red;");
         lblEliminarModificado.setText("Curso/s eliminado/s correctamente");
         inicializarTabla();
-        
+
     }
+
     private void inicializarTabla() {
         baseDatos = new AccesoaBD();
         ArrayList<Curso> cursos = (ArrayList<Curso>) baseDatos.getCursos();
@@ -226,10 +259,13 @@ public class FXMLEliminarCursoController implements Initializable {
             tablaCursos.setItems(listaCursos); //vincular la vista y el modelo
             //asignar el estilo a las celdas
             tablaCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
+            tablaCursosColumnaCurso.setStyle("-fx-alignment: CENTER;");
             tablaCursosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
-            tablaCursosColumnaHora.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getHora().toString()));
+            tablaCursosColumnaProfesor.setStyle("-fx-alignment: CENTER;");
+            tablaCursosColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
+            tablaCursosColumnaHora.setStyle("-fx-alignment: CENTER;");
         }
-    
+
     }
 
 }

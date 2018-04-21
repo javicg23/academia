@@ -96,6 +96,8 @@ public class FXMLAcademiaController implements Initializable {
 
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
+        stage.setY(primaryStage.getY() - 20);
         stage.showAndWait();
     }
 
@@ -114,6 +116,8 @@ public class FXMLAcademiaController implements Initializable {
 
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
+        stage.setY(primaryStage.getY() - 20);
         stage.showAndWait();
     }
 
@@ -136,6 +140,8 @@ public class FXMLAcademiaController implements Initializable {
         loader.<FXMLAnyadirCursoController>getController().initStage(stage, primaryStage, true);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
+        stage.setY(primaryStage.getY() - 20);
         stage.showAndWait();
     }
 
@@ -153,6 +159,8 @@ public class FXMLAcademiaController implements Initializable {
         loader.<FXMLEliminarCursoController>getController().initStage(stage, primaryStage, true);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
+        stage.setY(primaryStage.getY() - 20);
         stage.showAndWait();
     }
 

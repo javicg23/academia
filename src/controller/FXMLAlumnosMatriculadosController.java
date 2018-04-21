@@ -6,7 +6,6 @@
 package controller;
 
 import accesoaBD.AccesoaBD;
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,12 +21,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javax.swing.text.TableView.TableCell;
 import modelo.Alumno;
 import modelo.Curso;
 import modelo.Dias;
@@ -78,7 +75,7 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
     private Curso curso;
     private AccesoaBD baseDatos;
     private ObservableList<Alumno> listaAlumnos = null; // Coleccion vinculada a la vista.
-    
+
     public void initStage(Stage stageEmergente, Stage stage, Curso c) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Alumnos matriculados");
@@ -86,13 +83,13 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
         this.curso = c;
         initializeAll();
     }
-    
+
     private void initializeAll() {
         //poner los datos del curso
         gridDatosCursoLblAula.setText(curso.getAula());
         gridDatosCursoLblHora.setText(curso.getHora().toString());
         lblCurso.setText(curso.getTitulodelcurso());
-        
+
         //introoducir los dias que se imparten las clases en el label
         ArrayList<Dias> dias = curso.getDiasimparte();
         int r = 0;
@@ -108,7 +105,7 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
             }
         } while (r < dias.size());
         gridDatosCursoLblDias.setText(diasString);
-        
+
         //introducir el nombre del profesor
         String nombreProfesor = curso.getProfesorAsignado();
         String nombreProfesorFinal = "";
@@ -121,7 +118,7 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
             }
         }
         gridDatosCursoLblProfesor.setText(nombreProfesorFinal);
-        
+
         //tablaView
         baseDatos = new AccesoaBD();
         ArrayList<Alumno> alumnos = (ArrayList<Alumno>) baseDatos.getAlumnosDeCurso(curso);
@@ -130,36 +127,13 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
 
             tablaAlumnosColumnaDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
+            tablaAlumnosColumnaDni.setStyle("-fx-alignment: CENTER;");
             tablaAlumnosColumnaNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-           
-            
-            tablaAlumnosColumnaFotografia.setCellValueFactory(new PropertyValueFactory<>("image"));
-//            tablaAlumnosColumnaFotografia.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getFoto()));
-            
-            
-            
-            //transparencias
-//            tablaAlumnosColumnaFotografia.setCellFactory(columna -> {
-//                return new TableCell<Alumno, Image>(){
-//                    private ImageView view = new ImageView();
-//                    @Override
-//                    protected void updateItem(String item, boolean empty) {
-//                        super.updateItem(item,empty);
-//                        if (item == null) {
-//                            setGraphic(null);
-//                        } else {
-//                            File imageFile = new File(item);
-//                            String fileLocation = imageFile.toURI().toString();
-//                            Image image = new Image(fileLocation,40,40,true,true);
-//                            view.setImage(image);
-//                            setGraphic(view);
-//                        }
-//                    }
-//                }
-//            });
-//            
-            
-            
+            tablaAlumnosColumnaNombre.setStyle("-fx-alignment: CENTER;");
+            tablaAlumnosColumnaFotografia.setCellValueFactory(cel -> new SimpleObjectProperty<Image>(cel.getValue().getFoto()));
+            tablaAlumnosColumnaFotografia.setCellFactory(c -> new ImageTableCell<>());
+            tablaAlumnosColumnaFotografia.setStyle("-fx-alignment: CENTER;");
+
         }
         //sentencia para aplicar el filtro a la lista de cursos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -175,37 +149,51 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
             listaAlumnos = FXCollections.observableArrayList(alumnosFiltro);
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
         });
-        
-       
-        
+
     }
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
-    
+
+    }
+
     private String quitarAcentos(String s) {
         String res = "";
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             switch (c) {
-                case 'á': c = 'a';break;
-                case 'à': c = 'a';break;
-                case 'é': c = 'e';break;
-                case 'è': c = 'e';break;
-                case 'í': c = 'i';break;
-                case 'ó': c = 'o';break;
-                case 'ò': c = 'o';break;
-                case 'ú': c = 'u';break;
-                default: 
+                case 'á':
+                    c = 'a';
+                    break;
+                case 'à':
+                    c = 'a';
+                    break;
+                case 'é':
+                    c = 'e';
+                    break;
+                case 'è':
+                    c = 'e';
+                    break;
+                case 'í':
+                    c = 'i';
+                    break;
+                case 'ó':
+                    c = 'o';
+                    break;
+                case 'ò':
+                    c = 'o';
+                    break;
+                case 'ú':
+                    c = 'u';
+                    break;
+                default:
             }
-            res = res.concat(c+"");
+            res = res.concat(c + "");
         }
         return res;
     }
-    
+
 }

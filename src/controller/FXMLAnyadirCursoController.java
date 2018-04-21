@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -26,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -96,7 +98,7 @@ public class FXMLAnyadirCursoController implements Initializable {
     private Stage primaryStage, emergenteStage;
     private Boolean vengoDeStageConMenu = false, vengoDesdeListaCursos = false;
     private Stage stage;
-    
+
     public void initStage(Stage stageEmergente, Stage stage) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Añadir curso");
@@ -109,7 +111,7 @@ public class FXMLAnyadirCursoController implements Initializable {
         primaryStage = stage;
         vengoDeStageConMenu = conMenu;
     }
-    
+
     public void initStage(Stage stageEmergente, Stage stage, Boolean conMenu, Boolean vengoDesdeLCursos) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Añadir curso");
@@ -154,35 +156,35 @@ public class FXMLAnyadirCursoController implements Initializable {
                 "1G 1.4", "1G 2.0", "1G 2.1", "1G 2.2", "1G 2.3", "1G 2.4");
         gridAnyadirCursoCmbAula.setItems(options);
         gridAnyadirCursoCmbAula.setVisibleRowCount(4);
-        
+
         gridAnyadirCursoTextTitulo.textProperty().addListener((Observable, oldValue, newValue) -> {
             if (newValue.length() > 50) {
                 gridAnyadirCursoTextTitulo.setText(oldValue);
             }
         }
         );
-        
+
         gridAnyadirCursoTextProfesor.textProperty().addListener((Observable, oldValue, newValue) -> {
             if (newValue.length() > 50) {
                 gridAnyadirCursoTextProfesor.setText(oldValue);
             }
         }
         );
-        
+
         gridAnyadirCursoSpnNMax.getEditor().textProperty().addListener((Observable, oldValue, newValue) -> {
             if (newValue.length() > 3) {
                 gridAnyadirCursoSpnNMax.getEditor().setText(oldValue);
             }
         }
         );
-        
+
         gridAnyadirCursoTextHora.textProperty().addListener((Observable, oldValue, newValue) -> {
             if (newValue.length() > 5) {
                 gridAnyadirCursoTextHora.setText(oldValue);
             }
         }
         );
-        
+
     }
 
     @FXML
@@ -352,10 +354,10 @@ public class FXMLAnyadirCursoController implements Initializable {
             if (gridAnyadirCursoCheckViernes.isSelected()) {
                 dias.add(Dias.Viernes);
             }
-               
+
             String tituloArreglado = gridAnyadirCursoTextTitulo.getText().trim().replaceAll(" +", " ");
             String profesorArreglado = gridAnyadirCursoTextProfesor.getText().trim().replaceAll(" +", " ");
-            
+
             Curso curso = new Curso(tituloArreglado,
                     profesorArreglado,
                     gridAnyadirCursoSpnNMax.getValueFactory().getValue(),
@@ -364,27 +366,44 @@ public class FXMLAnyadirCursoController implements Initializable {
                     LocalTime.parse(gridAnyadirCursoTextHora.getText()),
                     dias, gridAnyadirCursoCmbAula.getValue());
 
-            listaCursos.add(curso);
-            acceso.salvar();
+            boolean cursoExistente = false;
 
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
-                Parent root = (Parent) loader.load();
+            for (Curso cursoLista : listaCursos) {
+                if (cursoLista.equals(curso)) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Curso existente");
+                    alert.setHeaderText(null);
+                    ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/img/icon.png"));
+                    alert.setContentText("ERROR: El curso que ha introducido ya existe.");
+                    cursoExistente = true;
+                    alert.showAndWait();
+                    break;
+                }
+            }
 
-                FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
-                controllerListaCursos.initStage(primaryStage, true);
-                Scene scene = new Scene(root);
-                primaryStage.setScene(scene);
-                primaryStage.show();
-                
-                stage = (Stage) btnCancelar.getScene().getWindow();
-                stage.close();
+            if (!cursoExistente) {
+                listaCursos.add(curso);
+                acceso.salvar();
 
-            } catch (IOException e) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
+                    Parent root = (Parent) loader.load();
+
+                    FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
+                    controllerListaCursos.initStage(primaryStage, true);
+                    Scene scene = new Scene(root);
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+
+                    stage = (Stage) btnCancelar.getScene().getWindow();
+                    stage.close();
+
+                } catch (IOException e) {
+                }
             }
         }
     }
-    
+
     private void voyListaCursosFalseBoolean() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
         Parent root = (Parent) loader.load();

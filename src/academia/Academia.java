@@ -18,23 +18,23 @@ import javafx.stage.Stage;
  * @author V
  */
 public class Academia extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAcademia.fxml"));
         Parent root = loader.load();
-        
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        
+
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
         stage.getIcons().add(icon);
-        
+
         stage.setTitle("Academia");
-        FXMLAcademiaController controllerAcademia = loader.<FXMLAcademiaController> getController();
+        FXMLAcademiaController controllerAcademia = loader.<FXMLAcademiaController>getController();
         controllerAcademia.initStage(stage);
         stage.show();
-        
+
     }
 
     /**
@@ -43,5 +43,5 @@ public class Academia extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

@@ -21,6 +21,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -79,7 +81,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
     private Stage primaryStage, emergenteStage;
     private Boolean vengoDeStageConMenu = false, vengoDesdeListaAlumnos = false;
     private Stage stage;
-            
+
     public void initStage(Stage stageEmergente, Stage stage) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Añadir alumno");
@@ -92,7 +94,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
         primaryStage = stage;
         vengoDeStageConMenu = conMenu;
     }
-    
+
     public void initStage(Stage stageEmergente, Stage stage, Boolean conMenu, Boolean vengoDesdeLAlumnos) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Añadir alumno");
@@ -122,28 +124,28 @@ public class FXMLAnyadirAlumnoController implements Initializable {
                 keyEvent.consume();
             }
         });
-        
+
         gridAnyadirAlumnoTextNombre.textProperty().addListener((Observable, oldValue, newValue) -> {
             if (newValue.length() > 50) {
                 gridAnyadirAlumnoTextNombre.setText(oldValue);
             }
         }
         );
-        
+
         gridAnyadirAlumnoTextDni.textProperty().addListener((Observable, oldValue, newValue) -> {
             if (newValue.length() > 9) {
                 gridAnyadirAlumnoTextDni.setText(oldValue);
             }
         }
         );
-        
+
         gridAnyadirAlumnoTextDireccion.textProperty().addListener((Observable, oldValue, newValue) -> {
             if (newValue.length() > 75) {
                 gridAnyadirAlumnoTextDireccion.setText(oldValue);
             }
         }
         );
-        
+
         gridAnyadirAlumnoSpnEdad.getEditor().textProperty().addListener((Observable, oldValue, newValue) -> {
             if (newValue.length() > 2) {
                 gridAnyadirAlumnoSpnEdad.getEditor().setText(oldValue);
@@ -299,35 +301,53 @@ public class FXMLAnyadirAlumnoController implements Initializable {
 
             String nombreArreglado = gridAnyadirAlumnoTextNombre.getText().trim().replaceAll(" +", " ");
             String direccionArreglado = gridAnyadirAlumnoTextDireccion.getText().trim().replaceAll(" +", " ");
-            
-            Alumno alumno = new Alumno(gridAnyadirAlumnoTextDni.getText(),
+            String dniArreglado = gridAnyadirAlumnoTextDni.getText().substring(0, 8) + gridAnyadirAlumnoTextDni.getText().substring(8).toUpperCase();
+
+            Alumno alumno = new Alumno(dniArreglado,
                     nombreArreglado,
                     gridAnyadirAlumnoSpnEdad.getValueFactory().getValue(),
                     direccionArreglado,
                     localDate,
                     gridAnyadirAlumnoImgFotografia.getImage());
 
-            listaAlumnos.add(alumno);
-            acceso.salvar();
+            boolean alumnoExistente = false;
 
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
-                Parent root = (Parent) loader.load();
+            for (Alumno alumnoLista : listaAlumnos) {
+                if (alumnoLista.getDni().equals(alumno.getDni())) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Alumno existente");
+                    alert.setHeaderText(null);
+                    ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/img/icon.png"));
+                    alert.setContentText("ERROR: El alumno que ha introducido ya existe.");
+                    alumnoExistente = true;
+                    alert.showAndWait();
+                    break;
+                }
+            }
 
-                FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
-                controllerListaAlumnos.initStage(primaryStage, true);
-                Scene scene = new Scene(root);
-                primaryStage.setScene(scene);
-                primaryStage.show();
+            if (!alumnoExistente) {
+                listaAlumnos.add(alumno);
+                acceso.salvar();
 
-                stage = (Stage) btnCancelar.getScene().getWindow();
-                stage.close();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
+                    Parent root = (Parent) loader.load();
 
-            } catch (IOException e) {
+                    FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
+                    controllerListaAlumnos.initStage(primaryStage, true);
+                    Scene scene = new Scene(root);
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+
+                    stage = (Stage) btnCancelar.getScene().getWindow();
+                    stage.close();
+
+                } catch (IOException e) {
+                }
             }
         }
     }
-    
+
     private void voyListaAlumnosFalseBoolean() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
         Parent root = (Parent) loader.load();

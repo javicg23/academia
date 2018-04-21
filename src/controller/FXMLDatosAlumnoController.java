@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
@@ -70,8 +69,7 @@ public class FXMLDatosAlumnoController implements Initializable {
     private Alumno alumno;
     private AccesoaBD baseDatos = new AccesoaBD();
     private ObservableList<Curso> listaCursos = null;
-    
-    
+
     public void initStage(Stage stageEmergente, Stage stage, Alumno alumno) {
         emergenteStage = stageEmergente;
         emergenteStage.setTitle("Datos Alumno");
@@ -79,14 +77,14 @@ public class FXMLDatosAlumnoController implements Initializable {
         this.alumno = alumno;
         initializeAll();
     }
-    
+
     private void initializeAll() {
         imgFotografia.setImage(alumno.getFoto());
         gridDatosAlumnoLblDireccion.setText(alumno.getDireccion());
         gridDatosAlumnoLblDni.setText(alumno.getDni());
         gridDatosAlumnoLblEdad.setText(alumno.getEdad() + "");
         gridDatosAlumnoLblNombre.setText(alumno.getNombre());
-        
+
         //inicializar la lista de cursos en los que esta matriculado
         baseDatos = new AccesoaBD();
         ArrayList<Curso> cursos = new ArrayList<>();
@@ -97,14 +95,18 @@ public class FXMLDatosAlumnoController implements Initializable {
                 cursos.add(matricula.getCurso());
             }
         }
-            listaCursos = FXCollections.observableArrayList(cursos);
-            tablaCursosMatriculados.setItems(listaCursos); //vincular la vista y el modelo
-            //asignar el estilo a las celdas
-            tablaCursosMatriculadosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
-            tablaCursosMatriculadosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
-            tablaCursosMatriculadosColumnaHora.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getHora().toString()));
-        
+        listaCursos = FXCollections.observableArrayList(cursos);
+        tablaCursosMatriculados.setItems(listaCursos); //vincular la vista y el modelo
+        //asignar el estilo a las celdas
+        tablaCursosMatriculadosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
+        tablaCursosMatriculadosColumnaCurso.setStyle("-fx-alignment: CENTER;");
+        tablaCursosMatriculadosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
+        tablaCursosMatriculadosColumnaProfesor.setStyle("-fx-alignment: CENTER;");
+        tablaCursosMatriculadosColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
+        tablaCursosMatriculadosColumnaHora.setStyle("-fx-alignment: CENTER;");
+
     }
+
     /**
      * Initializes the controller class.
      */
