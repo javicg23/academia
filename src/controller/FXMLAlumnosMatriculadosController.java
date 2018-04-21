@@ -9,8 +9,10 @@ import accesoaBD.AccesoaBD;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -89,6 +91,7 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
         gridDatosCursoLblAula.setText(curso.getAula());
         gridDatosCursoLblHora.setText(curso.getHora().toString());
         lblCurso.setText(curso.getTitulodelcurso());
+        
 
         //introoducir los dias que se imparten las clases en el label
         ArrayList<Dias> dias = curso.getDiasimparte();
@@ -135,20 +138,28 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
             tablaAlumnosColumnaFotografia.setStyle("-fx-alignment: CENTER;");
 
         }
-        //sentencia para aplicar el filtro a la lista de cursos
+        
+	//el mensaje de la tabla vacia
+        tablaAlumnos.setPlaceholder(new Label("No hay alumnos matriculados"));
+        
+        //sentencia para aplicar el filtro a la lista de alumnos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             baseDatos = new AccesoaBD();
-            ArrayList<Alumno> alumnoTotal = (ArrayList<Alumno>) baseDatos.getAlumnosDeCurso(curso);
-            ArrayList<Alumno> alumnosFiltro = new ArrayList();
-            for (int i = 0; i < alumnoTotal.size(); i++) {
-                Alumno alumno = alumnoTotal.get(i);
-                if (quitarAcentos(alumno.getNombre().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
-                    alumnosFiltro.add(alumno);
+            ArrayList<Alumno> alumnosTotal = (ArrayList<Alumno>) baseDatos.getAlumnosDeCurso(curso);
+            Set<Alumno> alumnosFiltro = new HashSet();
+            for (int i = 0; i < alumnosTotal.size(); i++) {
+                Alumno alumno = alumnosTotal.get(i);
+                String[] alumnoPartesNombre = alumno.getNombre().split(" ");
+                for (int j = 0; j < alumnoPartesNombre.length; j++) {
+                    if (quitarAcentos(alumnoPartesNombre[j].toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                        alumnosFiltro.add(alumno);
+                    }
                 }
             }
             listaAlumnos = FXCollections.observableArrayList(alumnosFiltro);
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
         });
+
 
     }
 

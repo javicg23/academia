@@ -9,9 +9,11 @@ import accesoaBD.AccesoaBD;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -130,6 +132,8 @@ public class FXMLListaCursosController implements Initializable {
         //listener para que cuando se pulse una celdase activen los botones de eliminar y ver alumonsMatriculados
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaListaCursos.getSelectionModel().selectedIndexProperty()));
         btnAlumnosMatriculados.disableProperty().bind(Bindings.equal(-1, tablaListaCursos.getSelectionModel().selectedIndexProperty()));
+	//el mensaje de la tabla vacia
+        tablaListaCursos.setPlaceholder(new Label("No hay cursos que mostrar"));
 
         //metodo para abrir los alumnos matriculados en un curso al pulsar dos veces en un curso de la tabla
         tablaListaCursos.setRowFactory(tableRow -> {
@@ -149,16 +153,20 @@ public class FXMLListaCursosController implements Initializable {
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             baseDatos = new AccesoaBD();
             ArrayList<Curso> cursosTotal = (ArrayList<Curso>) baseDatos.getCursos();
-            ArrayList<Curso> cursosFiltro = new ArrayList();
+            Set<Curso> cursosFiltro = new HashSet();
             for (int i = 0; i < cursosTotal.size(); i++) {
                 Curso curso = cursosTotal.get(i);
-                if (quitarAcentos(curso.getTitulodelcurso().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
-                    cursosFiltro.add(curso);
+                String[] cursoPartesNombre = curso.getTitulodelcurso().split(" ");
+                for (int j = 0; j < cursoPartesNombre.length; j++) {
+                    if (quitarAcentos(cursoPartesNombre[j].toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                        cursosFiltro.add(curso);
+                    }
                 }
             }
             listaCursos = FXCollections.observableArrayList(cursosFiltro);
             tablaListaCursos.setItems(listaCursos); //vincular la vista y el modelo
         });
+
 
         //aplicar el poder seleccionar diferentes filas
         tablaListaCursos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

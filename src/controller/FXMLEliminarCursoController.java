@@ -9,9 +9,11 @@ import accesoaBD.AccesoaBD;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -100,16 +102,21 @@ public class FXMLEliminarCursoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inicializarTabla();
+	//el mensaje de la tabla vacia
+        tablaCursos.setPlaceholder(new Label("No hay cursos que mostrar"));
 
         //sentencia para aplicar el filtro a la lista de cursos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             baseDatos = new AccesoaBD();
             ArrayList<Curso> cursosTotal = (ArrayList<Curso>) baseDatos.getCursos();
-            ArrayList<Curso> cursosFiltro = new ArrayList();
+            Set<Curso> cursosFiltro = new HashSet();
             for (int i = 0; i < cursosTotal.size(); i++) {
                 Curso curso = cursosTotal.get(i);
-                if (quitarAcentos(curso.getTitulodelcurso().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
-                    cursosFiltro.add(curso);
+                String[] cursoPartesNombre = curso.getTitulodelcurso().split(" ");
+                for (int j = 0; j < cursoPartesNombre.length; j++) {
+                    if (quitarAcentos(cursoPartesNombre[j].toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                        cursosFiltro.add(curso);
+                    }
                 }
             }
             listaCursos = FXCollections.observableArrayList(cursosFiltro);

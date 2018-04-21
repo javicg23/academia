@@ -9,9 +9,11 @@ import accesoaBD.AccesoaBD;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -106,17 +108,22 @@ public class FXMLEliminarAlumnoController implements Initializable {
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             baseDatos = new AccesoaBD();
             ArrayList<Alumno> alumnosTotal = (ArrayList<Alumno>) baseDatos.getAlumnos();
-            ArrayList<Alumno> alumnosFiltro = new ArrayList();
+            Set<Alumno> alumnosFiltro = new HashSet();
             for (int i = 0; i < alumnosTotal.size(); i++) {
                 Alumno alumno = alumnosTotal.get(i);
-                if (quitarAcentos(alumno.getNombre().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
-                    alumnosFiltro.add(alumno);
+                String[] alumnoPartesNombre = alumno.getNombre().split(" ");
+                for (int j = 0; j < alumnoPartesNombre.length; j++) {
+                    if (quitarAcentos(alumnoPartesNombre[j].toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                        alumnosFiltro.add(alumno);
+                    }
                 }
             }
             listaAlumnos = FXCollections.observableArrayList(alumnosFiltro);
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
         });
 
+	//el mensaje de la tabla vacia
+        tablaAlumnos.setPlaceholder(new Label("No hay alumnos que mostrar"));
         //aplicar el poder seleccionar diferentes filas
         tablaAlumnos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         //listener para que cuando se pulse una celdase activen los botones de eliminar y ver los datos del alumno

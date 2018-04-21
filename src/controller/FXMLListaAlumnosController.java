@@ -9,9 +9,11 @@ import accesoaBD.AccesoaBD;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -133,20 +135,27 @@ public class FXMLListaAlumnosController implements Initializable {
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaAlumnos.getSelectionModel().selectedIndexProperty()));
         btnVisualizar.disableProperty().bind(Bindings.equal(-1, tablaAlumnos.getSelectionModel().selectedIndexProperty()));
 
+	//el mensaje de la tabla vacia
+        tablaAlumnos.setPlaceholder(new Label("No hay alumnos que mostrar"));
+        
         //sentencia para aplicar el filtro a la lista de alumnos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             baseDatos = new AccesoaBD();
             ArrayList<Alumno> alumnosTotal = (ArrayList<Alumno>) baseDatos.getAlumnos();
-            ArrayList<Alumno> alumnosFiltro = new ArrayList();
+            Set<Alumno> alumnosFiltro = new HashSet();
             for (int i = 0; i < alumnosTotal.size(); i++) {
                 Alumno alumno = alumnosTotal.get(i);
-                if (quitarAcentos(alumno.getNombre().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
-                    alumnosFiltro.add(alumno);
+                String[] alumnoPartesNombre = alumno.getNombre().split(" ");
+                for (int j = 0; j < alumnoPartesNombre.length; j++) {
+                    if (quitarAcentos(alumnoPartesNombre[j].toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                        alumnosFiltro.add(alumno);
+                    }
                 }
             }
             listaAlumnos = FXCollections.observableArrayList(alumnosFiltro);
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
         });
+
 
         //metodo para abrir los alumnos matriculados en un curso al pulsar dos veces en un curso de la tabla
         tablaAlumnos.setRowFactory(tableRow -> {

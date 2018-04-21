@@ -200,13 +200,22 @@ public class FXMLMatriculacionesController implements Initializable {
             tablaMatricularAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
             //asignar el estilo a las celdas
             tablaMatricularAlumnosColumnaDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
-            tablaMatricularAlumnosColumnaDni.setStyle( "-fx-alignment: CENTER;");
+            tablaMatricularAlumnosColumnaDni.setStyle("-fx-alignment: CENTER;");
             tablaMatricularAlumnosColumnaAlumno.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-            tablaMatricularAlumnosColumnaAlumno.setStyle( "-fx-alignment: CENTER;");
+            tablaMatricularAlumnosColumnaAlumno.setStyle("-fx-alignment: CENTER;");
             tablaMatricularAlumnosColumnaFotografia.setCellValueFactory(cel -> new SimpleObjectProperty<Image>(cel.getValue().getFoto()));
             tablaMatricularAlumnosColumnaFotografia.setCellFactory(c -> new ImageTableCell<>());
-            tablaMatricularAlumnosColumnaFotografia.setStyle( "-fx-alignment: CENTER;");
+            tablaMatricularAlumnosColumnaFotografia.setStyle("-fx-alignment: CENTER;");
         }
+
+        //el mensaje de la tabla vacia de alumnos en matricular
+        tablaMatricularAlumnos.setPlaceholder(new Label("No hay alumnos que mostrar"));
+        //el mensaje de la tabla vacia de cursos en matricular
+        tablaMatricularCursos.setPlaceholder(new Label("No hay cursos que mostrar"));
+        //el mensaje de la tabla vacia de alumnos en desmatricular
+        tablaDesmatricularAlumnos.setPlaceholder(new Label("No hay alumnos que mostrar"));
+        //el mensaje de la tabla vacia de cursos en desmatricular
+        tablaDesmatricularCursos.setPlaceholder(new Label("No hay cursos que mostrar"));
 
         //sentencia para aplicar el filtro a la lista de alumnos
         textMatricularFiltrarAlumnos.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -280,12 +289,12 @@ public class FXMLMatriculacionesController implements Initializable {
             tablaDesmatricularAlumnos.setItems(listaAlumnosDesmatricular); //vincular la vista y el modelo
             //asignar el estilo a las celdas
             tablaDesmatricularAlumnosColumnaDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
-            tablaDesmatricularAlumnosColumnaDni.setStyle( "-fx-alignment: CENTER;");
+            tablaDesmatricularAlumnosColumnaDni.setStyle("-fx-alignment: CENTER;");
             tablaDesmatricularAlumnosColumnaAlumno.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-            tablaDesmatricularAlumnosColumnaAlumno.setStyle( "-fx-alignment: CENTER;");
+            tablaDesmatricularAlumnosColumnaAlumno.setStyle("-fx-alignment: CENTER;");
             tablaDesmatricularAlumnosColumnaFotografía.setCellValueFactory(cel -> new SimpleObjectProperty<Image>(cel.getValue().getFoto()));
             tablaDesmatricularAlumnosColumnaFotografía.setCellFactory(c -> new ImageTableCell<>());
-            tablaDesmatricularAlumnosColumnaFotografía.setStyle( "-fx-alignment: CENTER;");
+            tablaDesmatricularAlumnosColumnaFotografía.setStyle("-fx-alignment: CENTER;");
         }
 
         //sentencia para aplicar el filtro a la lista de alumnos
@@ -319,11 +328,11 @@ public class FXMLMatriculacionesController implements Initializable {
                     tablaDesmatricularCursos.setItems(listaCursosDesmatricular); //vincular la vista y el modelo
                     //asignar el estilo a las celdas
                     tablaDesmatricularCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
-                    tablaDesmatricularCursosColumnaCurso.setStyle( "-fx-alignment: CENTER;");
+                    tablaDesmatricularCursosColumnaCurso.setStyle("-fx-alignment: CENTER;");
                     tablaDesmatricularCursosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
-                    tablaDesmatricularCursosColumnaProfesor.setStyle( "-fx-alignment: CENTER;");
+                    tablaDesmatricularCursosColumnaProfesor.setStyle("-fx-alignment: CENTER;");
                     tablaDesmatricularColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
-                    tablaDesmatricularColumnaHora.setStyle( "-fx-alignment: CENTER;");
+                    tablaDesmatricularColumnaHora.setStyle("-fx-alignment: CENTER;");
                 }
                 if (!textDesmatricularFiltrarCursos.getText().isEmpty()) {
                     filtrarCursos(tablaDesmatricularCursos, listaCursosDesmatricular, textDesmatricularFiltrarCursos.getText());
@@ -621,7 +630,7 @@ public class FXMLMatriculacionesController implements Initializable {
         tablaMatricularCursosColumnaProfesor.setStyle("-fx-alignment: CENTER;");
         tablaMatricularColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
         tablaMatricularColumnaHora.setStyle("-fx-alignment: CENTER;");
-        
+
         lblMatricularModificado.setStyle("-fx-text-fill: green;");
         lblMatricularModificado.setText("Alumno matriculados correctamente");
 
@@ -755,11 +764,14 @@ public class FXMLMatriculacionesController implements Initializable {
     private void filtrarAlumnos(TableView<Alumno> tabla, ObservableList<Alumno> lista, String newValue) {
         baseDatos = new AccesoaBD();
         ObservableList<Alumno> alumnosTotal = lista;
-        ArrayList<Alumno> alumnosFiltro = new ArrayList();
+        Set<Alumno> alumnosFiltro = new HashSet();
         for (int i = 0; i < alumnosTotal.size(); i++) {
             Alumno alumno = alumnosTotal.get(i);
-            if (quitarAcentos(alumno.getNombre().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
-                alumnosFiltro.add(alumno);
+            String[] alumnoPartesNombre = alumno.getNombre().split(" ");
+            for (int j = 0; j < alumnoPartesNombre.length; j++) {
+                if (quitarAcentos(alumnoPartesNombre[j].toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                    alumnosFiltro.add(alumno);
+                }
             }
         }
         lista = FXCollections.observableArrayList(alumnosFiltro);
@@ -770,11 +782,14 @@ public class FXMLMatriculacionesController implements Initializable {
     private void filtrarCursos(TableView<Curso> tabla, ObservableList<Curso> lista, String newValue) {
         baseDatos = new AccesoaBD();
         ObservableList<Curso> cursosTotal = lista;
-        ArrayList<Curso> cursosFiltro = new ArrayList();
+        Set<Curso> cursosFiltro = new HashSet();
         for (int i = 0; i < cursosTotal.size(); i++) {
             Curso curso = cursosTotal.get(i);
-            if (quitarAcentos(curso.getTitulodelcurso().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
-                cursosFiltro.add(curso);
+            String[] cursoPartesNombre = curso.getTitulodelcurso().split(" ");
+            for (int j = 0; j < cursoPartesNombre.length; j++) {
+                if (quitarAcentos(cursoPartesNombre[j].toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                    cursosFiltro.add(curso);
+                }
             }
         }
         lista = FXCollections.observableArrayList(cursosFiltro);
