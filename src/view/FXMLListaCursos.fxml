@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLListaCursosController">
+<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLListaCursosController">
    <top>
       <VBox maxHeight="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -104,7 +104,7 @@
       </VBox>
    </top>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="75.0" BorderPane.alignment="CENTER" />
    </left>
    <center>
       <VBox BorderPane.alignment="CENTER">
@@ -125,7 +125,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </HBox>
-            <TableView fx:id="tablaListaCursos" prefHeight="400.0" prefWidth="630.0">
+            <TableView fx:id="tablaListaCursos" prefHeight="400.0" prefWidth="625.0">
               <columns>
                 <TableColumn fx:id="tablaListaCursosColumnaCurso" prefWidth="275.0" resizable="false" text="Curso" />
                 <TableColumn fx:id="tablaListaCursosColumnaProfesor" prefWidth="275.0" resizable="false" text="Profesor" />
@@ -141,7 +141,7 @@
    <right>
       <GridPane fx:id="gridBotonera" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
@@ -149,9 +149,9 @@
             <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="btnAnyadir" minWidth="85.0" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnAnyadir" onMouseClicked="#pulsarRatonBtnAnyadir" text="Añadir" />
-            <Button fx:id="btnEliminar" minWidth="85.0" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnEliminar" onMouseClicked="#pulsarRatonBtnEliminar" text="Eliminar" GridPane.rowIndex="1" />
-            <Button fx:id="btnAlumnosMatriculados" maxWidth="85.0" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnAlumnosMatriculados" onMouseClicked="#pulsarRatonBtnAlumnosMatriculados" text="Alumnos matriculados" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2" />
+            <Button fx:id="btnAnyadir" maxWidth="90.0" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnAnyadir" onMouseClicked="#pulsarRatonBtnAnyadir" text="Añadir" />
+            <Button fx:id="btnEliminar" maxWidth="90.0" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnEliminar" onMouseClicked="#pulsarRatonBtnEliminar" text="Eliminar" GridPane.rowIndex="1" />
+            <Button fx:id="btnAlumnosMatriculados" maxWidth="90.0" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnAlumnosMatriculados" onMouseClicked="#pulsarRatonBtnAlumnosMatriculados" text="Alumnos matriculados" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2" />
          </children>
          <BorderPane.margin>
             <Insets top="25.0" />
@@ -180,7 +180,15 @@
                   <Insets top="15.0" />
                </HBox.margin>
             </HBox>
-            <Label fx:id="lblModificacionLista" />
+            <HBox alignment="TOP_CENTER" prefWidth="630.0">
+               <children>
+                  <Label fx:id="lblModificacionLista">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </HBox>
    </bottom>

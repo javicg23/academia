@@ -35,6 +35,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import modelo.Curso;
 import modelo.Matricula;
@@ -73,6 +74,8 @@ public class FXMLEliminarCursoController implements Initializable {
     private Stage primaryStage, emergenteStage;
     private Boolean vengoDeStageConMenu = false, vengoDesdeListaCursos = false;
     private Stage stage;
+    @FXML
+    private BorderPane borderPane;
 
     public void initStage(Stage stageEmergente, Stage stage) {
         emergenteStage = stageEmergente;
@@ -100,6 +103,11 @@ public class FXMLEliminarCursoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        borderPane.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
+        borderPane.getStyleClass().add("fondoImagen");
+        btnCancelar.getStyleClass().add("boton");
+        btnEliminar.getStyleClass().addAll("boton","botonDefault");
+        
         inicializarTabla();
         //el mensaje de la tabla vacia
         tablaCursos.setPlaceholder(new Label("No hay cursos que mostrar"));

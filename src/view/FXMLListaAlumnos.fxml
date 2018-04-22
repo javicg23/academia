@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLListaAlumnosController">
+<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLListaAlumnosController">
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -159,7 +159,15 @@
                <HBox.margin>
                   <Insets top="15.0" />
                </HBox.margin></HBox>
-            <Label fx:id="lblModificacionLista" />
+            <HBox alignment="TOP_CENTER" prefWidth="630.0">
+               <children>
+                  <Label fx:id="lblModificacionLista">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </HBox>
    </bottom>

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLEliminarCursoController">
+<BorderPane fx:id="borderPane" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLEliminarCursoController">
    <top>
       <VBox maxHeight="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -66,9 +66,12 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="66.0" prefWidth="426.0">
+            <HBox prefHeight="66.0" prefWidth="350.0">
                <children>
-                  <Label fx:id="lblEliminarModificado" />
+                  <Label fx:id="lblEliminarModificado">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font></Label>
                </children>
             </HBox>
             <Button fx:id="btnEliminar" defaultButton="true" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnEliminar" onMouseClicked="#pulsarRatonBtnEliminar" text="Eliminar">

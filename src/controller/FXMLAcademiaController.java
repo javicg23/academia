@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -67,6 +68,8 @@ public class FXMLAcademiaController implements Initializable {
     private Button btnMatriculaciones;
 
     private Stage primaryStage;
+    @FXML
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -78,6 +81,12 @@ public class FXMLAcademiaController implements Initializable {
 
     public void initStage(Stage stage) {
         primaryStage = stage;
+        borderPane.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
+        borderPane.getStyleClass().add("fondoImagen");
+        btnAlumnos.getStyleClass().addAll("boton", "botonAcademia");
+        btnCursos.getStyleClass().addAll("boton", "botonAcademia");
+        btnMatriculaciones.getStyleClass().addAll("boton", "botonAcademia");
+        
     }
     //metodo que se lanza al pulsar en el menu en alumnos - > anyadir
     @FXML

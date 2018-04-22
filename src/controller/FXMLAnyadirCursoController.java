@@ -31,6 +31,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import modelo.Curso;
@@ -98,6 +99,8 @@ public class FXMLAnyadirCursoController implements Initializable {
     private Stage primaryStage, emergenteStage;
     private Boolean vengoDeStageConMenu = false, vengoDesdeListaCursos = false;
     private Stage stage;
+    @FXML
+    private BorderPane borderPane;
 
     public void initStage(Stage stageEmergente, Stage stage) {
         emergenteStage = stageEmergente;
@@ -125,6 +128,10 @@ public class FXMLAnyadirCursoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        borderPane.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
+        borderPane.getStyleClass().add("fondoImagen");
+        btnCancelar.getStyleClass().add("boton");
+        btnGuardar.getStyleClass().addAll("boton","botonDefault");
 
         gridAnyadirCursoDateInicio.setEditable(false);
         gridAnyadirCursoDateFin.setEditable(false);

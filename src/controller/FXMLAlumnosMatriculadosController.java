@@ -25,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import modelo.Alumno;
@@ -77,6 +78,8 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
     private Curso curso;
     private AccesoaBD baseDatos;
     private ObservableList<Alumno> listaAlumnos = null; // Coleccion vinculada a la vista.
+    @FXML
+    private BorderPane borderPane;
 
     public void initStage(Stage stageEmergente, Stage stage, Curso c) {
         emergenteStage = stageEmergente;
@@ -169,6 +172,8 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        borderPane.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
+        borderPane.getStyleClass().add("fondoImagen");
 
     }
     //metodo para quitar los acentos en el filtro y buscar independientemente si hay tilde o no

@@ -42,6 +42,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -110,6 +111,8 @@ public class FXMLListaAlumnosController implements Initializable {
     private Stage primaryStage;
     private ObservableList<Alumno> listaAlumnos = null; // Coleccion vinculada a la vista.
     private AccesoaBD baseDatos;
+    @FXML
+    private BorderPane borderPane;
 
     public void initStage(Stage stage) {
         primaryStage = stage;
@@ -127,6 +130,13 @@ public class FXMLListaAlumnosController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        borderPane.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
+        borderPane.getStyleClass().add("fondoImagen");
+        btnVisualizar.getStyleClass().add("boton");
+        btnAnyadir.getStyleClass().add("boton");
+        btnEliminar.getStyleClass().add("boton");
+        btnAtras.getStyleClass().addAll("boton","botonAtras");
+        
         baseDatos = new AccesoaBD();
         inicializarTabla();
 

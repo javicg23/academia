@@ -48,6 +48,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Alumno;
@@ -166,6 +167,10 @@ public class FXMLMatriculacionesController implements Initializable {
     private Label lblCursosAMatricular;
     @FXML
     private Label lblCursosADesmatricular;
+    @FXML
+    private VBox cajaMatricular;
+    @FXML
+    private VBox cajaDesmatricular;
 
     public void initStage(Stage stage) {
         primaryStage = stage;
@@ -186,6 +191,16 @@ public class FXMLMatriculacionesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        tabPane.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
+        tabPane.getStyleClass().add("fondoImagen");
+        btnDesmatricular.getStyleClass().add("boton");
+        btnMatricular.getStyleClass().add("boton");
+        btnDesmatricularAtras.getStyleClass().addAll("boton","botonAtras");
+        btnMatricularAtras.getStyleClass().addAll("boton","botonAtras");
+        cajaMatricular.getStyleClass().add("cajaMatricular");
+        cajaDesmatricular.getStyleClass().add("cajaMatricular");
+        
+        
         //************************
         //**** MATRICULAR ********
         //************************
@@ -266,6 +281,12 @@ public class FXMLMatriculacionesController implements Initializable {
                 }
                 if (!textMatricularFiltrarCursos.getText().isEmpty()) {
                     filtrarCursos(tablaMatricularCursos, listaCursos, textMatricularFiltrarCursos.getText());
+                }
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    try {
+                        abrirVisualizar();
+                    } catch (IOException e) {
+                    }
                 }
             });
             return row;
@@ -695,7 +716,7 @@ public class FXMLMatriculacionesController implements Initializable {
         tablaDesmatricularColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
         tablaDesmatricularColumnaHora.setStyle("-fx-alignment: CENTER;");
 
-        lblDesmatricularModificado.setStyle("-fx-text-fill: green;");
+        lblDesmatricularModificado.setStyle("-fx-text-fill: red;");
         lblDesmatricularModificado.setText("Alumno desmatriculado correctamente");
 
     }
@@ -799,4 +820,25 @@ public class FXMLMatriculacionesController implements Initializable {
         primaryStage.show();
     }
     
+    //metodo que cambia la stage a datos alumno
+    private void abrirVisualizar() throws IOException {
+        Alumno alumno = tablaMatricularAlumnos.getSelectionModel().getSelectedItem();
+        if (alumno != null) {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLDatosAlumno.fxml"));
+            Parent root = (Parent) loader.load();
+            loader.<FXMLDatosAlumnoController>getController().initStage(stage, primaryStage, alumno);
+            Scene scene = new Scene(root);
+
+            Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
+            stage.getIcons().add(icon);
+
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
+            stage.setY(primaryStage.getY() - 20);
+            stage.setResizable(false);
+            stage.showAndWait();
+        }
+    }
 }

@@ -8,8 +8,85 @@ and open the template in the editor.
     Author     : Countero
 */
 
-#pane {
+.fondoImagen {
     -fx-background-image: url("../img/fondo.jpg");
     -fx-background-size: 850 600;
     -fx-background-position: center center;
+}
+
+.boton {
+    -fx-background-color: 
+        linear-gradient(#e2e2e2, #d6d6d6),
+        linear-gradient(#ececec 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 0%, #e6e6e6 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.boton:hover {
+    -fx-background-color: 
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.boton:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+.boton:focused {
+    -fx-border-style: dashed
+}
+
+.botonAcademia {
+    -fx-background-color: 
+        linear-gradient(#d2d2d2, #b6b6b6),
+        linear-gradient(#dcdcdc 0%, #b9b9b9 20%, #b6b6b6 100%),
+        linear-gradient(#bdbdbd 0%, #d6d6d6 50%);
+    -fx-font-size: 18px;
+}
+
+.botonAtras {
+    -fx-background-radius: 100%;
+
+}
+
+.botonAtras:focused {
+    -fx-background-radius: 100%;
+}
+
+.botonAtras:hover {
+    -fx-background-color: 
+        linear-gradient(#f8f8f8, #e6e6e6),
+        linear-gradient(#ffffff 0%, #e9e9e9 20%, #e6e6e6 100%),
+        linear-gradient(#ededed 0%, #fbfbfb 50%);
+    -fx-background-radius: 100%;
+}
+
+.cajaMatricular {
+    -fx-border-color: blueviolet;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+}
+
+.botonDefault {
+    -fx-background-color: 
+        linear-gradient(#8282ff, #7676f8),
+        linear-gradient(#9c9cff 0%, #8989f9 20%, #9696f6 100%),
+        linear-gradient(#9d9dfd 0%, #a6a6f6 50%);
+}
+
+.botonDefault:hover {
+    -fx-background-color: 
+        linear-gradient(#a2a2ff, #96a6f8),
+        linear-gradient(#bcbcff 0%, #a9a9f9 20%, #b6b6f6 100%),
+        linear-gradient(#bdbdfd 0%, #c6c6f6 50%);
 }

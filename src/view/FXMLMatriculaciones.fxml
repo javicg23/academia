@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMatriculacionesController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMatriculacionesController">
    <children>
       <MenuBar fx:id="menuBar" focusTraversable="false">
          <menus>
@@ -112,7 +112,7 @@
                            <children>
                               <HBox>
                                  <children>
-                                    <HBox>
+                                    <HBox alignment="CENTER_LEFT">
                                        <HBox.margin>
                                           <Insets left="25.0" />
                                        </HBox.margin>
@@ -139,14 +139,15 @@
                                           <TextField fx:id="textMatricularFiltrarCursos" focusTraversable="false" maxWidth="200.0" promptText="Interfaces" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="159.0">
+                                    <VBox fx:id="cajaMatricular" alignment="TOP_CENTER" prefHeight="34.0" prefWidth="125.0">
                                        <children>
-                                          <Label fx:id="lblCursosAMatricular" text="Cursos a matricular">
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding></Label>
+                                          <Label fx:id="lblCursosAMatricular" text="Cursos disponibles" />
+                                          <Label fx:id="lblCursosAMatricular" text="para matricular" />
                                        </children>
-                                    </HBox>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </VBox>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" maxWidth="700.0" prefHeight="330.0" prefWidth="200.0">
@@ -204,9 +205,12 @@
                                  </children>
                               </HBox>
                               <HBox prefHeight="50.0" prefWidth="20.0" />
-                              <HBox prefHeight="50.0" prefWidth="565.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="565.0">
                                  <children>
-                                    <Label fx:id="lblMatricularModificado" />
+                                    <Label fx:id="lblMatricularModificado">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font></Label>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER">
@@ -250,7 +254,7 @@
                            <children>
                               <HBox>
                                  <children>
-                                    <HBox>
+                                    <HBox alignment="CENTER_LEFT">
                                        <HBox.margin>
                                           <Insets left="25.0" />
                                        </HBox.margin>
@@ -264,7 +268,7 @@
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="25.0" prefWidth="192.0" />
-                                    <HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="180.0">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -273,18 +277,22 @@
                                              <image>
                                                 <Image url="@../img/lupa.png" />
                                              </image>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
                                           </ImageView>
                                           <TextField fx:id="textDesmatricularFiltrarCursos" focusTraversable="false" maxWidth="200.0" promptText="Interfaces" />
-                                          <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="159.0">
-                                             <children>
-                                                <Label fx:id="lblCursosADesmatricular" text="Cursos a desmatricular">
-                                                   <padding>
-                                                      <Insets right="10.0" />
-                                                   </padding></Label>
-                                             </children>
-                                          </HBox>
                                        </children>
                                     </HBox>
+                                    <VBox fx:id="cajaDesmatricular" alignment="CENTER" prefHeight="34.0" prefWidth="125.0">
+                                       <children>
+                                          <Label fx:id="lblCursosADesmatricular" text="Cursos disponibles" />
+                                          <Label text="para desmatricular" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="14.0" />
+                                       </HBox.margin>
+                                    </VBox>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" maxWidth="700.0" prefHeight="330.0" prefWidth="200.0">
@@ -342,9 +350,12 @@
                                     <HBox prefHeight="100.0" prefWidth="20.0" />
                                  </children>
                               </HBox>
-                              <HBox prefHeight="50.0" prefWidth="565.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="565.0">
                                  <children>
-                                    <Label fx:id="lblDesmatricularModificado" />
+                                    <Label fx:id="lblDesmatricularModificado">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font></Label>
                                  </children></HBox>
                               <HBox alignment="CENTER">
                                  <HBox.margin>

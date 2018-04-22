@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import modelo.Alumno;
@@ -69,6 +70,8 @@ public class FXMLDatosAlumnoController implements Initializable {
     private Alumno alumno;
     private AccesoaBD baseDatos = new AccesoaBD();
     private ObservableList<Curso> listaCursos = null;
+    @FXML
+    private BorderPane borderPane;
 
     public void initStage(Stage stageEmergente, Stage stage, Alumno alumno) {
         emergenteStage = stageEmergente;
@@ -115,6 +118,8 @@ public class FXMLDatosAlumnoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        borderPane.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
+        borderPane.getStyleClass().add("fondoImagen");
         // TODO
     }
 
