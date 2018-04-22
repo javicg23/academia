@@ -117,6 +117,9 @@ public class FXMLEliminarAlumnoController implements Initializable {
                         alumnosFiltro.add(alumno);
                     }
                 }
+                if (quitarAcentos(alumno.getNombre().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                    alumnosFiltro.add(alumno);
+                }
             }
             listaAlumnos = FXCollections.observableArrayList(alumnosFiltro);
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
@@ -124,8 +127,7 @@ public class FXMLEliminarAlumnoController implements Initializable {
 
 	//el mensaje de la tabla vacia
         tablaAlumnos.setPlaceholder(new Label("No hay alumnos que mostrar"));
-        //aplicar el poder seleccionar diferentes filas
-        tablaAlumnos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
         //listener para que cuando se pulse una celdase activen los botones de eliminar y ver los datos del alumno
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaAlumnos.getSelectionModel().selectedIndexProperty()));
     }

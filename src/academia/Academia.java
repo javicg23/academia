@@ -53,7 +53,8 @@ public class Academia extends Application {
             if (result.get() == ButtonType.OK){
                 Platform.exit();
             }
-        });  
+        });
+        stage.setResizable(false);
         stage.show();
     }
 

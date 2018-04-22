@@ -162,14 +162,15 @@ public class FXMLListaCursosController implements Initializable {
                         cursosFiltro.add(curso);
                     }
                 }
+                if (quitarAcentos(curso.getTitulodelcurso().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                    cursosFiltro.add(curso);
+                }
             }
             listaCursos = FXCollections.observableArrayList(cursosFiltro);
             tablaListaCursos.setItems(listaCursos); //vincular la vista y el modelo
         });
 
 
-        //aplicar el poder seleccionar diferentes filas
-        tablaListaCursos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     @FXML

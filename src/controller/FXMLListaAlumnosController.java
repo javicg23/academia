@@ -151,6 +151,9 @@ public class FXMLListaAlumnosController implements Initializable {
                         alumnosFiltro.add(alumno);
                     }
                 }
+                if (quitarAcentos(alumno.getNombre().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                    alumnosFiltro.add(alumno);
+                }
             }
             listaAlumnos = FXCollections.observableArrayList(alumnosFiltro);
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
@@ -171,8 +174,6 @@ public class FXMLListaAlumnosController implements Initializable {
             return row;
         });
 
-        //aplicar el poder seleccionar diferentes filas
-        tablaAlumnos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     @FXML

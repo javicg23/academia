@@ -118,6 +118,9 @@ public class FXMLEliminarCursoController implements Initializable {
                         cursosFiltro.add(curso);
                     }
                 }
+                if (quitarAcentos(curso.getTitulodelcurso().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                    cursosFiltro.add(curso);
+                }
             }
             listaCursos = FXCollections.observableArrayList(cursosFiltro);
             tablaCursos.setItems(listaCursos); //vincular la vista y el modelo
@@ -125,8 +128,7 @@ public class FXMLEliminarCursoController implements Initializable {
 
         //listener para que cuando se pulse una celdase activen los botones de eliminar y ver alumonsMatriculados
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaCursos.getSelectionModel().selectedIndexProperty()));
-        //aplicar el poder seleccionar diferentes filas
-        tablaCursos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
     }
 
     @FXML

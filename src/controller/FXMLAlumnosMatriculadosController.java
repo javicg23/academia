@@ -147,13 +147,16 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
             baseDatos = new AccesoaBD();
             ArrayList<Alumno> alumnosTotal = (ArrayList<Alumno>) baseDatos.getAlumnosDeCurso(curso);
             Set<Alumno> alumnosFiltro = new HashSet();
-            for (int i = 0; i < alumnosTotal.size(); i++) {
+            for (int i = 0;alumnosTotal != null && i < alumnosTotal.size(); i++) {
                 Alumno alumno = alumnosTotal.get(i);
                 String[] alumnoPartesNombre = alumno.getNombre().split(" ");
                 for (int j = 0; j < alumnoPartesNombre.length; j++) {
                     if (quitarAcentos(alumnoPartesNombre[j].toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
                         alumnosFiltro.add(alumno);
                     }
+                }
+                if (quitarAcentos(alumno.getNombre().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                    alumnosFiltro.add(alumno);
                 }
             }
             listaAlumnos = FXCollections.observableArrayList(alumnosFiltro);

@@ -773,6 +773,9 @@ public class FXMLMatriculacionesController implements Initializable {
                     alumnosFiltro.add(alumno);
                 }
             }
+            if (quitarAcentos(alumno.getNombre().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                alumnosFiltro.add(alumno);
+            }
         }
         lista = FXCollections.observableArrayList(alumnosFiltro);
         tabla.setItems(lista); //vincular la vista y el modelo
@@ -783,13 +786,16 @@ public class FXMLMatriculacionesController implements Initializable {
         baseDatos = new AccesoaBD();
         ObservableList<Curso> cursosTotal = lista;
         Set<Curso> cursosFiltro = new HashSet();
-        for (int i = 0; i < cursosTotal.size(); i++) {
+        for (int i = 0;cursosTotal != null && i < cursosTotal.size(); i++) {
             Curso curso = cursosTotal.get(i);
             String[] cursoPartesNombre = curso.getTitulodelcurso().split(" ");
             for (int j = 0; j < cursoPartesNombre.length; j++) {
                 if (quitarAcentos(cursoPartesNombre[j].toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
                     cursosFiltro.add(curso);
                 }
+            }
+            if (quitarAcentos(curso.getTitulodelcurso().toLowerCase()).startsWith(quitarAcentos(newValue.toLowerCase()))) {
+                cursosFiltro.add(curso);
             }
         }
         lista = FXCollections.observableArrayList(cursosFiltro);

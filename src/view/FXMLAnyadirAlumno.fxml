@@ -72,9 +72,9 @@
                </image>
             </ImageView>
             <Label fx:id="gridAnyadirAlumnoLblNombreCabecera" focusTraversable="false" text="Nombre:" GridPane.rowIndex="1" />
-            <TextField fx:id="gridAnyadirAlumnoTextNombre" promptText="Pedro Sanchez Rodriguez" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="gridAnyadirAlumnoTextNombre" promptText="Pepe García" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="gridAnyadirAlumnoLblDni" focusTraversable="false" text="DNI:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField fx:id="gridAnyadirAlumnoTextDni" promptText="NNNNNNNNX" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="gridAnyadirAlumnoTextDni" promptText="12345678X" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <Label fx:id="gridAnyadirAlumnoLblDireccion" focusTraversable="false" text="Dirección:" GridPane.rowIndex="2" />
             <TextField fx:id="gridAnyadirAlumnoTextDireccion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="gridAnyadirAlumnoLblEdad" focusTraversable="false" text="Edad:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
