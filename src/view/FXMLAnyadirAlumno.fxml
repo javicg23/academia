@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLAnyadirAlumnoController">
    <left>
@@ -21,7 +22,10 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblTitulo" focusTraversable="false" text="Añadir alumno" />
+            <Label fx:id="lblTitulo" focusTraversable="false" text="Añadir alumno">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font></Label>
          </children>
       </HBox>
    </top>
@@ -71,13 +75,25 @@
                   <Image url="@../img/imagenFormulario.png" />
                </image>
             </ImageView>
-            <Label fx:id="gridAnyadirAlumnoLblNombreCabecera" focusTraversable="false" text="Nombre:" GridPane.rowIndex="1" />
+            <Label fx:id="gridAnyadirAlumnoLblNombreCabecera" focusTraversable="false" text="Nombre:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <TextField fx:id="gridAnyadirAlumnoTextNombre" promptText="Pepe García" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="gridAnyadirAlumnoLblDni" focusTraversable="false" text="DNI:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="gridAnyadirAlumnoLblDni" focusTraversable="false" text="DNI:" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <TextField fx:id="gridAnyadirAlumnoTextDni" promptText="12345678X" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Label fx:id="gridAnyadirAlumnoLblDireccion" focusTraversable="false" text="Dirección:" GridPane.rowIndex="2" />
+            <Label fx:id="gridAnyadirAlumnoLblDireccion" focusTraversable="false" text="Dirección:" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <TextField fx:id="gridAnyadirAlumnoTextDireccion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="gridAnyadirAlumnoLblEdad" focusTraversable="false" text="Edad:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="gridAnyadirAlumnoLblEdad" focusTraversable="false" text="Edad:" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <Spinner fx:id="gridAnyadirAlumnoSpnEdad" editable="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Button fx:id="gridAnyadirAlumnoBtnExaminar" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnExaminar" onMouseClicked="#pulsarRatonBtnExaminar" text="Examinar" GridPane.columnIndex="3" />
          </children>

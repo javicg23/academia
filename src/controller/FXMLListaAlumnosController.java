@@ -173,7 +173,7 @@ public class FXMLListaAlumnosController implements Initializable {
         });
 
     }
-
+    //metodo que se ejecuta al pulsar en el menu en alumnos - > anyadir
     @FXML
     private void pulsarMenuAlumnosAnyadir(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -193,7 +193,7 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-
+    //metodo que se ejecuta al pulsar en el menu en alumnos - > eliminar
     @FXML
     private void pulsarMenuAlumnosEliminar(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -214,12 +214,12 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-
+    //metodo que se ejecuta al pulsar en el menu en alumnos - > listado
     @FXML
     private void pulsarMenuAlumnosListado(ActionEvent event) throws IOException {
         abrirListadoAlumnos();
     }
-
+    //metodo que se ejecuta al pulsar en el menu en cursos - > anyadir
     @FXML
     private void pulsarMenuCursosAnyadir(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -239,7 +239,7 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-
+    //metodo que se ejecuta al pulsar en el menu en cursos - > eliminar
     @FXML
     private void pulsarMenuCursosEliminar(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -259,70 +259,70 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-
+    //metodo que se ejecuta al pulsar en el menu en cursos - > listado
     @FXML
     private void pulsarMenuCursosListado(ActionEvent event) throws IOException {
         abrirListadoCursos();
     }
-
+    //metodo que se ejecuta al pulsar en el menu en matriculaciones - > matricular
     @FXML
     private void pulsarMenuMatriculacionesMatricular(ActionEvent event) throws IOException {
         abrirMatricular(false);
     }
-
+    //metodo que se ejecuta al pulsar en el menu en matriculaciones - > desmatricular
     @FXML
     private void pulsarMenuMatriculacionesDesmatricular(ActionEvent event) throws IOException {
         abrirMatricular(true);
     }
-
+    //metodo que se ejecuta al pulsar con el raton en el boton atras (flecha izquierda)
     @FXML
     private void pulsarRatonBtnAtras(MouseEvent event) throws IOException {
         ventanaAnterior();
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en el boton atras (flecha izquierda)
     @FXML
     private void pulsarTecladoBtnAtras(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             ventanaAnterior();
         }
     }
-
+    //metodo que se ejecuta al pulsar con el raton en el boton anyadir
     @FXML
     private void pulsarRatonBtnAnyadir(MouseEvent event) throws IOException {
         abrirAnyadirAlumno();
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en el boton anyadir
     @FXML
     private void pulsarTecladoBtnAnyadir(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             abrirAnyadirAlumno();
         }
     }
-
+    //metodo que se ejecuta al pulsar con el raton en el boton eliminar
     @FXML
     private void pulsarRatonBtnEliminar(MouseEvent event) {
         confirmacionEliminarAlumno();
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en el boton eliminar
     @FXML
     private void pulsarTecladoBtnEliminar(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             confirmacionEliminarAlumno();
         }
     }
-
+    //metodo que se ejecuta al pulsar con el raton en el boton visualizar
     @FXML
     private void pulsarRatonBtnVisualizacion(MouseEvent event) throws IOException {
         abrirVisualizar();
-    }
-
+    }  
+    //metodo que se ejecuta al pulsar con el teclado en el boton visualizar
     @FXML
     private void pulsarTecladoBtnVisualizacion(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             abrirVisualizar();
         }
     }
-
+    //metodo que cambia la stage a listado alumnos
     private void abrirListadoAlumnos() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
         Parent root = (Parent) loader.load();
@@ -333,7 +333,7 @@ public class FXMLListaAlumnosController implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    //metodo que cambia la stage a listado cursos
     private void abrirListadoCursos() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
         Parent root = (Parent) loader.load();
@@ -344,7 +344,7 @@ public class FXMLListaAlumnosController implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    //metodo que cambia la stage a matricular
     private void abrirMatricular(Boolean bool) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLMatriculaciones.fxml"));
         Parent root = (Parent) loader.load();
@@ -355,7 +355,7 @@ public class FXMLListaAlumnosController implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    //metodo que devuelve la stage a la stage principal
     private void ventanaAnterior() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAcademia.fxml"));
         Parent root = (Parent) loader.load();
@@ -368,7 +368,7 @@ public class FXMLListaAlumnosController implements Initializable {
         primaryStage.show();
 
     }
-
+    //metodo que cambia la stage a anyadir alumno
     private void abrirAnyadirAlumno() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAnyadirAlumno.fxml"));
@@ -387,7 +387,7 @@ public class FXMLListaAlumnosController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-
+    //metodo que cambia la stage a datos alumno
     private void abrirVisualizar() throws IOException {
         Alumno alumno = tablaAlumnos.getSelectionModel().getSelectedItem();
         if (alumno != null) {
@@ -408,7 +408,7 @@ public class FXMLListaAlumnosController implements Initializable {
             stage.showAndWait();
         }
     }
-
+    //metodo que comprueba el label de si se ha añadido correctamente el alumno
     private void comprobarAnyadido() {
         if (anyadido) {
             lblModificacionLista.setStyle("-fx-text-fill: green;");
@@ -417,7 +417,7 @@ public class FXMLListaAlumnosController implements Initializable {
             lblModificacionLista.setText("");
         }
     }
-
+    //alert para la confirmacion de la eliminacion de un alumno
     private void confirmacionEliminarAlumno() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Eliminar alumno");
@@ -429,7 +429,7 @@ public class FXMLListaAlumnosController implements Initializable {
             eliminarAlumno();
         }
     }
-
+    //metodo que sirve para eliminar el alumno de la bd
     private void eliminarAlumno() {
         baseDatos = new AccesoaBD();
         List<Alumno> alumnosSeleccionados = tablaAlumnos.getSelectionModel().getSelectedItems();
@@ -457,7 +457,7 @@ public class FXMLListaAlumnosController implements Initializable {
         lblModificacionLista.setText("Alumno eliminado correctamente");
         inicializarTabla();
     }
-
+    //metodo que sirve para inicializar la tabla
     private void inicializarTabla() {
         baseDatos = new AccesoaBD();
         ArrayList<Alumno> alumnos = (ArrayList<Alumno>) baseDatos.getAlumnos();
@@ -475,7 +475,7 @@ public class FXMLListaAlumnosController implements Initializable {
         }
 
     }
-
+    //metodo para quitar los acentos en el filtro y buscar independientemente si hay tilde o no
     private String quitarAcentos(String s) {
         String res = "";
         for (int i = 0; i < s.length(); i++) {

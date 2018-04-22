@@ -153,7 +153,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
         }
         );
     }
-
+    //metodo que se ejecuta al pulsar con el raton en cancelar
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) throws IOException {
         if (vengoDesdeListaAlumnos) {
@@ -166,7 +166,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
             voyListaAlumnosFalseBoolean();
         }
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en cancelar
     @FXML
     private void pulsarTecladoBtnCancelar(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -181,14 +181,14 @@ public class FXMLAnyadirAlumnoController implements Initializable {
             }
         }
     }
-
+    //metodo que se ejecutar al pulsar con el raton en guardar
     @FXML
     private void pulsarRatonBtnGuardar(MouseEvent event) {
         ponerBooleansFalse();
         comprobarCampos();
         introducirEnBD();
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en guardar
     @FXML
     private void pulsarTecladoBtnGuardar(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -197,19 +197,19 @@ public class FXMLAnyadirAlumnoController implements Initializable {
             introducirEnBD();
         }
     }
-
+    //metodo que se ejecuta al pulsar con el raton en examinar
     @FXML
     private void pulsarRatonBtnExaminar(MouseEvent event) {
         examinarImagen();
     }
-
+    //metodo que se ejecutar al pulsar con el teclado en examinar
     @FXML
     private void pulsarTecladoBtnExaminar(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             examinarImagen();
         }
     }
-
+    //metodo que sirve para comprobar si todos los campos introducidos estan correctos
     private void comprobarCampos() {
         if (!gridAnyadirAlumnoTextNombre.getText().equals("")) {
             arrayBooleans[0] = true;
@@ -228,14 +228,14 @@ public class FXMLAnyadirAlumnoController implements Initializable {
         }
         comprobarErrores();
     }
-
+    //metodo para poner todos los booleans del array que sirve para comprobar a false
     private void ponerBooleansFalse() {
         arrayBooleans[0] = false;
         arrayBooleans[1] = false;
         arrayBooleans[2] = false;
         arrayBooleans[3] = false;
     }
-
+    //metodo que sirve para que los campos erroneos se cambien de estilo
     private void comprobarErrores() {
 
         gridAnyadirAlumnoTextNombre.setStyle(null);
@@ -263,12 +263,12 @@ public class FXMLAnyadirAlumnoController implements Initializable {
             }
         }
     }
-
+    //metodo que sirve para poder seleccionar una imagen del pc
     private void examinarImagen() {
         FileChooser fileChooser = new FileChooser();
+                FileChooser.ExtensionFilter extFilterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
         FileChooser.ExtensionFilter extFilterjpg = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
-        FileChooser.ExtensionFilter extFilterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
-        fileChooser.getExtensionFilters().addAll(extFilterjpg, extFilterpng);
+        fileChooser.getExtensionFilters().addAll(extFilterpng, extFilterjpg);
         File file = fileChooser.showOpenDialog(null);
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
@@ -277,7 +277,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
         } catch (Exception ex) {
         }
     }
-
+    //metodo que sirve para introducir en la base de datos el alumno
     private void introducirEnBD() {
         if (arrayBooleans[0] == true && arrayBooleans[1] == true
                 && arrayBooleans[2] == true && arrayBooleans[3] == true) {
@@ -312,7 +312,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
                     gridAnyadirAlumnoImgFotografia.getImage());
 
             boolean alumnoExistente = false;
-
+            //bucle que salta si el alumno que hemos introducido ya existe con el mismo dni y no lo inserta
             for (Alumno alumnoLista : listaAlumnos) {
                 if (alumnoLista.getDni().equals(alumno.getDni())) {
                     Alert alert = new Alert(AlertType.ERROR);
@@ -325,7 +325,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
                     break;
                 }
             }
-
+            //si no existe lo añade a la bd y lanza la ventana de listado alumnos
             if (!alumnoExistente) {
                 listaAlumnos.add(alumno);
                 acceso.salvar();
@@ -348,7 +348,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
             }
         }
     }
-
+    //metodo que manda a lista alumnos con boolean a false indicando que no se ha insertado nada
     private void voyListaAlumnosFalseBoolean() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
         Parent root = (Parent) loader.load();

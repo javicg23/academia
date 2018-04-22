@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -59,8 +58,6 @@ public class FXMLAcademiaController implements Initializable {
     @FXML
     private MenuItem menuMatriculacionesDesmatricular;
     @FXML
-    private Label lblBienvenido;
-    @FXML
     private ImageView imgLogo;
     @FXML
     private Button btnAlumnos;
@@ -82,7 +79,7 @@ public class FXMLAcademiaController implements Initializable {
     public void initStage(Stage stage) {
         primaryStage = stage;
     }
-
+    //metodo que se lanza al pulsar en el menu en alumnos - > anyadir
     @FXML
     private void pulsarMenuAlumnosAnyadir(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -102,7 +99,7 @@ public class FXMLAcademiaController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-
+    //metodo que se lanza al pulsar en el menu en alumnos - > eliminar
     @FXML
     private void pulsarMenuAlumnosEliminar(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -123,12 +120,12 @@ public class FXMLAcademiaController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-
+    //metodo que se lanza al pulsar en el menu en alumnos - > listado
     @FXML
     private void pulsarMenuAlumnosListado(ActionEvent event) throws IOException {
         abrirListadoAlumnos();
     }
-
+    //metodo que se lanza al pulsar en el menu en cursos - > anyadir
     @FXML
     private void pulsarMenuCursosAnyadir(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -148,7 +145,7 @@ public class FXMLAcademiaController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-
+    //metodo que se lanza al pulsar en el menu en cursos - > eliminar
     @FXML
     private void pulsarMenuCursosEliminar(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -168,58 +165,58 @@ public class FXMLAcademiaController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-
+    //metodo que se lanza al pulsar en el menu en cursos - > listado
     @FXML
     private void pulsarMenuCursosListado(ActionEvent event) throws IOException {
         abrirListadoCursos();
     }
-
+    //metodo que se lanza al pulsar en el menu en matriculaciones - > matricular
     @FXML
     private void pulsarMenuMatriculacionesMatricular(ActionEvent event) throws IOException {
         abrirMatricular(false);
     }
-
+    //metodo que se lanzar al pulsar en el menu en matriculaciones - > desmatricular
     @FXML
     private void pulsarMenuMatriculacionesDesmatricular(ActionEvent event) throws IOException {
         abrirMatricular(true);
     }
-
+    //metodo que se lanza al pulsar con el raton en el boton alumnos
     @FXML
     private void pulsarRatonBtnAlumnos(MouseEvent event) throws IOException {
         abrirListadoAlumnos();
     }
-
+    //metodo que se lanza al pulsar con el teclado en el boton alumnos
     @FXML
     private void pulsarTecladoBtnAlumnos(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             abrirListadoAlumnos();
         }
     }
-
+    //metodo que se lanza al pulsar con el raton en el boton cursos
     @FXML
     private void pulsarRatonBtnCursos(MouseEvent event) throws IOException {
         abrirListadoCursos();
     }
-
+    //metodo que se lanza al pulsar con el teclado en el boton cursos
     @FXML
     private void pulsarTecladoBtnCursos(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             abrirListadoCursos();
         }
     }
-
+    //metodo que se lanza al pulsar con el raton en el boton matriculaciones
     @FXML
     private void pulsarRatonBtnMatriculaciones(MouseEvent event) throws IOException {
         abrirMatricular(false);
     }
-
+    //metodo que se lanza al pulsar con el teclado en el boton matriculaciones
     @FXML
     private void pulsarTecladoBtnMatriculaciones(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             abrirMatricular(false);
         }
     }
-
+    //metodo que cambia la stage a listado alumnos
     private void abrirListadoAlumnos() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
         Parent root = (Parent) loader.load();
@@ -230,7 +227,7 @@ public class FXMLAcademiaController implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    //metodo que cambia la stage a listado cursos
     private void abrirListadoCursos() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
         Parent root = (Parent) loader.load();
@@ -241,7 +238,8 @@ public class FXMLAcademiaController implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    //metodo que cambia la stage a matriculaciones, si el bool es false se abre la pestanya matricular
+    //sino es true se abre la pestanya desmatricular
     private void abrirMatricular(Boolean bool) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLMatriculaciones.fxml"));
         Parent root = (Parent) loader.load();

@@ -19,6 +19,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLListaCursosController">
    <top>
@@ -93,7 +94,10 @@
             </MenuBar>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="lblTitulo" text="Listado de cursos" />
+                  <Label fx:id="lblTitulo" text="Listado de cursos">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font></Label>
                </children>
             </HBox>
          </children>
@@ -125,7 +129,7 @@
               <columns>
                 <TableColumn fx:id="tablaListaCursosColumnaCurso" prefWidth="275.0" resizable="false" text="Curso" />
                 <TableColumn fx:id="tablaListaCursosColumnaProfesor" prefWidth="275.0" resizable="false" text="Profesor" />
-                  <TableColumn fx:id="tablaListaCursosColumnaHora" resizable="false" text="Hora" />
+                  <TableColumn fx:id="tablaListaCursosColumnaHora" prefWidth="65.0" resizable="false" text="Hora" />
               </columns>
             </TableView>
          </children>

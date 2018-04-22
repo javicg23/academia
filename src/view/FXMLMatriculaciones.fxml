@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMatriculacionesController">
    <children>
@@ -96,7 +97,10 @@
                      <top>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label fx:id="lblMatricularTitulo" text="Matricular" />
+                              <Label fx:id="lblMatricularTitulo" text="Matricular">
+                                 <font>
+                                    <Font name="Arial" size="20.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                      </top>
@@ -231,7 +235,10 @@
                      <top>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label fx:id="lblDesmatricularTitulo" text="Desmatricular" />
+                              <Label fx:id="lblDesmatricularTitulo" text="Desmatricular">
+                                 <font>
+                                    <Font name="Arial" size="20.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                      </top>

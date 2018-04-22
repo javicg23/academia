@@ -171,7 +171,7 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
     }
-
+    //metodo para quitar los acentos en el filtro y buscar independientemente si hay tilde o no
     private String quitarAcentos(String s) {
         String res = "";
         for (int i = 0; i < s.length(); i++) {

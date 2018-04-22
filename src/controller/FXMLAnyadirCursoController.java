@@ -186,7 +186,7 @@ public class FXMLAnyadirCursoController implements Initializable {
         );
 
     }
-
+    //metodo que se ejecuta al pulsar con el raton en cancelar
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) throws IOException {
         if (vengoDesdeListaCursos) {
@@ -199,7 +199,7 @@ public class FXMLAnyadirCursoController implements Initializable {
             voyListaCursosFalseBoolean();
         }
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en cancelar
     @FXML
     private void pulsarTecladoBtnCancelar(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -214,14 +214,14 @@ public class FXMLAnyadirCursoController implements Initializable {
             }
         }
     }
-
+    //metodo que se ejecuta al pulsar con el raton en guardar
     @FXML
     private void pulsarRatonBtnGuardar(MouseEvent event) {
         ponerBooleansFalse();
         comprobarCampos();
         introducirEnBD();
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en guardar
     @FXML
     private void pulsarTecladoBtnGuardar(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -230,7 +230,7 @@ public class FXMLAnyadirCursoController implements Initializable {
             introducirEnBD();
         }
     }
-
+    //metodo que sirve para comprobar si todos los campos introducidos estan correctos
     private void comprobarCampos() {
 
         if (!gridAnyadirCursoTextTitulo.getText().equals("")) {
@@ -270,7 +270,7 @@ public class FXMLAnyadirCursoController implements Initializable {
 
         comprobarErrores();
     }
-
+    //metodo para poner todos los booleans del array que sirve para comprobar a false
     private void ponerBooleansFalse() {
         arrayBooleans[0] = false;
         arrayBooleans[1] = false;
@@ -281,7 +281,7 @@ public class FXMLAnyadirCursoController implements Initializable {
         arrayBooleans[6] = false;
         arrayBooleans[7] = false;
     }
-
+    //metodo que sirve para que los campos erroneos se cambien de estilo
     private void comprobarErrores() {
 
         gridAnyadirCursoTextTitulo.setStyle(null);
@@ -332,7 +332,7 @@ public class FXMLAnyadirCursoController implements Initializable {
             }
         }
     }
-
+    //metodo que sirve para introducir en la base de datos el curso
     private void introducirEnBD() {
         if (arrayBooleans[0] == true && arrayBooleans[1] == true
                 && arrayBooleans[2] == true && arrayBooleans[3] == true
@@ -368,7 +368,7 @@ public class FXMLAnyadirCursoController implements Initializable {
                     dias, gridAnyadirCursoCmbAula.getValue());
 
             boolean cursoExistente = false;
-
+            //bucle que salta si el curso que hemos introducido ya existe y no lo inserta
             for (Curso cursoLista : listaCursos) {
                 if (cursoLista.equals(curso)) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -381,7 +381,7 @@ public class FXMLAnyadirCursoController implements Initializable {
                     break;
                 }
             }
-
+            //si no existe lo añade a la bd y lanza la ventana de listado cursos
             if (!cursoExistente) {
                 listaCursos.add(curso);
                 acceso.salvar();
@@ -404,7 +404,7 @@ public class FXMLAnyadirCursoController implements Initializable {
             }
         }
     }
-
+    //metodo que manda a lista cursos con boolean a false indicando que no se ha insertado nada
     private void voyListaCursosFalseBoolean() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
         Parent root = (Parent) loader.load();

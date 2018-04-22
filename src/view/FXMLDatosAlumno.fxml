@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDatosAlumnoController">
    <left>
@@ -20,7 +21,10 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblTitulo" focusTraversable="false" text="Datos del alumno" />
+            <Label fx:id="lblTitulo" focusTraversable="false" text="Datos del alumno">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font></Label>
          </children>
       </HBox>
    </top>
@@ -62,10 +66,22 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="gridDatosAlumnoLblNombreCabecera" focusTraversable="false" text="Nombre:" />
-                  <Label fx:id="gridDatosAlumnoLblDniCabecera" focusTraversable="false" text="DNI:" GridPane.columnIndex="3" />
-                  <Label fx:id="gridDatosAlumnoLblDireccionCabecera" focusTraversable="false" text="Dirección:" GridPane.rowIndex="1" />
-                  <Label fx:id="gridDatosAlumnoLblEdadCabecera" focusTraversable="false" text="Edad:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label fx:id="gridDatosAlumnoLblNombreCabecera" focusTraversable="false" text="Nombre:">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="gridDatosAlumnoLblDniCabecera" focusTraversable="false" text="DNI:" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="gridDatosAlumnoLblDireccionCabecera" focusTraversable="false" text="Dirección:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="gridDatosAlumnoLblEdadCabecera" focusTraversable="false" text="Edad:" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
                   <Label fx:id="gridDatosAlumnoLblNombre" GridPane.columnIndex="1" GridPane.columnSpan="2" />
                   <Label fx:id="gridDatosAlumnoLblDireccion" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                   <Label fx:id="gridDatosAlumnoLblDni" GridPane.columnIndex="4" />
@@ -74,7 +90,10 @@
             </GridPane>
             <HBox alignment="BOTTOM_LEFT" prefHeight="70.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="lblCursosMatriculadosCabecera" focusTraversable="false" prefHeight="18.0" prefWidth="150.0" text="Curso/s matriculado/s:" />
+                  <Label fx:id="lblCursosMatriculadosCabecera" focusTraversable="false" prefHeight="18.0" prefWidth="150.0" text="Curso/s matriculado/s:">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
                </children>
             </HBox>
             <TableView fx:id="tablaCursosMatriculados" focusTraversable="false" prefHeight="170.0" prefWidth="520.0">

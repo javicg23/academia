@@ -13,17 +13,26 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLAlumnosMatriculadosController">
    <top>
       <VBox maxHeight="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="lblTitulo" focusTraversable="false" text="Lista de alumnos matriculados en " />
-                  <Label fx:id="lblCurso" focusTraversable="false" />
+                  <Label fx:id="lblTitulo" focusTraversable="false" text="Lista de alumnos matriculados en ">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblCurso" focusTraversable="false">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Label>
                </children>
-            </HBox>
+            </VBox>
          </children>
       </VBox>
    </top>
@@ -76,10 +85,22 @@
                   <RowConstraints minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="gridDatosCursoLblProfesorCabecera" text="Profesor:" />
-                  <Label fx:id="gridDatosCursoLblHoraCabecera" text="Hora:" GridPane.rowIndex="1" />
-                  <Label fx:id="gridDatosCursoLblDiasCabecera" text="Dias:" GridPane.rowIndex="2" />
-                  <Label fx:id="gridDatosCursoLblAulaCabecera" text="Aula" GridPane.rowIndex="3" />
+                  <Label fx:id="gridDatosCursoLblProfesorCabecera" text="Profesor:">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="gridDatosCursoLblHoraCabecera" text="Hora:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="gridDatosCursoLblDiasCabecera" text="Dias:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="gridDatosCursoLblAulaCabecera" text="Aula" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
                   <Label fx:id="gridDatosCursoLblProfesor" GridPane.columnIndex="1" />
                   <Label fx:id="gridDatosCursoLblHora" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label fx:id="gridDatosCursoLblDias" GridPane.columnIndex="1" GridPane.rowIndex="2" />

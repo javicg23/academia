@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -14,13 +13,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLAcademiaController">
+<BorderPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLAcademiaController">
    <center>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="imgLogo" fitHeight="300.0" fitWidth="460.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgLogo" fitHeight="300.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/logo.png" />
                      </image>
@@ -108,11 +107,6 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="lblBienvenido" focusTraversable="false" text="¡Bienvenido!" />
-               </children>
-            </HBox>
          </children>
       </VBox>
    </top>

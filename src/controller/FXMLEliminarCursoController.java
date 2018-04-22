@@ -129,7 +129,7 @@ public class FXMLEliminarCursoController implements Initializable {
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaCursos.getSelectionModel().selectedIndexProperty()));
 
     }
-
+    //metodo que se ejecuta al pulsar en el raton en el boton de cancelar
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) throws IOException {
         if (vengoDesdeListaCursos) {
@@ -142,7 +142,7 @@ public class FXMLEliminarCursoController implements Initializable {
             voyListaCursosFalseBoolean();
         }
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en el boton de cancelar
     @FXML
     private void pulsarTecladoBtnCancelar(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -157,19 +157,19 @@ public class FXMLEliminarCursoController implements Initializable {
             }
         }
     }
-
+    //metodo que se ejecuta al pulsar con el raton en el boton de eliminar
     @FXML
     private void pulsarRatonBtnEliminar(MouseEvent event) {
         confirmacionEliminarCurso();
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en el boton de eliminar
     @FXML
     private void pulsarTecladoBtnEliminar(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             confirmacionEliminarCurso();
         }
     }
-
+    //metodo que manda a lista cursos con boolean a false indicando que no se ha insertado nada
     private void voyListaCursosFalseBoolean() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaCursos.fxml"));
         Parent root = (Parent) loader.load();
@@ -183,7 +183,7 @@ public class FXMLEliminarCursoController implements Initializable {
         stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }
-
+    //metodo para quitar los acentos en el filtro y buscar independientemente si hay tilde o no
     private String quitarAcentos(String s) {
         String res = "";
         for (int i = 0; i < s.length(); i++) {
@@ -219,7 +219,7 @@ public class FXMLEliminarCursoController implements Initializable {
         }
         return res;
     }
-
+    //alert que sale para confirmar la eliminacion del curso
     private void confirmacionEliminarCurso() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Eliminar curso");
@@ -231,7 +231,7 @@ public class FXMLEliminarCursoController implements Initializable {
             eliminarCurso();
         }
     }
-
+    //metodo que se ejecuta cuando eliminamos un curso
     private void eliminarCurso() {
         baseDatos = new AccesoaBD();
         List<Curso> cursosSeleccionados = tablaCursos.getSelectionModel().getSelectedItems();
@@ -258,7 +258,7 @@ public class FXMLEliminarCursoController implements Initializable {
         inicializarTabla();
 
     }
-
+    //metodo para inicializar la tabla
     private void inicializarTabla() {
         baseDatos = new AccesoaBD();
         ArrayList<Curso> cursos = (ArrayList<Curso>) baseDatos.getCursos();

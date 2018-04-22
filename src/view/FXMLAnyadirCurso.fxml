@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLAnyadirCursoController">
    <left>
@@ -22,7 +23,10 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblTitulo" focusTraversable="false" text="Añadir curso" />
+            <Label fx:id="lblTitulo" focusTraversable="false" text="Añadir curso">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font></Label>
          </children>
       </HBox>
    </top>
@@ -68,21 +72,45 @@
             <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="gridAnyadirCursoLblTitulo" focusTraversable="false" text="Título:" />
+            <Label fx:id="gridAnyadirCursoLblTitulo" focusTraversable="false" text="Título:">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <TextField fx:id="gridAnyadirCursoTextTitulo" promptText="Interfaces" GridPane.columnIndex="1" />
-            <Label fx:id="gridAnyadirCursoLblProfesor" focusTraversable="false" text="Profesor:" GridPane.columnIndex="3" />
+            <Label fx:id="gridAnyadirCursoLblProfesor" focusTraversable="false" text="Profesor:" GridPane.columnIndex="3">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <TextField fx:id="gridAnyadirCursoTextProfesor" promptText="José Soler" GridPane.columnIndex="4" />
-            <Label fx:id="gridAnyadirCursoLblNMax" focusTraversable="false" text="Nº máx alumnos:" GridPane.rowIndex="1" />
+            <Label fx:id="gridAnyadirCursoLblNMax" focusTraversable="false" text="Nº máx alumnos:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <Spinner fx:id="gridAnyadirCursoSpnNMax" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="gridAnyadirCursoLblHora" focusTraversable="false" text="Hora:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="gridAnyadirCursoLblHora" focusTraversable="false" text="Hora:" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <TextField fx:id="gridAnyadirCursoTextHora" promptText="12:30" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Label fx:id="gridAnyadirCursoLblInicio" focusTraversable="false" text="Fecha Inicio:" GridPane.rowIndex="2" />
+            <Label fx:id="gridAnyadirCursoLblInicio" focusTraversable="false" text="Fecha Inicio:" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <DatePicker fx:id="gridAnyadirCursoDateInicio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="gridAnyadirCursoLblFin" focusTraversable="false" text="Fecha Fin:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="gridAnyadirCursoLblFin" focusTraversable="false" text="Fecha Fin:" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <DatePicker fx:id="gridAnyadirCursoDateFin" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Label fx:id="gridAnyadirCursoLblAula" focusTraversable="false" text="Aula:" GridPane.rowIndex="3" />
+            <Label fx:id="gridAnyadirCursoLblAula" focusTraversable="false" text="Aula:" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <ComboBox fx:id="gridAnyadirCursoCmbAula" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="gridAnyadirCursoLblDias" focusTraversable="false" text="Dias:" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="gridAnyadirCursoLblDias" focusTraversable="false" text="Dias:" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
             <VBox alignment="CENTER_LEFT" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <children>
                   <CheckBox fx:id="gridAnyadirCursoCheckLunes" mnemonicParsing="false" text="Lunes" />

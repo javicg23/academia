@@ -130,7 +130,7 @@ public class FXMLEliminarAlumnoController implements Initializable {
         //listener para que cuando se pulse una celdase activen los botones de eliminar y ver los datos del alumno
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaAlumnos.getSelectionModel().selectedIndexProperty()));
     }
-
+    //metodo que se ejecuta al pulsar con el raton en el boton de cancelar
     @FXML
     private void pulsarRatonBtnCancelar(MouseEvent event) throws IOException {
         if (vengoDesdeListaAlumnos) {
@@ -143,7 +143,7 @@ public class FXMLEliminarAlumnoController implements Initializable {
             voyListaAlumnosFalseBoolean();
         }
     }
-
+    //metodo que se ejecuta al pulsar con el teclado en el boton de cancelar
     @FXML
     private void pulsarTecladoBtnCancelar(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -158,19 +158,19 @@ public class FXMLEliminarAlumnoController implements Initializable {
             }
         }
     }
-
+    //metodo que se ejecuta al pulsar con el raton en el boton de eliminar
     @FXML
     private void pulsarRatonBtnEliminar(MouseEvent event) {
         confirmacionEliminarAlumno();
     }
-
+    //metodo que se ejecuta al pulsar con teclado en el boton de eliminar
     @FXML
     private void pulsarTecladoBtnEliminar(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             confirmacionEliminarAlumno();
         }
     }
-
+    //metodo que manda a lista alumnos con boolean a false indicando que no se ha insertado nada
     private void voyListaAlumnosFalseBoolean() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLListaAlumnos.fxml"));
         Parent root = (Parent) loader.load();
@@ -184,7 +184,7 @@ public class FXMLEliminarAlumnoController implements Initializable {
         stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }
-
+    //metodo para quitar los acentos en el filtro y buscar independientemente si hay tilde o no
     private String quitarAcentos(String s) {
         String res = "";
         for (int i = 0; i < s.length(); i++) {
@@ -220,7 +220,7 @@ public class FXMLEliminarAlumnoController implements Initializable {
         }
         return res;
     }
-
+    //metodo para incializar la tabla
     private void inicializarTabla() {
         baseDatos = new AccesoaBD();
         ArrayList<Alumno> alumnos = (ArrayList<Alumno>) baseDatos.getAlumnos();
@@ -237,7 +237,7 @@ public class FXMLEliminarAlumnoController implements Initializable {
             tablaAlumnosColumnaFotografia.setStyle("-fx-alignment: CENTER;");
         }
     }
-
+    //alert que sale para confirmar la eliminacion del alumno
     private void confirmacionEliminarAlumno() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Eliminar alumno");
@@ -249,7 +249,7 @@ public class FXMLEliminarAlumnoController implements Initializable {
             eliminarAlumno();
         }
     }
-
+    //metodo que se ejecuta cuando eliminamos un alumno
     private void eliminarAlumno() {
         baseDatos = new AccesoaBD();
         List<Alumno> alumnosSeleccionados = tablaAlumnos.getSelectionModel().getSelectedItems();
