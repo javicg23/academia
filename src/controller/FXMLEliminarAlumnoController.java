@@ -177,7 +177,7 @@ public class FXMLEliminarAlumnoController implements Initializable {
 
         FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
         controllerListaAlumnos.initStage(primaryStage, false);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
 

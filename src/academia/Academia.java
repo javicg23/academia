@@ -9,7 +9,6 @@ import controller.FXMLAcademiaController;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,7 +29,7 @@ public class Academia extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAcademia.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 850, 600);
         stage.setScene(scene);
 
         Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
@@ -54,7 +53,10 @@ public class Academia extends Application {
                 Platform.exit();
             }
         });
-        stage.setResizable(false);
+        stage.setMinWidth(750);
+        stage.setMinHeight(500);
+        stage.setMaxWidth(850);
+        stage.setMaxHeight(600);
         stage.show();
     }
 

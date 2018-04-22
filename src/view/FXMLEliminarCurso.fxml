@@ -50,7 +50,7 @@
               <columns>
                 <TableColumn fx:id="tablaCursosColumnaCurso" prefWidth="210.0" resizable="false" text="Curso" />
                 <TableColumn fx:id="tablaCursosColumnaProfesor" prefWidth="210.0" resizable="false" text="Profesor" />
-                  <TableColumn fx:id="tablaCursosColumnaHora" resizable="false" text="Hora" />
+                  <TableColumn fx:id="tablaCursosColumnaHora" prefWidth="90.0" resizable="false" text="Hora" />
               </columns>
             </TableView>
          </children>

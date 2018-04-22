@@ -257,8 +257,11 @@ public class FXMLMatriculacionesController implements Initializable {
                     tablaMatricularCursos.setItems(listaCursos); //vincular la vista y el modelo
                     //asignar el estilo a las celdas
                     tablaMatricularCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
+                    tablaMatricularCursosColumnaCurso.setStyle("-fx-alignment: CENTER;");
                     tablaMatricularCursosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
+                    tablaMatricularCursosColumnaProfesor.setStyle("-fx-alignment: CENTER;");
                     tablaMatricularColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
+                    tablaMatricularColumnaHora.setStyle("-fx-alignment: CENTER;");
                 }
                 if (!textMatricularFiltrarCursos.getText().isEmpty()) {
                     filtrarCursos(tablaMatricularCursos, listaCursos, textMatricularFiltrarCursos.getText());
@@ -465,29 +468,13 @@ public class FXMLMatriculacionesController implements Initializable {
 
     @FXML
     private void pulsarRatonBtnAtras(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAcademia.fxml"));
-        Parent root = (Parent) loader.load();
-
-        FXMLAcademiaController controllerAcademia = loader.<FXMLAcademiaController>getController();
-        controllerAcademia.initStage(primaryStage);
-        Scene scene = new Scene(root);
-        primaryStage.setTitle("Academia");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        ventanaAnterior();
     }
 
     @FXML
     private void pulsarTecladoBtnAtras(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAcademia.fxml"));
-            Parent root = (Parent) loader.load();
-
-            FXMLAcademiaController controllerAcademia = loader.<FXMLAcademiaController>getController();
-            controllerAcademia.initStage(primaryStage);
-            Scene scene = new Scene(root);
-            primaryStage.setTitle("Academia");
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            ventanaAnterior();
         }
     }
 
@@ -533,7 +520,7 @@ public class FXMLMatriculacionesController implements Initializable {
 
         FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
         controllerListaAlumnos.initStage(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -544,7 +531,7 @@ public class FXMLMatriculacionesController implements Initializable {
 
         FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
         controllerListaCursos.initStage(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -555,7 +542,7 @@ public class FXMLMatriculacionesController implements Initializable {
 
         FXMLMatriculacionesController controllerMatriculaciones = loader.<FXMLMatriculacionesController>getController();
         controllerMatriculaciones.initStage(primaryStage, bool);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -624,12 +611,7 @@ public class FXMLMatriculacionesController implements Initializable {
         listaCursos = FXCollections.observableArrayList(cursosAMostrarSet);
         tablaMatricularCursos.setItems(listaCursos); //vincular la vista y el modelo
         //asignar el estilo a las celdas
-        tablaMatricularCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
-        tablaMatricularCursosColumnaCurso.setStyle("-fx-alignment: CENTER;");
-        tablaMatricularCursosColumnaProfesor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfesorAsignado()));
-        tablaMatricularCursosColumnaProfesor.setStyle("-fx-alignment: CENTER;");
-        tablaMatricularColumnaHora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHora().toString()));
-        tablaMatricularColumnaHora.setStyle("-fx-alignment: CENTER;");
+        
 
         lblMatricularModificado.setStyle("-fx-text-fill: green;");
         lblMatricularModificado.setText("Alumno matriculado correctamente");
@@ -800,7 +782,18 @@ public class FXMLMatriculacionesController implements Initializable {
         }
         lista = FXCollections.observableArrayList(cursosFiltro);
         tabla.setItems(lista); //vincular la vista y el modelo
-
     }
 
+    private void ventanaAnterior() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAcademia.fxml"));
+        Parent root = (Parent) loader.load();
+
+        FXMLAcademiaController controllerAcademia = loader.<FXMLAcademiaController>getController();
+        controllerAcademia.initStage(primaryStage);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
+        primaryStage.setTitle("Academia");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
 }

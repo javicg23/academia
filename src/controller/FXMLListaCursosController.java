@@ -326,7 +326,7 @@ public class FXMLListaCursosController implements Initializable {
 
         FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
         controllerListaAlumnos.initStage(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -337,7 +337,7 @@ public class FXMLListaCursosController implements Initializable {
 
         FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
         controllerListaCursos.initStage(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -348,7 +348,7 @@ public class FXMLListaCursosController implements Initializable {
 
         FXMLMatriculacionesController controllerMatriculaciones = loader.<FXMLMatriculacionesController>getController();
         controllerMatriculaciones.initStage(primaryStage, bool);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -497,7 +497,7 @@ public class FXMLListaCursosController implements Initializable {
 
         FXMLAcademiaController controllerAcademia = loader.<FXMLAcademiaController>getController();
         controllerAcademia.initStage(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setTitle("Academia");
         primaryStage.setScene(scene);
         primaryStage.show();

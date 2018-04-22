@@ -76,6 +76,7 @@ public class FXMLAcademiaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        btnMatriculaciones.setMinHeight(50);
     }
 
     public void initStage(Stage stage) {
@@ -225,7 +226,7 @@ public class FXMLAcademiaController implements Initializable {
 
         FXMLListaAlumnosController controllerListaAlumnos = loader.<FXMLListaAlumnosController>getController();
         controllerListaAlumnos.initStage(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -236,7 +237,7 @@ public class FXMLAcademiaController implements Initializable {
 
         FXMLListaCursosController controllerListaCursos = loader.<FXMLListaCursosController>getController();
         controllerListaCursos.initStage(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -247,7 +248,7 @@ public class FXMLAcademiaController implements Initializable {
 
         FXMLMatriculacionesController controllerMatriculaciones = loader.<FXMLMatriculacionesController>getController();
         controllerMatriculaciones.initStage(primaryStage, bool);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 16, primaryStage.getHeight() - 39);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

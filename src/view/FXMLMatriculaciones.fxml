@@ -137,7 +137,10 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="159.0">
                                        <children>
-                                          <Label fx:id="lblCursosAMatricular" text="Cursos a matricular" />
+                                          <Label fx:id="lblCursosAMatricular" text="Cursos a matricular">
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding></Label>
                                        </children>
                                     </HBox>
                                  </children>
@@ -200,14 +203,18 @@
                               <HBox prefHeight="50.0" prefWidth="565.0">
                                  <children>
                                     <Label fx:id="lblMatricularModificado" />
-                                 </children></HBox>
-                              <HBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER">
                                  <HBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets />
                                  </HBox.margin>
                                  <children>
                                     <Button fx:id="btnMatricular" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnMatricular" onMouseClicked="#pulsarRatonBtnMatricular" prefHeight="30.0" prefWidth="125.0" text="Matricular" />
                                  </children>
+                                 <padding>
+                                    <Insets right="43.0" />
+                                 </padding>
                               </HBox>
                            </children>
                            <BorderPane.margin>
@@ -263,7 +270,10 @@
                                           <TextField fx:id="textDesmatricularFiltrarCursos" focusTraversable="false" maxWidth="200.0" promptText="Interfaces" />
                                           <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="159.0">
                                              <children>
-                                                <Label fx:id="lblCursosADesmatricular" text="Cursos a desmatricular" />
+                                                <Label fx:id="lblCursosADesmatricular" text="Cursos a desmatricular">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding></Label>
                                              </children>
                                           </HBox>
                                        </children>
@@ -329,13 +339,16 @@
                                  <children>
                                     <Label fx:id="lblDesmatricularModificado" />
                                  </children></HBox>
-                              <HBox>
+                              <HBox alignment="CENTER">
                                  <HBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets />
                                  </HBox.margin>
                                  <children>
                                     <Button fx:id="btnDesmatricular" mnemonicParsing="false" onKeyReleased="#pulsarTecladoBtnDesmatricular" onMouseClicked="#pulsarRatonBtnDesmatricular" prefHeight="30.0" prefWidth="125.0" text="Desmatricular" />
                                  </children>
+                                 <padding>
+                                    <Insets right="43.0" />
+                                 </padding>
                               </HBox>
                            </children>
                            <BorderPane.margin>
