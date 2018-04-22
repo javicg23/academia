@@ -1,0 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-abr-2018, 20:26:20
+    Author     : Countero
+*/
+
+#pane {
+    -fx-background-image: url("../img/fondo.jpg");
+    -fx-background-size: 850 600;
+    -fx-background-position: center center;
+}
