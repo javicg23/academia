@@ -632,7 +632,7 @@ public class FXMLMatriculacionesController implements Initializable {
         tablaMatricularColumnaHora.setStyle("-fx-alignment: CENTER;");
 
         lblMatricularModificado.setStyle("-fx-text-fill: green;");
-        lblMatricularModificado.setText("Alumno matriculados correctamente");
+        lblMatricularModificado.setText("Alumno matriculado correctamente");
 
     }
 
@@ -656,7 +656,7 @@ public class FXMLMatriculacionesController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Desmatricular alumno/s");
         alert.setHeaderText(null);
-        alert.setContentText("¿Esta seguro que desea desmatricular al alumno del curso/s de forma permanente?");
+        alert.setContentText("¿Está seguro de que desea desmatricular al alumno del curso/s de forma permanente?");
         ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/img/icon.png"));
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -711,7 +711,7 @@ public class FXMLMatriculacionesController implements Initializable {
         tablaDesmatricularColumnaHora.setStyle("-fx-alignment: CENTER;");
 
         lblDesmatricularModificado.setStyle("-fx-text-fill: green;");
-        lblDesmatricularModificado.setText("Alumno desmatriculados correctamente");
+        lblDesmatricularModificado.setText("Alumno desmatriculado correctamente");
 
     }
 
@@ -786,7 +786,7 @@ public class FXMLMatriculacionesController implements Initializable {
         baseDatos = new AccesoaBD();
         ObservableList<Curso> cursosTotal = lista;
         Set<Curso> cursosFiltro = new HashSet();
-        for (int i = 0;cursosTotal != null && i < cursosTotal.size(); i++) {
+        for (int i = 0; cursosTotal != null && i < cursosTotal.size(); i++) {
             Curso curso = cursosTotal.get(i);
             String[] cursoPartesNombre = curso.getTitulodelcurso().split(" ");
             for (int j = 0; j < cursoPartesNombre.length; j++) {

@@ -28,7 +28,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -125,9 +124,9 @@ public class FXMLEliminarAlumnoController implements Initializable {
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
         });
 
-	//el mensaje de la tabla vacia
+        //el mensaje de la tabla vacia
         tablaAlumnos.setPlaceholder(new Label("No hay alumnos que mostrar"));
-        
+
         //listener para que cuando se pulse una celdase activen los botones de eliminar y ver los datos del alumno
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaAlumnos.getSelectionModel().selectedIndexProperty()));
     }
@@ -241,10 +240,10 @@ public class FXMLEliminarAlumnoController implements Initializable {
 
     private void confirmacionEliminarAlumno() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Eliminar alumno/s");
+        alert.setTitle("Eliminar alumno");
         alert.setHeaderText(null);
         ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/img/icon.png"));
-        alert.setContentText("¿Está seguro de que desea eliminar el/los alumno/s de forma permanente?");
+        alert.setContentText("¿Está seguro de que desea eliminar el alumno de forma permanente?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             eliminarAlumno();
@@ -275,7 +274,7 @@ public class FXMLEliminarAlumnoController implements Initializable {
         baseDatos.salvar();
 
         lblEliminarModificado.setStyle("-fx-text-fill: red;");
-        lblEliminarModificado.setText("Alumno/s eliminado/s correctamente");
+        lblEliminarModificado.setText("Alumno eliminado correctamente");
         inicializarTabla();
     }
 }

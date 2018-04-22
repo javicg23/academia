@@ -91,7 +91,6 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
         gridDatosCursoLblAula.setText(curso.getAula());
         gridDatosCursoLblHora.setText(curso.getHora().toString());
         lblCurso.setText(curso.getTitulodelcurso());
-        
 
         //introoducir los dias que se imparten las clases en el label
         ArrayList<Dias> dias = curso.getDiasimparte();
@@ -138,16 +137,16 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
             tablaAlumnosColumnaFotografia.setStyle("-fx-alignment: CENTER;");
 
         }
-        
-	//el mensaje de la tabla vacia
+
+        //el mensaje de la tabla vacia
         tablaAlumnos.setPlaceholder(new Label("No hay alumnos matriculados"));
-        
+
         //sentencia para aplicar el filtro a la lista de alumnos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             baseDatos = new AccesoaBD();
             ArrayList<Alumno> alumnosTotal = (ArrayList<Alumno>) baseDatos.getAlumnosDeCurso(curso);
             Set<Alumno> alumnosFiltro = new HashSet();
-            for (int i = 0;alumnosTotal != null && i < alumnosTotal.size(); i++) {
+            for (int i = 0; alumnosTotal != null && i < alumnosTotal.size(); i++) {
                 Alumno alumno = alumnosTotal.get(i);
                 String[] alumnoPartesNombre = alumno.getNombre().split(" ");
                 for (int j = 0; j < alumnoPartesNombre.length; j++) {
@@ -162,7 +161,6 @@ public class FXMLAlumnosMatriculadosController implements Initializable {
             listaAlumnos = FXCollections.observableArrayList(alumnosFiltro);
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
         });
-
 
     }
 

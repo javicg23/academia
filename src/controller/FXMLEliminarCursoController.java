@@ -27,7 +27,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -102,7 +101,7 @@ public class FXMLEliminarCursoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inicializarTabla();
-	//el mensaje de la tabla vacia
+        //el mensaje de la tabla vacia
         tablaCursos.setPlaceholder(new Label("No hay cursos que mostrar"));
 
         //sentencia para aplicar el filtro a la lista de cursos
@@ -128,7 +127,7 @@ public class FXMLEliminarCursoController implements Initializable {
 
         //listener para que cuando se pulse una celdase activen los botones de eliminar y ver alumonsMatriculados
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaCursos.getSelectionModel().selectedIndexProperty()));
-        
+
     }
 
     @FXML
@@ -223,10 +222,10 @@ public class FXMLEliminarCursoController implements Initializable {
 
     private void confirmacionEliminarCurso() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Eliminar curso/s");
+        alert.setTitle("Eliminar curso");
         alert.setHeaderText(null);
         ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/img/icon.png"));
-        alert.setContentText("¿Está seguro de que desea eliminar el/los curso/s de forma permanente?");
+        alert.setContentText("¿Está seguro de que desea eliminar el curso de forma permanente?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             eliminarCurso();
@@ -255,7 +254,7 @@ public class FXMLEliminarCursoController implements Initializable {
         baseDatos.salvar();
 
         lblEliminarModificado.setStyle("-fx-text-fill: red;");
-        lblEliminarModificado.setText("Curso/s eliminado/s correctamente");
+        lblEliminarModificado.setText("Curso eliminado correctamente");
         inicializarTabla();
 
     }

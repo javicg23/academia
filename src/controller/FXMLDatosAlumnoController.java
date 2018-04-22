@@ -84,8 +84,8 @@ public class FXMLDatosAlumnoController implements Initializable {
         gridDatosAlumnoLblDni.setText(alumno.getDni());
         gridDatosAlumnoLblEdad.setText(alumno.getEdad() + "");
         gridDatosAlumnoLblNombre.setText(alumno.getNombre());
-        
-	//el mensaje de la tabla vacia
+
+        //el mensaje de la tabla vacia
         tablaCursosMatriculados.setPlaceholder(new Label("No está matriculado en ningún curso"));
 
         //inicializar la lista de cursos en los que esta matriculado

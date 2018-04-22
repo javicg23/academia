@@ -33,7 +33,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -135,9 +134,9 @@ public class FXMLListaAlumnosController implements Initializable {
         btnEliminar.disableProperty().bind(Bindings.equal(-1, tablaAlumnos.getSelectionModel().selectedIndexProperty()));
         btnVisualizar.disableProperty().bind(Bindings.equal(-1, tablaAlumnos.getSelectionModel().selectedIndexProperty()));
 
-	//el mensaje de la tabla vacia
+        //el mensaje de la tabla vacia
         tablaAlumnos.setPlaceholder(new Label("No hay alumnos que mostrar"));
-        
+
         //sentencia para aplicar el filtro a la lista de alumnos
         textFiltrar.textProperty().addListener((observable, oldValue, newValue) -> {
             baseDatos = new AccesoaBD();
@@ -158,7 +157,6 @@ public class FXMLListaAlumnosController implements Initializable {
             listaAlumnos = FXCollections.observableArrayList(alumnosFiltro);
             tablaAlumnos.setItems(listaAlumnos); //vincular la vista y el modelo
         });
-
 
         //metodo para abrir los alumnos matriculados en un curso al pulsar dos veces en un curso de la tabla
         tablaAlumnos.setRowFactory(tableRow -> {
@@ -420,10 +418,10 @@ public class FXMLListaAlumnosController implements Initializable {
 
     private void confirmacionEliminarAlumno() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Eliminar alumno/s");
+        alert.setTitle("Eliminar alumno");
         alert.setHeaderText(null);
         ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/img/icon.png"));
-        alert.setContentText("¿Está seguro de que desea eliminar el/los alumno/s de forma permanente?");
+        alert.setContentText("¿Está seguro de que desea eliminar el alumno de forma permanente?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             eliminarAlumno();
@@ -454,7 +452,7 @@ public class FXMLListaAlumnosController implements Initializable {
         baseDatos.salvar();
 
         lblModificacionLista.setStyle("-fx-text-fill: red;");
-        lblModificacionLista.setText("Alumno/s eliminado/s correctamente");
+        lblModificacionLista.setText("Alumno eliminado correctamente");
         inicializarTabla();
     }
 
