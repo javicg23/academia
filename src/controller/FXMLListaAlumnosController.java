@@ -390,21 +390,23 @@ public class FXMLListaAlumnosController implements Initializable {
 
     private void abrirVisualizar() throws IOException {
         Alumno alumno = tablaAlumnos.getSelectionModel().getSelectedItem();
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLDatosAlumno.fxml"));
-        Parent root = (Parent) loader.load();
-        loader.<FXMLDatosAlumnoController>getController().initStage(stage, primaryStage, alumno);
-        Scene scene = new Scene(root);
+        if (alumno != null) {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLDatosAlumno.fxml"));
+            Parent root = (Parent) loader.load();
+            loader.<FXMLDatosAlumnoController>getController().initStage(stage, primaryStage, alumno);
+            Scene scene = new Scene(root);
 
-        Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
-        stage.getIcons().add(icon);
+            Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
+            stage.getIcons().add(icon);
 
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
-        stage.setY(primaryStage.getY() - 20);
-        stage.setResizable(false);
-        stage.showAndWait();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
+            stage.setY(primaryStage.getY() - 20);
+            stage.setResizable(false);
+            stage.showAndWait();
+        }
     }
 
     private void comprobarAnyadido() {

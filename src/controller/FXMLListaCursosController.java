@@ -374,21 +374,23 @@ public class FXMLListaCursosController implements Initializable {
 
     private void abrirAlumnosMatriculados() throws IOException {
         Curso curso = tablaListaCursos.getSelectionModel().getSelectedItem();
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAlumnosMatriculados.fxml"));
-        Parent root = (Parent) loader.load();
-        loader.<FXMLAlumnosMatriculadosController>getController().initStage(stage, primaryStage, curso);
-        Scene scene = new Scene(root);
+        if (curso != null) {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXMLAlumnosMatriculados.fxml"));
+            Parent root = (Parent) loader.load();
+            loader.<FXMLAlumnosMatriculadosController>getController().initStage(stage, primaryStage, curso);
+            Scene scene = new Scene(root);
 
-        Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
-        stage.getIcons().add(icon);
+            Image icon = new Image(getClass().getResourceAsStream("/img/icon.png"));
+            stage.getIcons().add(icon);
 
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
-        stage.setY(primaryStage.getY() - 20);
-        stage.setResizable(false);
-        stage.showAndWait();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2);
+            stage.setY(primaryStage.getY() - 20);
+            stage.setResizable(false);
+            stage.showAndWait();
+        }
     }
 
     private void confirmacionEliminarCurso() {

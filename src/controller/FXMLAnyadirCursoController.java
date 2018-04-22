@@ -311,6 +311,7 @@ public class FXMLAnyadirCursoController implements Initializable {
                         break;
                     case 3:
                         gridAnyadirCursoTextHora.setStyle("-fx-text-box-border: red; -fx-focus-color: red;");
+                        gridAnyadirCursoTextHora.setText("");
                         break;
                     case 4:
                         gridAnyadirCursoDateInicio.setStyle("-fx-background-color: red; -fx-focus-color: red; ");

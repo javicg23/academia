@@ -251,6 +251,7 @@ public class FXMLAnyadirAlumnoController implements Initializable {
                         break;
                     case 1:
                         gridAnyadirAlumnoTextDni.setStyle("-fx-text-box-border: red; -fx-focus-color: red;");
+                        gridAnyadirAlumnoTextDni.setText("");
                         break;
                     case 2:
                         gridAnyadirAlumnoTextDireccion.setStyle("-fx-text-box-border: red; -fx-focus-color: red;");

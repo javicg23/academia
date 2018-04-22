@@ -78,7 +78,7 @@
             <TextField fx:id="gridAnyadirCursoTextHora" promptText="12:30" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <Label fx:id="gridAnyadirCursoLblInicio" focusTraversable="false" text="Fecha Inicio:" GridPane.rowIndex="2" />
             <DatePicker fx:id="gridAnyadirCursoDateInicio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="gridAnyadirCursoLblFin" focusTraversable="false" text="Fecha Inicio:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="gridAnyadirCursoLblFin" focusTraversable="false" text="Fecha Fin:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <DatePicker fx:id="gridAnyadirCursoDateFin" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Label fx:id="gridAnyadirCursoLblAula" focusTraversable="false" text="Aula:" GridPane.rowIndex="3" />
             <ComboBox fx:id="gridAnyadirCursoCmbAula" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />

@@ -230,7 +230,7 @@ public class FXMLMatriculacionesController implements Initializable {
             TableRow<Alumno> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && !row.isEmpty()) {
-                    Alumno alumnosSeleccionado = (Alumno) tableRow.getSelectionModel().getSelectedItem();
+                    Alumno alumnoSeleccionado = (Alumno) tableRow.getSelectionModel().getSelectedItem();
                     baseDatos = new AccesoaBD();
                     List<Matricula> matriculas = baseDatos.getMatriculas();
                     List<Curso> cursos = baseDatos.getCursos();
@@ -238,9 +238,9 @@ public class FXMLMatriculacionesController implements Initializable {
 
                     //bucle para almacenar los cursos en los que el alumno esta matriculado
                     List<Curso> cursosMatriculados = new ArrayList<>();
-                    for (int k = 0; k < matriculas.size(); k++) {
+                    for (int k = 0; alumnoSeleccionado != null && k < matriculas.size(); k++) {
                         Matricula matricula = matriculas.get(k);
-                        if (alumnosSeleccionado.getDni().equals(matricula.getAlumno().getDni())) {
+                        if (alumnoSeleccionado.getDni().equals(matricula.getAlumno().getDni())) {
                             cursosMatriculados.add(matricula.getCurso());
                         }
                     }
@@ -252,9 +252,10 @@ public class FXMLMatriculacionesController implements Initializable {
                             cursosAMostrarSet.add(cursos.get(k));
                         }
                     }
-
-                    listaCursos = FXCollections.observableArrayList(cursosAMostrarSet);
-                    tablaMatricularCursos.setItems(listaCursos); //vincular la vista y el modelo
+                    if (alumnoSeleccionado != null) {
+                        listaCursos = FXCollections.observableArrayList(cursosAMostrarSet);
+                        tablaMatricularCursos.setItems(listaCursos); //vincular la vista y el modelo
+                    }
                     //asignar el estilo a las celdas
                     tablaMatricularCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
                     tablaMatricularCursosColumnaCurso.setStyle("-fx-alignment: CENTER;");
@@ -313,22 +314,24 @@ public class FXMLMatriculacionesController implements Initializable {
             TableRow<Alumno> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && !row.isEmpty()) {
-                    Alumno alumnosSeleccionado = (Alumno) tableRow.getSelectionModel().getSelectedItem();
+                    Alumno alumnoSeleccionado = (Alumno) tableRow.getSelectionModel().getSelectedItem();
                     baseDatos = new AccesoaBD();
                     List<Matricula> matriculas = baseDatos.getMatriculas();
                     List<Curso> cursos = baseDatos.getCursos();
 
                     //bucle para almacenar los cursos en los que el alumno esta matriculado
                     List<Curso> cursosMatriculados = new ArrayList<>();
-                    for (int k = 0; k < matriculas.size(); k++) {
+                    for (int k = 0; alumnoSeleccionado != null && k < matriculas.size(); k++) {
                         Matricula matricula = matriculas.get(k);
-                        if (alumnosSeleccionado.getDni().equals(matricula.getAlumno().getDni())) {
+                        if (alumnoSeleccionado.getDni().equals(matricula.getAlumno().getDni())) {
                             cursosMatriculados.add(matricula.getCurso());
                         }
                     }
-
-                    listaCursosDesmatricular = FXCollections.observableArrayList(cursosMatriculados);
-                    tablaDesmatricularCursos.setItems(listaCursosDesmatricular); //vincular la vista y el modelo
+                    
+                    if (alumnoSeleccionado != null) {
+                        listaCursosDesmatricular = FXCollections.observableArrayList(cursosMatriculados);
+                        tablaDesmatricularCursos.setItems(listaCursosDesmatricular); //vincular la vista y el modelo
+                    }
                     //asignar el estilo a las celdas
                     tablaDesmatricularCursosColumnaCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitulodelcurso()));
                     tablaDesmatricularCursosColumnaCurso.setStyle("-fx-alignment: CENTER;");
